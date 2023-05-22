@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
+import { SearchBotOptions } from "../typings";
 import { default as BotSchema } from "../schemas/Bot";
 import { AUTH, CLIENT_TOKEN } from "../../.config.json";
-import { BOT_NOT_FOUND, INVALID_AUTH } from "./errors.json";
+import { BOT_NOT_FOUND, INVALID_AUTH, NO_QUERY_IN_BODY } from "./errors.json";
 
 export const getBot = async (req: Request, res: Response): Promise<Response<any, Record<string, any>>> => {
     if (req.headers.authorization !== AUTH) return res.json({ error: INVALID_AUTH });
@@ -16,6 +17,15 @@ export const getBot = async (req: Request, res: Response): Promise<Response<any,
         const data = await fetched.json();
 
         return res.json('message' in data ? { error: BOT_NOT_FOUND } : data);
+    };
+    if (req.params.platform === 'search') {
+        const query: SearchBotOptions['query'] = req.body.query;
+
+        if (!query) return res.json({ error: NO_QUERY_IN_BODY });
+
+        const searched = (await BotSchema.find(query)).slice(0, query.limit ?? 250);
+
+        return res.json(searched);
     };
 
     const targetBot = await (_id === '@all' ? BotSchema.find({}) : BotSchema.findById({ _id }));

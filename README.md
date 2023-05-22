@@ -34,7 +34,7 @@ const botProps: Record<string, unknown> = {
     ...
 };
 
-fetch(URL, { method: 'PUT', headers: { authorization: 'Jorge 321' }, body: JSON.stringify(botProps) })
+fetch(URL, { method: 'PUT', headers: { authorization: 'Jorge 321' }, body: JSON.stringify(botProps) });
 ```
 
 ### DELETE
@@ -72,7 +72,26 @@ Este endpoint é utilizado para buscar algo na API ou na API do discord
 const URL: string = 'http://localhost:80/bot/';
 const fetchConfig: Record<string, unknown> = { method: 'GET', headers: { authorization: 'Bob 123' } };
 
-fetch(URL + '@all', fetchConfig) // Retorna uma array com todos os bots no banco de dados
-fetch(URL + '123', fetchConfig) // Busca por um bot específico no banco de dados
-fetch(URL + '123/discord', fetchConfig) // Busca por um bot específico na API do discord
+fetch(URL + '@all', fetchConfig); // Retorna uma array com todos os bots no banco de dados
+fetch(URL + '123', fetchConfig); // Busca por um bot específico no banco de dados
+fetch(URL + '123/discord', fetchConfig); // Busca por um bot específico na API do discord
+
+const query: Record<string, string> = {
+    query: {
+        name: 'Carl-bot'
+    }
+};
+const queryURL: string = URL + '@all/search';
+
+fetch(queryURL, { method: 'GET', headers: { authorization: 'NakedSpyei' }, body: JSON.stringify(query) }); // Faça uma consulta no banco de dados filtrando por opções (As opções de consulta disponíveis são as mesma do objeto de um bot)
+
+const advancedQuery: Record<string, object> = {
+    query: {
+        owners: {
+            $in: ['955095844275781693']
+        }
+    }
+}; // A consulta usa operadores da mongodb
+
+fetch(queryURL, { method: 'GET', headers: { authorization: 'NakedSpyei' }, body: JSON.stringify(advandedQuery) });
 ```

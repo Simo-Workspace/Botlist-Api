@@ -19,3 +19,12 @@ export interface BotStructure {
     tags: string[];
     approved: boolean;
 };
+
+export interface SearchBotOptions {
+    query: SearchBotQueryOptions;
+};
+
+export interface SearchBotQueryOptions {
+    name?: string;
+    limit?: number;
+};
