@@ -1,0 +1,7 @@
+{
+    "BOT_NOT_FOUND": "Cannot find the bot",
+    "INVALID_AUTH": "You are not authorized to use the API",
+    "CANNOT_EDIT_THE_BOT": "Cannot edit the bot, some error was ocurred",
+    "MISSING_ID_PROPERTY": "Cannot edit a bot without `_id` property",
+    "CANNOT_CREATE_THE_BOT": "Cannot create the bot, some error was ocurred"
+}
