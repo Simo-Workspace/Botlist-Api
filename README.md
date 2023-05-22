@@ -12,7 +12,21 @@ Este endpoint é utilizado para adicionar um bot no banco de dados.
 #### Exemplo
 
 ```ts
-const URL = 'http://localhost:80/bot/123';
+const URL: string = 'http://localhost:80/bot/321';
+const botProps: Record<string, unknown> = {
+    _id: '321',
+    name: 'Some compiler',
+    ...
+};
+
+fetch(URL, { headers: { authorization: 'MacDonalds', ...botProps } });
+
+```
+
+#### Exemplo
+
+```ts
+const URL: string = 'http://localhost:80/bot/123';
 const botProps: Record<string, unknown> = {
     _id: '123',
     name: 'Happy Compiler',
@@ -26,6 +40,13 @@ fetch(URL, { method: 'PUT', headers: { authorization: 'Jorge 321', ...botProps }
 
 Este endpoint é utilizado para deletar um bot no banco de dados.
 
+#### Exemplo
+
+```ts
+const URL: string = 'http://localhost:80/bot/123';
+
+fetch(URL, { method: 'DELETE', headers: { authorization: 'Bobs' } });
+```
 ### PATCH
 
 Este endpoint é utilizado para atualizar propriedades de um bot no banco de dados. Ele deve conter a propriedade `_id` obrigatóriamente.
@@ -39,7 +60,7 @@ const propsToEdit: Record<string, string> = {
     name: 'Angry Compiler'
 };
 
-fetch(URL, { method: 'DELETE', headers: { authorization: 'Bob 123', ...propsToEdit } });
+fetch(URL, { method: 'PATCH', headers: { authorization: 'Bob 123', ...propsToEdit } });
 ```
 
 ### GET
