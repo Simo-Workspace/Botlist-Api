@@ -9,6 +9,19 @@
 
 Este endpoint é utilizado para adicionar um bot no banco de dados.
 
+#### Exemplo
+
+```ts
+const URL = 'http://localhost:80/bot/123';
+const botProps: Record<string, unknown> = {
+    _id: '123',
+    name: 'Happy Compiler',
+    ...
+};
+
+fetch(URL, { method: 'PUT', headers: { authorization: 'Jorge 321', ...botProps } })
+```
+
 ### DELETE
 
 Este endpoint é utilizado para deletar um bot no banco de dados.
@@ -20,12 +33,13 @@ Este endpoint é utilizado para atualizar propriedades de um bot no banco de dad
 #### Exemplo
 
 ```ts
-const propsToEdit: Record<string, unknown> = {
+const URL = 'http://localhost:80/bot/123'; // O ID é opcional
+const propsToEdit: Record<string, string> = {
     _id: '123',
     name: 'Angry Compiler'
 };
 
-fetch(URL, { method: 'DELETE', body: propsToEdit, { headers: { authorization: 'Bob 123' } } });
+fetch(URL, { method: 'DELETE', headers: { authorization: 'Bob 123', ...propsToEdit } });
 ```
 
 ### GET
@@ -38,5 +52,5 @@ const fetchConfig: Record<string, unknown> = { method: 'GET', { headers: { autho
 
 fetch(URL + '@all', fetchConfig) // Retorna uma array com todos os bots no banco de dados
 fetch(URL + '123', fetchConfig) // Busca por um bot específico no banco de dados
-fetch(URL + '123', fetchConfig) // Busca por um bot específico na API do discord
+fetch(URL + '123/discord', fetchConfig) // Busca por um bot específico na API do discord
 ```
