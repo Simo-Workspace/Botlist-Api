@@ -24,7 +24,6 @@ export interface SearchBotOptions {
     query: SearchBotQueryOptions;
 };
 
-export interface SearchBotQueryOptions {
-    name?: string;
+export interface SearchBotQueryOptions extends Partial<BotStructure> {
     limit?: number;
 };
