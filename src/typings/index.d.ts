@@ -33,3 +33,7 @@ export interface SearchBotOptions {
 export interface SearchBotQueryOptions extends Partial<BotStructure> {
     limit?: number;
 };
+
+/** Represents an express promised response  */
+
+export type ExpressPromise = Promise<Response<any, Record<string, any>>>;
