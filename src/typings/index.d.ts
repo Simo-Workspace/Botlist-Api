@@ -2,6 +2,8 @@
 
 type Snowflake = string;
 
+/** API Bot structure */
+
 export interface BotStructure {
     _id: Snowflake;
     name: string;
@@ -20,9 +22,13 @@ export interface BotStructure {
     approved: boolean;
 };
 
+/** Structure for search bots */
+
 export interface SearchBotOptions {
     query: SearchBotQueryOptions;
 };
+
+/** Query options for search */
 
 export interface SearchBotQueryOptions extends Partial<BotStructure> {
     limit?: number;
