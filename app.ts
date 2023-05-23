@@ -1,10 +1,10 @@
 import cors from "cors";
 import { connect } from "mongoose";
-import { addBot } from "./src/handlers/PUT";
-import { getBot } from "./src/handlers/GET";
+import { addBot } from "./src/controllers/PUT";
+import { getBot } from "./src/controllers/GET";
 import { MONGOOSE_URL } from "./.config.json";
-import { editBot } from "./src/handlers/PATCH";
-import { deleteBot } from "./src/handlers/DELETE";
+import { editBot } from "./src/controllers/PATCH";
+import { deleteBot } from "./src/controllers/DELETE";
 import { PORT, MAIN_ROUTE } from "./constants.json";
 import { default as express, Express } from "express";
 
