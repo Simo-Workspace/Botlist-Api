@@ -1,0 +1,5 @@
+{
+    "MONGOOSE_URL": "Mongoose URL",
+    "AUTH": "API Authenticator",
+    "CLIENT_TOKEN": "Discord client token"
+}
