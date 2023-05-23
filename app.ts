@@ -14,7 +14,7 @@ app.use(express.json(), cors());
 app.route(MAIN_ROUTE).get(getBot).delete(deleteBot).patch(editBot).put(addBot);
 
 app.listen(PORT, async (): Promise<void> => {
-    await connect(MONGOOSE_URL);
+    await connect(MONGOOSE_URL).catch(console.error);
 
-    console.log(`Servidor iniciado na porta ${PORT}`);
+    console.info(`Servidor iniciado na porta ${PORT}`);
 });
