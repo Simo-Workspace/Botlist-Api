@@ -9,7 +9,7 @@ export const deleteBot = async (req: Request, res: Response): Promise<Response<a
     const _id: string = req.params.id;
     const deletedBot = await BotSchema.findByIdAndDelete({ _id });
 
-    if (!deleteBot) return res.json({ error: BOT_NOT_FOUND });
+    if (!deletedBot) return res.json({ error: BOT_NOT_FOUND });
 
     return res.json(deletedBot);
 };
