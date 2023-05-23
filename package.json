@@ -1,8 +1,8 @@
 {
   "name": "some-secret",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "API for interact with nothing",
+  "main": "index.ts",
   "scripts": {
     "dev": "tsx index.ts"
   },
