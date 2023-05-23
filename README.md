@@ -6,7 +6,7 @@
 - Headers: O header sempre deve ter a propriedade `authorization` com a autorização para utilizar a API.
 - URL Base: http://localhost:{PORT}/bot/
 
-### PUT
+### POST
 
 Este endpoint é utilizado para adicionar um bot no banco de dados.
 
@@ -20,21 +20,8 @@ const botProps: Record<string, unknown> = {
     ...
 };
 
-fetch(URL, { headers: { authorization: 'MacDonalds' }, body: JSON.stringify(botProps) });
+fetch(URL, { method: 'POST', headers: { authorization: 'MacDonalds' }, body: JSON.stringify(botProps) });
 
-```
-
-#### Exemplo
-
-```ts
-const URL: string = 'http://localhost:80/bot/123';
-const botProps: Record<string, unknown> = {
-    _id: '123',
-    name: 'Happy Compiler',
-    ...
-};
-
-fetch(URL, { method: 'PUT', headers: { authorization: 'Jorge 321' }, body: JSON.stringify(botProps) });
 ```
 
 ### DELETE
