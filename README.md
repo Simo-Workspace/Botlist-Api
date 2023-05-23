@@ -14,7 +14,7 @@ Este endpoint é utilizado para adicionar um bot no banco de dados.
 
 ```ts
 const URL: string = 'http://localhost:80/bot/321';
-const botProps: Record<string, unknown> = {
+const botProps: Record<string, string> = {
     _id: '321',
     name: 'Some compiler',
     ...
@@ -57,13 +57,13 @@ Este endpoint é utilizado para buscar algo na API ou na API do discord
 
 ```ts
 const URL: string = 'http://localhost:80/bot/';
-const fetchConfig: Record<string, unknown> = { method: 'GET', headers: { authorization: 'Bob 123' } };
+const fetchConfig: Record<string, string | object> = { method: 'GET', headers: { authorization: 'Bob 123' } };
 
 fetch(URL + '@all', fetchConfig); // Retorna uma array com todos os bots no banco de dados
 fetch(URL + '123', fetchConfig); // Busca por um bot específico no banco de dados
 fetch(URL + '123/discord', fetchConfig); // Busca por um bot específico na API do discord
 
-const query: Record<string, string> = {
+const query: Record<string, object> = {
     query: {
         name: 'Carl-bot'
     }
@@ -78,7 +78,7 @@ const advancedQuery: Record<string, object> = {
             $in: ['955095844275781693']
         }
     }
-}; // A consulta usa operadores da mongodb
+}; // Busque por um bot onde '955095844275781693' seja o ID de algum dono
 
 fetch(queryURL, { method: 'GET', headers: { authorization: 'NakedSpyei' }, body: JSON.stringify(advandedQuery) });
 ```
