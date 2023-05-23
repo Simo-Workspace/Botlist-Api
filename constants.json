@@ -1,0 +1,5 @@
+{
+    "MAIN_ROUTE": "/bot/:id(\\d+|@all)(/:platform(discord|search))?",
+    "MAIN_MODEL_NAME": "addbots",
+    "PORT": 80
+}
