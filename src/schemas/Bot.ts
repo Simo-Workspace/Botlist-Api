@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 import type { BotStructure } from "../typings";
-import { MAIN_MODEL_NAME } from "../../.config.json";
+import { MAIN_MODEL_NAME } from "../../constants.json";
 
 const BotSchema = new Schema<BotStructure>({
     _id: String,
