@@ -8,15 +8,15 @@ export interface BotStructure {
     _id: Snowflake;
     name: string;
     avatar: string;
-    botInviteURL: string;
+    inviteURL: string;
     websiteURL: string;
     supportServer: string;
     sourceCode: string;
-    description: string;
+    shortDescription: string;
     longDescription: string;
     prefix: string[] | string;
     owners: Snowflake[] | string;
-    creationTimestamp: number;
+    createdAt: string;
     verifiedBot: boolean;
     tags: string[];
     approved: boolean;
