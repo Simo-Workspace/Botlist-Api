@@ -1,10 +1,10 @@
 import { AUTH } from "../../.config.json";
 import { Request, Response } from "express";
-import type { BotStructure } from "../typings";
 import { default as BotSchema } from "../schemas/Bot";
+import type { BotStructure, ExpressPromise } from "../typings";
 import { INVALID_AUTH, CANNOT_EDIT_THE_BOT, MISSING_ID_PROPERTY } from "./errors.json";
 
-export const editBot = async (req: Request, res: Response): Promise<Response<any, Record<string, any>>> => {
+export const editBot = async (req: Request, res: Response): ExpressPromise => {
     if (req.headers.authorization !== AUTH) return res.json({ error: INVALID_AUTH });
 
     const query: Partial<BotStructure> = req.body;

@@ -1,9 +1,10 @@
 import { AUTH } from "../../.config.json";
 import { Request, Response } from "express";
+import { ExpressPromise } from "../typings";
 import { default as BotSchema } from "../schemas/Bot";
 import { INVALID_AUTH, BOT_NOT_FOUND } from "./errors.json";
 
-export const deleteBot = async (req: Request, res: Response): Promise<Response<any, Record<string, any>>> => {
+export const deleteBot = async (req: Request, res: Response): ExpressPromise => {
     if (req.headers.authorization !== AUTH) return res.json({ error: INVALID_AUTH });
 
     const _id: string = req.params.id;

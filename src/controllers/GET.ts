@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import { SearchBotOptions } from "../typings";
 import { default as BotSchema } from "../schemas/Bot";
 import { AUTH, CLIENT_TOKEN } from "../../.config.json";
+import { ExpressPromise, SearchBotOptions } from "../typings";
 import { BOT_NOT_FOUND, INVALID_AUTH, NO_QUERY_IN_BODY } from "./errors.json";
 
-export const getBot = async (req: Request, res: Response): Promise<Response<any, Record<string, any>>> => {
+export const getBot = async (req: Request, res: Response): ExpressPromise => {
     if (req.headers.authorization !== AUTH) return res.json({ error: INVALID_AUTH });
 
     const _id: string = req.params.id;
