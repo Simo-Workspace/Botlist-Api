@@ -1,6 +1,6 @@
 import { AUTH } from "../../.config.json";
 import { Request, Response } from "express";
-import { default as BotSchema } from "../schemas/Bot";
+import { default as BotSchema } from "../database/Bot";
 import type { BotStructure, ExpressPromise } from "../typings";
 import { INVALID_AUTH, CANNOT_CREATE_THE_BOT } from "./errors.json";
 

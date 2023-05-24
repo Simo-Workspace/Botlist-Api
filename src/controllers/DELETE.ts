@@ -1,7 +1,7 @@
 import { AUTH } from "../../.config.json";
 import { Request, Response } from "express";
 import { ExpressPromise } from "../typings";
-import { default as BotSchema } from "../schemas/Bot";
+import { default as BotSchema } from "../database/Bot";
 import { INVALID_AUTH, BOT_NOT_FOUND } from "./errors.json";
 
 export const deleteBot = async (req: Request, res: Response): ExpressPromise => {
