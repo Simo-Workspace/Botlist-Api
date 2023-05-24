@@ -30,7 +30,7 @@ export interface SearchBotOptions {
 
 /** Query options for search */
 
-export interface SearchBotQueryOptions extends Partial<BotStructure> {
+interface SearchBotQueryOptions extends Partial<BotStructure> {
     limit?: number;
 };
 
