@@ -11,7 +11,7 @@ export const editBot: (req: Request, res: Response) => ExpressPromise = async (r
 
     if (!('_id' in query)) return res.json({ error: MISSING_ID_PROPERTY });
 
-    const updated = await BotSchema.findByIdAndUpdate({ _id: query._id }, query);
+    const updated = await BotSchema.findByIdAndUpdate({ _id: query._id }, query, { new: true });
 
     if (!updated) return res.json({ error: CANNOT_EDIT_THE_BOT });
 
