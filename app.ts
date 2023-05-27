@@ -18,3 +18,5 @@ app.listen(PORT, async (): Promise<void> => {
 
     console.info(`Servidor iniciado na porta ${PORT}`);
 });
+
+'Just a test by unreal';
