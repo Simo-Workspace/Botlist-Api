@@ -34,9 +34,10 @@ const URL: string = 'http://localhost:80/bot/123';
 
 fetch(URL, { method: 'DELETE', headers: { authorization: 'Bobs' } });
 ```
+
 ### PATCH
 
-Este endpoint é utilizado para atualizar propriedades de um bot no banco de dados. Ele deve conter a propriedade `_id` obrigatóriamente.
+Este endpoint é utilizado para atualizar propriedades de um bot no banco de dados.
 
 #### Exemplo
 
