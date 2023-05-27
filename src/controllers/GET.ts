@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { default as BotSchema } from "../database/Bot";
+import { default as BotSchema } from "../database/BotSchema";
 import { AUTH, CLIENT_TOKEN } from "../../.config.json";
 import { ExpressPromise, SearchBotOptions } from "../typings";
 import { BOT_NOT_FOUND, INVALID_AUTH, NO_QUERY_IN_BODY } from "./errors.json";
