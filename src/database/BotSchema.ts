@@ -14,14 +14,22 @@ const BotSchema = new Schema<BotStructure>({
     websiteURL: String,
     supportServer: String,
     sourceCode: String,
-    shortDescription: String,
-    longDescription: String,
+    shortDescription: {
+        type: String, required: true
+    },
+    longDescription: {
+        type: String, required: true
+    },
     prefix: Array<string>,
     owners: Array<string>,
-    createdAt: String,
+    createdAt: {
+        type: String, required: true
+    },
     verifiedBot: Boolean,
     tags: Array<string>,
-    approved: Boolean
+    approved: {
+        type: Boolean, required: true
+    }
 });
 
 export default model(MAIN_MODEL_NAME, BotSchema);
