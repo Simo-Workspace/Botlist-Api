@@ -4,7 +4,7 @@ import { default as BotSchema } from "../database/Bot";
 import type { BotStructure, ExpressPromise } from "../typings";
 import { INVALID_AUTH, CANNOT_CREATE_THE_BOT } from "./errors.json";
 
-export const addBot = async (req: Request, res: Response): ExpressPromise => {
+export const addBot: (req: Request, res: Response) => ExpressPromise = async (req: Request, res: Response): ExpressPromise => {
     if (req.headers.authorization !== AUTH) return res.json({ error: INVALID_AUTH });
 
     const properties: Partial<BotStructure> = req.body;
