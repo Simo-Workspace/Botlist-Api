@@ -3,8 +3,12 @@ import type { BotStructure } from "../typings";
 import { MAIN_MODEL_NAME } from "../../constants.json";
 
 const BotSchema = new Schema<BotStructure>({
-    _id: String,
-    name: String,
+    _id: {
+        type: String, required: true
+    },
+    name: {
+        type: String, required: true
+    },
     avatar: String,
     inviteURL: String,
     websiteURL: String,
