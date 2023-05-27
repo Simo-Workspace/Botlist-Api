@@ -51,6 +51,18 @@ const propsToEdit: Record<string, string> = {
 fetch(URL, { method: 'PATCH', headers: { authorization: 'Bob 123' }, body: JSON.stringify(propsToEdit) });
 ```
 
+### PUT
+
+Este endpoint é usado para atualizar o username e avatar de um bot. Note que você pode passar `auto` como `true` para atualizar sozinho.
+
+```ts
+const _id: Snowflake = '123';
+const URL: string = 'http://localhost:80/bot' + _id;
+
+fetch(URL, { method: 'PUT', headers: { Authorization: 'Bob 321' }, body: JSON.stringify({ name: 'Carlinhos-bot', _id }) }) // Atualiza passando os dados
+fetch(URL, { method: 'PUT', headers: { Authorization: 'Bob 213' }, body: JSON.stringify({ _id, auto: true }) }); // Se `auto` for passado como true, ele buscará os dados na API do Discord e atualizara
+```
+
 ### GET
 
 Este endpoint é utilizado para buscar algo na API ou na API do discord
