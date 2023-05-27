@@ -1,3 +1,8 @@
+# Modules
+
 node_modules/
 package-lock.json
+
+# Secrets
+
 .config.json
