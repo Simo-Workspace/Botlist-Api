@@ -8,7 +8,7 @@ export const deleteBot: (req: Request, res: Response) => ExpressPromise = async 
     if (req.headers.authorization !== AUTH) return res.json({ error: INVALID_AUTH });
 
     const _id: string = req.params.id;
-    const deletedBot = await BotSchema.findByIdAndDelete({ _id });
+    const deletedBot = await BotSchema.findByIdAndDelete({ _id }, { new: true });
 
     if (!deletedBot) return res.json({ error: BOT_NOT_FOUND });
 
