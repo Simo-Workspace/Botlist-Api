@@ -49,3 +49,7 @@ export interface UserStructure {
     username: string;
     avatar: string;
 };
+
+export interface DiscordUserStructure extends Omit<UserStructure, '_id'> {
+    id: Snowflake;
+};
