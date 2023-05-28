@@ -1,18 +1,19 @@
 import { AUTH } from "../../.config.json";
 import { Request, Response } from "express";
 import { default as BotSchema } from "../database/BotSchema";
-import type { BotStructure, ExpressPromise } from "../typings";
-import { INVALID_AUTH, CANNOT_EDIT_THE_BOT, MISSING_ID_PROPERTY } from "./errors.json";
+import type { BotStructure, ExpressPromise, Snowflake } from "../typings";
+import { INVALID_AUTH, CANNOT_EDIT_THE_BOT, BOT_NOT_FOUND } from "./errors.json";
 
 export const editBot: (req: Request, res: Response) => ExpressPromise = async (req: Request, res: Response): ExpressPromise => {
     if (req.headers.authorization !== AUTH) return res.json({ error: INVALID_AUTH });
 
     const _id = req.params.id;
-    const query: Partial<BotStructure> = req.body;
+    const exists: { _id: Snowflake; } | null = await BotSchema.exists({ _id });
 
-    if (!_id) return res.json({ error: MISSING_ID_PROPERTY });
+    if (!exists) return res.json({ error: BOT_NOT_FOUND });
 
-    const updated = await BotSchema.findByIdAndUpdate({ _id }, query, { new: true });
+    const bodyData: Partial<BotStructure> = req.body;
+    const updated = await BotSchema.findByIdAndUpdate({ _id }, { ...bodyData, _id }, { new: true });
 
     if (!updated) return res.json({ error: CANNOT_EDIT_THE_BOT });
 

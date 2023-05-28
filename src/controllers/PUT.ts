@@ -8,12 +8,14 @@ export const updateBot: (req: Request, res: Response) => Promise<Response<any, R
     if (req.headers.authorization !== AUTH) return res.json({ error: INVALID_AUTH });
 
     const _id = req.params.id;
-    const data: Partial<BotStructure> & { auto?: boolean; } = req.body;
 
     if (!_id) return res.json({ error: MISSING_ID_PROPERTY });
+
+    const data: Partial<BotStructure> & { auto?: boolean; } = req.body;
+    
     if (data.auto) {
         const request: globalThis.Response = await fetch(`https://discord.com/api/v10/users/${_id}`, { method: 'GET', headers: { Authorization: `Bot ${CLIENT_TOKEN}` } });
-        const { username, avatar }: { username: string; avatar?: string; } = await request.json();
+        const { username, avatar }: { username: string; avatar: string | undefined; } = await request.json();
 
         const updated = await BotSchema.findByIdAndUpdate({ _id }, { name: username, avatar }, { new: true });
 

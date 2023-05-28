@@ -1,16 +1,16 @@
 import { Request, Response } from "express";
 import { AUTH, CLIENT_TOKEN } from "../../.config.json";
 import { default as BotSchema } from "../database/BotSchema";
-import { ExpressPromise, SearchBotOptions } from "../typings";
+import { ExpressPromise, SearchBotOptions, Snowflake } from "../typings";
 import { BOT_NOT_FOUND, INVALID_AUTH, NO_QUERY_IN_BODY } from "./errors.json";
 
 export const getBot: (req: Request, res: Response) => ExpressPromise = async (req: Request, res: Response): ExpressPromise => {
     if (req.headers.authorization !== AUTH) return res.json({ error: INVALID_AUTH });
 
-    const _id: string = req.params.id;
+    const _id: Snowflake = req.params.id;
 
     if (req.params.platform === 'discord') {
-        const fetched = await fetch(`https://discord.com/api/v10/users/${_id}`, {
+        const fetched: globalThis.Response = await fetch(`https://discord.com/api/v10/users/${_id}`, {
             method: 'GET',
             headers: { Authorization: `Bot ${CLIENT_TOKEN}` }
         });
