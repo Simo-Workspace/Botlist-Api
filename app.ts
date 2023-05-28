@@ -1,5 +1,6 @@
 import cors from "cors";
 import { connect } from "mongoose";
+import rateLimit from "express-rate-limit";
 import { MONGOOSE_URL } from "./.config.json";
 import { getBot } from "./src/controllers/GET";
 import { addBot } from "./src/controllers/POST";
@@ -8,10 +9,18 @@ import { updateBot } from "./src/controllers/PUT";
 import { PORT, MAIN_ROUTE } from "./constants.json";
 import { deleteBot } from "./src/controllers/DELETE";
 import { default as express, Express } from "express";
+import { MANY_REQUEST } from "./src/controllers/errors.json"
 
 const app: Express = express();
 
-app.use(express.json({ strict: true, limit: '50kb' }), cors());
+const limiter = rateLimit({
+    max: 10,
+    message: {
+        error: MANY_REQUEST
+    }
+});
+
+app.use(express.json({ strict: true, limit: '50kb' }), cors(), limiter);
 app.route(MAIN_ROUTE).get(getBot).delete(deleteBot).patch(editBot).post(addBot).put(updateBot);
 
 app.listen(PORT, async (): Promise<void> => {
