@@ -6,5 +6,6 @@
     "CANNOT_CREATE_THE_BOT": "Could not create the bot, an error ocurred",
     "NO_QUERY_IN_BODY": "No query was provided in `body`",
     "BOT_ALREADY_EXISTS": "Can not add a bot that already exists",
-    "SOME_PROPERTIES_IS_MISSING": "Some properties is missing to add bot"
+    "SOME_PROPERTIES_IS_MISSING": "Some properties is missing to add bot",
+    "MANY_REQUEST": "Many requests made in less than 1 minute"
 }
