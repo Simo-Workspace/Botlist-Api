@@ -9,7 +9,8 @@ import { updateBot } from "./src/controllers/PUT";
 import { PORT, MAIN_ROUTE } from "./constants.json";
 import { deleteBot } from "./src/controllers/DELETE";
 import { default as express, Express } from "express";
-import { MANY_REQUEST } from "./src/controllers/errors.json"
+import { MANY_REQUEST } from "./src/controllers/errors.json";
+import { TOO_MANY_REQUESTS } from "./src/controllers/status-code.json"
 
 const app: Express = express();
 
@@ -17,7 +18,8 @@ const limiter = rateLimit({
     max: 10,
     message: {
         error: MANY_REQUEST
-    }
+    },
+    statusCode: TOO_MANY_REQUESTS
 });
 
 app.use(express.json({ strict: true, limit: '50kb' }), cors(), limiter);
