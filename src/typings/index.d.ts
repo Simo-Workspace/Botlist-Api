@@ -40,6 +40,12 @@ export type ExpressPromise = Promise<Response<any, Record<string, any>>>;
 
 declare module 'express-session' {
     interface SessionData {
-        user_info: any
-    }
-}
+        user_info: any;
+    };
+};
+
+export interface UserStructure {
+    _id: Snowflake;
+    username: string;
+    avatar: string;
+};
