@@ -12,7 +12,7 @@ export const addBot: (req: Request, res: Response) => ExpressPromise = async (re
     const properties: Partial<BotStructure> = req.body;
     const keys: string[] = Object.keys(properties);
 
-    if (keys.length < 1 || REQUIRED_BOT_PROPERTIES.every((prop: string): boolean => keys.includes(prop))) return res.status(BAD_REQUEST).json({ message: SOME_PROPERTIES_IS_MISSING, code: BAD_REQUEST });
+    if (!REQUIRED_BOT_PROPERTIES.every((prop: string): boolean => keys.includes(prop))) return res.status(BAD_REQUEST).json({ message: SOME_PROPERTIES_IS_MISSING, code: BAD_REQUEST });
 
     const _id: Snowflake = req.params.id;
     const exists: { _id: Snowflake; } | null = await BotSchema.exists({ _id });
