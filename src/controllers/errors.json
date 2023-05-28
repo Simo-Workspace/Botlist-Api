@@ -1,10 +1,10 @@
 {
-    "BOT_NOT_FOUND": "Cannot find the bot",
-    "INVALID_AUTH": "You are not authorized to use the API",
-    "CANNOT_EDIT_THE_BOT": "Cannot edit the bot, some error was ocurred",
-    "MISSING_ID_PROPERTY": "Cannot edit a bot without `_id` property",
-    "CANNOT_CREATE_THE_BOT": "Cannot create the bot, some error was ocurred",
+    "BOT_NOT_FOUND": "Could not find the bot",
+    "INVALID_AUTH": "Invalid authenticator",
+    "CANNOT_EDIT_THE_BOT": "Could not edit the bot, an error ocurred",
+    "MISSING_ID_PROPERTY": "Could not edit a bot without `_id` property",
+    "CANNOT_CREATE_THE_BOT": "Could not create the bot, an error ocurred",
     "NO_QUERY_IN_BODY": "No query was provided in `body`",
-    "BOT_ALREADY_EXISTS": "Cannot add a bot that already exists",
-    "SOME_PROPERTIES_IS_MISSING": "Some properties is missing to add a bot"
+    "BOT_ALREADY_EXISTS": "Can not add a bot that already exists",
+    "SOME_PROPERTIES_IS_MISSING": "Some properties is missing to add bot"
 }
