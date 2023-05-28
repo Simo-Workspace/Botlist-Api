@@ -11,7 +11,7 @@ import { default as express, Express } from "express";
 
 const app: Express = express();
 
-app.use(express.json(), cors());
+app.use(express.json({ strict: true, limit: '50kb' }), cors());
 app.route(MAIN_ROUTE).get(getBot).delete(deleteBot).patch(editBot).post(addBot).put(updateBot);
 
 app.listen(PORT, async (): Promise<void> => {
