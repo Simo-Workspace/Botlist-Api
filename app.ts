@@ -12,35 +12,35 @@ import { updateBot } from "./src/controllers/PUT";
 import { PORT, MAIN_ROUTE } from "./constants.json";
 import { deleteBot } from "./src/controllers/DELETE";
 import { default as express, Express } from "express";
-import { callback } from './src/controllers/GET-AUTH';
+import { callback } from "./src/controllers/GET-AUTH";
 import { MANY_REQUEST } from "./src/controllers/errors.json";
 import { TOO_MANY_REQUESTS } from "./src/controllers/status-code.json";
 
 const app: Express = express();
 
 const limiter = rateLimit({
-    max: 10,
-    message: {
-        error: MANY_REQUEST
-    },
-    statusCode: TOO_MANY_REQUESTS
+	max: 10,
+	message: {
+		error: MANY_REQUEST
+	},
+	statusCode: TOO_MANY_REQUESTS
 });
 
-app.use(express.json({ strict: true, limit: '50kb' }), cors({ credentials: true }), limiter, cookieParser(), session({
-    secret: COOKIE_SECRET,
-    cookie: {
-        maxAge: 600000,
-    },
-    resave: false,
-    saveUninitialized: false,
-    name: 'discord.login'
+app.use(express.json({ strict: true, limit: "50kb" }), cors({ credentials: true }), limiter, cookieParser(), session({
+	secret: COOKIE_SECRET,
+	cookie: {
+		maxAge: 600000,
+	},
+	resave: false,
+	saveUninitialized: false,
+	name: "discord.login"
 }));
 
-app.route('/auth/callback').get(callback);
+app.route("/auth/callback").get(callback);
 app.route(MAIN_ROUTE).get(getBot).delete(deleteBot).patch(editBot).post(addBot).put(updateBot);
 
 app.listen(PORT, async (): Promise<void> => {
-    await connect(MONGOOSE_URL).catch(console.error);
-
-    console.info(`Servidor iniciado na porta ${PORT}`);
+	await connect(MONGOOSE_URL).catch(console.error);
+    
+	console.info(`Servidor iniciado na porta ${PORT}`);
 });
