@@ -6,6 +6,10 @@
 - Headers: O header sempre deve ter a propriedade `authorization` com a autorização para utilizar a API.
 - URL Base: http://localhost:{PORT}/bot/
 
+## Status Code
+
+Veja todos os status code em https://restfulapi.net/http-status-codes/.
+
 ### POST
 
 Este endpoint é utilizado para adicionar um bot no banco de dados.
