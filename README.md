@@ -10,6 +10,10 @@
 
 Veja todos os status code em https://restfulapi.net/http-status-codes/.
 
+## Rate Limit
+
+O rate limit está definido com 10 requisições por minuto.
+
 ### POST
 
 Este endpoint é utilizado para adicionar um bot no banco de dados.
