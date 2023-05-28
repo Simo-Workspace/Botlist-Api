@@ -2,5 +2,5 @@
     "MAIN_ROUTE": "/bot/:id(\\d+|@all)(/:platform(discord|search))?",
     "MAIN_MODEL_NAME": "addbots",
     "PORT": 80,
-    "REQUIRED_BOT_PROPERTIES": ["_id", "name", "shortDescription", "longDescription", "createdAt", "approved"]
+    "REQUIRED_BOT_PROPERTIES": ["name", "shortDescription", "longDescription", "createdAt", "approved"]
 }
