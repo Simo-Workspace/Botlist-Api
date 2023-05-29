@@ -6,7 +6,3 @@ package-lock.json
 # Secrets
 
 .config.json
-
-# Tests
-
-index.spec.ts
