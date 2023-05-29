@@ -3,14 +3,14 @@ import { connect } from "mongoose";
 import session from "express-session";
 import cookieParser from "cookie-parser";
 import rateLimit from "express-rate-limit";
+import { PUT } from "./src/controllers/PUT";
+import { GET } from "./src/controllers/GET";
 import { MONGOOSE_URL } from "./.config.json";
+import { POST } from "./src/controllers/POST";
 import { COOKIE_SECRET } from "./.config.json";
-import { getBot } from "./src/controllers/GET";
-import { addBot } from "./src/controllers/POST";
-import { editBot } from "./src/controllers/PATCH";
-import { updateBot } from "./src/controllers/PUT";
+import { PATCH } from "./src/controllers/PATCH";
+import { DELETE } from "./src/controllers/DELETE";
 import { PORT, MAIN_ROUTE } from "./constants.json";
-import { deleteBot } from "./src/controllers/DELETE";
 import { default as express, Express } from "express";
 import { callback } from "./src/controllers/GET-AUTH";
 import { MANY_REQUEST } from "./src/controllers/errors.json";
@@ -37,7 +37,7 @@ app.use(express.json({ strict: true, limit: "50kb" }), cors({ credentials: true 
 }));
 
 app.route("/auth/callback").get(callback);
-app.route(MAIN_ROUTE).get(getBot).delete(deleteBot).patch(editBot).post(addBot).put(updateBot);
+app.route(MAIN_ROUTE).get(GET).delete(DELETE).patch(PATCH).post(POST).put(PUT);
 
 app.listen(PORT, async (): Promise<void> => {
 	await connect(MONGOOSE_URL).catch(console.error);

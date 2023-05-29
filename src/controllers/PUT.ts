@@ -5,7 +5,9 @@ import { BotStructure, ExpressPromise } from "../typings";
 import { INVALID_AUTH, CANNOT_EDIT_THE_BOT } from "./errors.json";
 import { UNAUTHORIZED, INTERNAL_SERVER_ERROR, OK } from "./status-code.json";
 
-export const updateBot: (req: Request, res: Response) => Promise<Response<any, Record<string, any>>> = async (req: Request, res: Response): ExpressPromise => {
+/** Update specific things of a bot */
+
+export const PUT: (req: Request, res: Response) => ExpressPromise = async (req: Request, res: Response): ExpressPromise => {
 	if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: INVALID_AUTH, code: UNAUTHORIZED });
 
 	const _id = req.params.id;
