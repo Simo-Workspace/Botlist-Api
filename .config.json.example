@@ -1,8 +1,8 @@
 {
-    "MONGOOSE_URL": "Mongoose URL",
-    "AUTH": "API Authenticator",
-    "CLIENT_TOKEN": "Discord client token",
-    "CLIENT_ID": "Discord client id",
+   "MONGOOSE_URL": "Mongoose URL",
+   "AUTH": "API Authenticator",
+   "CLIENT_TOKEN": "Discord client token",
+   "CLIENT_ID": "Discord client id",
    "CLIENT_SECRET": "Discord client auth secret",
    "REDIRECT_URI": "http://localhost:{PORT}/auth/callback",
    "REDIRECT_AUTH": "http://localhost:{PORT}",

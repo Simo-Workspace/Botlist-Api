@@ -4,7 +4,7 @@ import serialize from "serialize-javascript";
 import { DiscordUserStructure } from "../typings";
 import { DISCORD_AUTH_ERROR } from "./errors.json";
 import { INTERNAL_SERVER_ERROR } from "./status-code.json";
-import { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, SCOPES } from "../../.config.json";
+import { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, SCOPES, REDIRECT_AUTH } from "../../.config.json";
 
 export const callback: (req: Request, res: Response) => ExpressPromise = async (req: Request, res: Response): ExpressPromise => {
 	const code = req.query.code;
@@ -36,7 +36,7 @@ export const callback: (req: Request, res: Response) => ExpressPromise = async (
 
 		res.cookie("discordUser", serialize(user), { maxAge: 900000, httpOnly: false });
 
-		res.redirect(REDIRECT_URI);
+		res.redirect(REDIRECT_AUTH);
 	} catch (error) {
 		console.error(error);
 
