@@ -9,7 +9,9 @@ const BotSchema = new Schema<BotStructure>({
 	name: {
 		type: String, required: true
 	},
-	avatar: String,
+	avatar: {
+		type: String, required: true
+	},
 	inviteURL: {
 		type: String, required: false, default: "https://discord.com/api/oauth2/authorize?client_id=${id}&permissions=2147483639&scope=bot%20applications.commands"
 	},
