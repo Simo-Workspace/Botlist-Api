@@ -4,7 +4,7 @@ import serialize from "serialize-javascript";
 import { DiscordUserStructure } from "../typings";
 import { DISCORD_AUTH_ERROR } from "./errors.json";
 import { INTERNAL_SERVER_ERROR } from "./status-code.json";
-import { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, SCOPES, REDIRECT_AUTH } from "../../.config.json";
+import { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, SCOPES, REDIRECT_AUTH, AUTH_LINK } from "../../.config.json";
 
 export const callback: (req: Request, res: Response) => ExpressPromise = async (req: Request, res: Response): ExpressPromise => {
 	const code = req.query.code;
@@ -19,8 +19,8 @@ export const callback: (req: Request, res: Response) => ExpressPromise = async (
 
 	try {
 		const req = await fetch("https://discord.com/api/v10/oauth2/token", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(data as Record<string, string>) });
-		const tokenResponse = await req.json();
-
+		const tokenResponse: { error: string, access_token: string } = await req.json();
+		if(tokenResponse.error === 'invalid_grant') return res.redirect(AUTH_LINK);
 		const accessToken: string = tokenResponse.access_token;
 		const request: globalThis.Response = await fetch("https://discord.com/api/v10/users/@me", {
 			headers: {
