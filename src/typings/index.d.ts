@@ -20,36 +20,36 @@ export interface BotStructure {
     verifiedBot: boolean;
     tags: string[];
     approved: boolean;
-};
+}
 
 /** Structure for search bots */
 
 export interface SearchBotOptions {
     query: SearchBotQueryOptions;
-};
+}
 
 /** Query options for search */
 
 interface SearchBotQueryOptions extends Partial<BotStructure> {
     limit?: number;
-};
+}
 
 /** Represents an express promised response  */
 
 export type ExpressPromise = Promise<Response<any, Record<string, any>>>;
 
-declare module 'express-session' {
+declare module "express-session" {
     interface SessionData {
         user_info: any;
-    };
-};
+    }
+}
 
 export interface UserStructure {
     _id: Snowflake;
     username: string;
     avatar: string;
-};
+}
 
-export interface DiscordUserStructure extends Omit<UserStructure, '_id'> {
+export interface DiscordUserStructure extends Omit<UserStructure, "_id"> {
     id: Snowflake;
-};
+}
