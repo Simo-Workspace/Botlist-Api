@@ -2,9 +2,15 @@ import { Schema, model } from "mongoose";
 import type { UserStructure } from "../typings";
 
 const UserSchema = new Schema<UserStructure>({
-	_id: String,
-	username: String,
-	avatar: String,
+	_id: {
+		type: String, required: true
+	},
+	username: {
+		type: String, required: true
+	},
+	avatar: {
+		type: String, required: true
+	}
 });
 
 export default model("User", UserSchema);
