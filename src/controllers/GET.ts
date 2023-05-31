@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import { ExpressPromise, Snowflake } from "../typings";
 import { AUTH, CLIENT_TOKEN } from "../../.config.json";
-import { BOT_NOT_FOUND, INVALID_AUTH } from "./errors.json";
 import { default as BotSchema } from "../database/BotSchema";
-import { UNAUTHORIZED, NOT_FOUND, OK } from "./status-code.json";
+import { UNAUTHORIZED, NOT_FOUND, OK, BAD_REQUEST } from "./status-code.json";
+import { BOT_NOT_FOUND, INVALID_AUTH, CANNOT_GET_BOT_VOTES } from "./errors.json";
 
 /** Get a bot in the database or Discord API */
 
@@ -27,6 +27,12 @@ export const GET: (req: Request, res: Response) => ExpressPromise = async (req: 
 	const targetBot = await (_id === "@all" ? BotSchema.find({}) : BotSchema.findById({ _id }));
 
 	if (!targetBot) return res.status(NOT_FOUND).json({ message: BOT_NOT_FOUND, code: NOT_FOUND });
+
+	if (req.params.platform === "votes") {
+		if (Array.isArray(targetBot)) return res.status(BAD_REQUEST).json({ message: CANNOT_GET_BOT_VOTES, code: BAD_REQUEST });
+
+		return targetBot.votes;
+	}
 
 	return res.status(OK).json(targetBot);
 };
