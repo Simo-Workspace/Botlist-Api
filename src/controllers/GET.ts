@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
+import { ExpressPromise, Snowflake } from "../typings";
 import { AUTH, CLIENT_TOKEN } from "../../.config.json";
+import { BOT_NOT_FOUND, INVALID_AUTH } from "./errors.json";
 import { default as BotSchema } from "../database/BotSchema";
-import { ExpressPromise, SearchBotOptions, Snowflake } from "../typings";
-import { BOT_NOT_FOUND, INVALID_AUTH, NO_QUERY_IN_BODY } from "./errors.json";
-import { UNAUTHORIZED, NOT_FOUND, OK, BAD_REQUEST } from "./status-code.json";
+import { UNAUTHORIZED, NOT_FOUND, OK } from "./status-code.json";
 
 /** Get a bot in the database or Discord API */
 
@@ -23,16 +23,7 @@ export const GET: (req: Request, res: Response) => ExpressPromise = async (req: 
 
 		return res.status(OK).json(data);
 	}
-	if (req.params.platform === "search") {
-		const query: SearchBotOptions["query"] = req.body.query;
-
-		if (!query) return res.status(BAD_REQUEST).json({ message: NO_QUERY_IN_BODY, code: BAD_REQUEST });
-
-		const searched = (await BotSchema.find(query)).slice(0, query.limit ?? 250);
-
-		return res.status(OK).json(searched);
-	}
-
+	
 	const targetBot = await (_id === "@all" ? BotSchema.find({}) : BotSchema.findById({ _id }));
 
 	if (!targetBot) return res.status(NOT_FOUND).json({ message: BOT_NOT_FOUND, code: NOT_FOUND });

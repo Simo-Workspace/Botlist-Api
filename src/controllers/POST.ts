@@ -2,14 +2,23 @@ import { AUTH } from "../../.config.json";
 import { Request, Response } from "express";
 import { default as BotSchema } from "../database/BotSchema";
 import { REQUIRED_BOT_PROPERTIES } from "../../constants.json";
-import type { BotStructure, ExpressPromise, Snowflake } from "../typings";
-import { UNAUTHORIZED, BAD_REQUEST, NOT_FOUND, INTERNAL_SERVER_ERROR, CREATED } from "./status-code.json";
-import { INVALID_AUTH, CANNOT_CREATE_THE_BOT, BOT_ALREADY_EXISTS, SOME_PROPERTIES_IS_MISSING } from "./errors.json";
+import type { BotStructure, ExpressPromise, SearchBotOptions, Snowflake } from "../typings";
+import { UNAUTHORIZED, BAD_REQUEST, NOT_FOUND, INTERNAL_SERVER_ERROR, CREATED, OK } from "./status-code.json";
+import { INVALID_AUTH, CANNOT_CREATE_THE_BOT, BOT_ALREADY_EXISTS, SOME_PROPERTIES_IS_MISSING, NO_QUERY_IN_BODY } from "./errors.json";
 
 /** Add a bot */
 
 export const POST: (req: Request, res: Response) => ExpressPromise = async (req: Request, res: Response): ExpressPromise => {
 	if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: INVALID_AUTH, code: UNAUTHORIZED });
+	if (req.params.platform === "search") {
+		const query: SearchBotOptions["query"] = req.body.query;
+
+		if (!query) return res.status(BAD_REQUEST).json({ message: NO_QUERY_IN_BODY, code: BAD_REQUEST });
+
+		const searched = (await BotSchema.find(query)).slice(0, query.limit ?? 250);
+
+		return res.status(OK).json(searched);
+	}
 
 	const properties: Partial<BotStructure> = req.body;
 	const keys: string[] = Object.keys(properties);
