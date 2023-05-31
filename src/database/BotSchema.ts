@@ -33,6 +33,15 @@ const BotSchema = new Schema<BotStructure>({
 	tags: Array<string>,
 	approved: {
 		type: Boolean, required: true
+	},
+	votes: {
+		required: true, default: [
+			{
+				votes: 0,
+				lastVote: new Date().toISOString(),
+				user: ""
+			}
+		]
 	}
 });
 

@@ -20,6 +20,7 @@ export interface BotStructure {
     verifiedBot: boolean;
     tags: string[];
     approved: boolean;
+    votes: VoteStructure[];
 }
 
 /** Structure for search bots */
@@ -44,15 +45,21 @@ declare module "express-session" {
     }
 }
 
+/** Structure used in users by the API */
+
 export interface UserStructure {
     _id: Snowflake;
     username: string;
     avatar: string;
 }
 
+/** Discord user structure */
+
 export interface DiscordUserStructure extends Omit<UserStructure, "_id"> {
     id: Snowflake;
 }
+
+/** Bot votes structure */
 
 export interface VoteStructure {
     votes: number;
