@@ -53,3 +53,9 @@ export interface UserStructure {
 export interface DiscordUserStructure extends Omit<UserStructure, "_id"> {
     id: Snowflake;
 }
+
+export interface VoteStructure {
+    votes: number;
+    user: Snowflake;
+    lastVote: string;
+}
