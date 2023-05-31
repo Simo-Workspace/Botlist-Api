@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
-import type { BotStructure } from "../typings";
 import { MAIN_MODEL_NAME } from "../../constants.json";
+import type { BotStructure, VoteStructure } from "../typings";
 
 const BotSchema = new Schema<BotStructure>({
 	_id: {
@@ -34,15 +34,7 @@ const BotSchema = new Schema<BotStructure>({
 	approved: {
 		type: Boolean, required: true
 	},
-	votes: {
-		required: true, default: [
-			{
-				votes: 0,
-				lastVote: new Date().toISOString(),
-				user: ""
-			}
-		]
-	}
+	votes: Array<VoteStructure>
 });
 
 export default model(MAIN_MODEL_NAME, BotSchema);
