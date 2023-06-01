@@ -34,7 +34,7 @@ export const callback: (req: Request, res: Response) => ExpressPromise = async (
 			avatar: avatar
 		};
 
-		res.cookie("discordUser", serialize(user), { maxAge: 900000, httpOnly: false });
+		res.cookie("discordUser", serialize(user), { maxAge: 24 * 60 * 60 * 1000 * 7, httpOnly: false });
 
 		res.redirect(REDIRECT_AUTH);
 	} catch (error) {

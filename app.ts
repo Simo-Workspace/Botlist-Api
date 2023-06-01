@@ -29,7 +29,7 @@ const limiter = rateLimit({
 app.use(express.json({ strict: true, limit: "50kb" }), cors({ credentials: true }), limiter, cookieParser(), session({
 	secret: COOKIE_SECRET,
 	cookie: {
-		maxAge: 600000,
+		maxAge: 24 * 60 * 60 * 1000 * 7,
 	},
 	resave: false,
 	saveUninitialized: false,
