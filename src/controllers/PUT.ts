@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
 import BotSchema from "../database/BotSchema";
 import { AUTH, CLIENT_TOKEN } from "../../.config.json";
-import { BotStructure, ExpressPromise } from "../typings";
+import { BotStructure, ExpressResponsePromise } from "../typings";
 import { INVALID_AUTH, CANNOT_EDIT_THE_BOT } from "./errors.json";
 import { UNAUTHORIZED, INTERNAL_SERVER_ERROR, OK } from "./status-code.json";
 
 /** Update specific things of a bot */
 
-export const PUT: (req: Request, res: Response) => ExpressPromise = async (req: Request, res: Response): ExpressPromise => {
+export const PUT: (req: Request, res: Response) => ExpressResponsePromise = async (req: Request, res: Response): ExpressResponsePromise => {
 	if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: INVALID_AUTH, code: UNAUTHORIZED });
 
 	const _id = req.params.id;

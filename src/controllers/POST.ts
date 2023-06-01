@@ -2,13 +2,13 @@ import { AUTH } from "../../.config.json";
 import { Request, Response } from "express";
 import { default as BotSchema } from "../database/BotSchema";
 import { REQUIRED_BOT_PROPERTIES } from "../../constants.json";
-import type { BotStructure, ExpressPromise, SearchBotOptions, Snowflake } from "../typings";
+import type { BotStructure, ExpressResponsePromise, SearchBotOptions, Snowflake } from "../typings";
 import { UNAUTHORIZED, BAD_REQUEST, NOT_FOUND, INTERNAL_SERVER_ERROR, CREATED, OK } from "./status-code.json";
 import { INVALID_AUTH, CANNOT_CREATE_THE_BOT, BOT_ALREADY_EXISTS, SOME_PROPERTIES_IS_MISSING, NO_QUERY_IN_BODY } from "./errors.json";
 
 /** Add a bot */
 
-export const POST: (req: Request, res: Response) => ExpressPromise = async (req: Request, res: Response): ExpressPromise => {
+export const POST: (req: Request, res: Response) => ExpressResponsePromise = async (req: Request, res: Response): ExpressResponsePromise => {
 	if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: INVALID_AUTH, code: UNAUTHORIZED });
 	if (req.params.platform === "search") {
 		const query: SearchBotOptions["query"] = req.body.query;
@@ -20,12 +20,13 @@ export const POST: (req: Request, res: Response) => ExpressPromise = async (req:
 		return res.status(OK).json(searched);
 	}
 
+	const _id: Snowflake = req.params.id;
+
 	const properties: Partial<BotStructure> = req.body;
 	const keys: string[] = Object.keys(properties);
 
 	if (!REQUIRED_BOT_PROPERTIES.every((prop: string): boolean => keys.includes(prop))) return res.status(BAD_REQUEST).json({ message: SOME_PROPERTIES_IS_MISSING, code: BAD_REQUEST });
 
-	const _id: Snowflake = req.params.id;
 	const exists: { _id: Snowflake; } | null = await BotSchema.exists({ _id });
 
 	if (exists) return res.status(NOT_FOUND).json({ message: BOT_ALREADY_EXISTS, code: NOT_FOUND });

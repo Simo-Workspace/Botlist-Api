@@ -1,13 +1,13 @@
 import { AUTH } from "../../.config.json";
 import { Request, Response } from "express";
-import { ExpressPromise, Snowflake } from "../typings";
 import { INVALID_AUTH, BOT_NOT_FOUND } from "./errors.json";
 import { default as BotSchema } from "../database/BotSchema";
+import { ExpressResponsePromise, Snowflake } from "../typings";
 import { UNAUTHORIZED, NOT_FOUND, OK } from "./status-code.json";
 
 /** Delete a bot */
 
-export const DELETE: (req: Request, res: Response) => ExpressPromise = async (req: Request, res: Response): ExpressPromise => {
+export const DELETE: (req: Request, res: Response) => ExpressResponsePromise = async (req: Request, res: Response): ExpressResponsePromise => {
 	if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: INVALID_AUTH, code: UNAUTHORIZED });
 
 	const _id: Snowflake = req.params.id;

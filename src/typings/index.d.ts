@@ -37,7 +37,7 @@ interface SearchBotQueryOptions extends Partial<BotStructure> {
 
 /** Represents an express promised response  */
 
-export type ExpressPromise = Promise<Response<unknown, Record<string, unknown>>>;
+export type ExpressResponsePromise = Promise<Response<unknown, Record<string, unknown>>>;
 
 declare module "express-session" {
     interface SessionData {
