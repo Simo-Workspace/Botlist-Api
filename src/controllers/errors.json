@@ -10,5 +10,6 @@
     "MANY_REQUEST": "Many requests made in less than 1 minute",
     "DISCORD_AUTH_ERROR": "Authentication error with Discord",
     "CANNOT_GET_BOT_VOTES": "Could not get bot votes",
-    "MISSING_USER_ID_PROP": "Cannot get bot votes without `user` prop in body"
+    "MISSING_USER_ID_PROP": "Cannot get bot votes without `user` prop in body",
+    "USER_IS_NOT_A_BOT": "The user is not a bot"
 }
