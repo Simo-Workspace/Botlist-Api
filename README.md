@@ -1,4 +1,4 @@
-# BotList API
+# DECREPATED
 
 ## EndPoints & Headers
 
