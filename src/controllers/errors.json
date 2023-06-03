@@ -6,11 +6,16 @@
     "CANNOT_CREATE_THE_BOT": "Could not create the bot, an error ocurred",
     "NO_QUERY_IN_BODY": "No query was provided in `body`",
     "BOT_ALREADY_EXISTS": "Can not add a bot that already exists",
-    "SOME_PROPERTIES_IS_MISSING": "Some properties is missing to add bot",
+    "SOME_PROPERTIES_IS_MISSING": "Some properties is missing",
     "MANY_REQUEST": "Many requests made in less than 1 minute",
     "DISCORD_AUTH_ERROR": "Authentication error with Discord",
     "CANNOT_GET_BOT_VOTES": "Could not get bot votes",
     "MISSING_USER_ID_PROP": "Cannot get bot votes without `user` prop in body",
     "USER_IS_NOT_A_BOT": "The user is not a bot",
-    "CANNOT_DELETE_THE_BOT": "Could not delete the bot, an error ocurred"
+    "CANNOT_DELETE_THE_BOT": "Could not delete the bot, an error ocurred",
+    "GUILD_NOT_FOUND": "Could not find the guild",
+    "CANNOT_DELETE_THE_GUILD": "Could not delete the guild, an error ocurred",
+    "CANNOT_CREATE_THE_GUILD": "Could not create the guild, an error ocurred",
+    "GUILD_ALREADY_EXISTS": "Can not add a guild that already exists",
+    "CANNOT_EDIT_THE_GUILD": "Could not eedit the guild, an error ocurred"
 }
