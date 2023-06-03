@@ -5,7 +5,6 @@ import cookieParser from "cookie-parser";
 import { MONGOOSE_URL } from "./.config.json";
 import { COOKIE_SECRET } from "./.config.json";
 import { PORT, ROUTES } from "./constants.json";
-import { PUT } from "./src/controllers/bots/PUT";
 import { GET } from "./src/controllers/bots/GET";
 import { POST } from "./src/controllers/bots/POST";
 import { PATCH } from "./src/controllers/bots/PATCH";
@@ -44,7 +43,7 @@ app.use(express.json({ strict: true, limit: "50kb" }), cors({ credentials: true 
 
 app.route(ROUTES.USER).get(GET_USER);
 app.route(ROUTES.AUTH).get(callback);
-app.route(ROUTES.MAIN).get(GET).delete(DELETE).patch(PATCH).post(POST).put(PUT);
+app.route(ROUTES.MAIN).get(GET).delete(DELETE).patch(PATCH).post(POST);
 app.route(ROUTES.GUILD).get(GET_GUILD).delete(DELETE_GUILD).patch(PATCH_GUILD).post(POST_GUILD);
 
 app.listen(PORT, async (): Promise<void> => {
