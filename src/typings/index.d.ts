@@ -91,3 +91,10 @@ enum DiscordNitroType {
     Nitro,
     NitroBasic
 }
+
+export interface GuildStructure {
+    _id: Snowflake;
+    verificationChannel: Snowflake;
+    logsChannel: Snowflake;
+    addbotChannel: Snowflake | undefined;
+}
