@@ -66,3 +66,28 @@ export interface VoteStructure {
     user: Snowflake;
     lastVote: string;
 }
+
+export interface RawDiscordUser extends DiscordUserStructure {
+    discriminator: string;
+    bot?: boolean;
+    system?: boolean;
+    mfa_enabled?: boolean;
+    banner: string | null;
+    accent_color?: string;
+    locale?: string;
+    verified?: boolean;
+    email?: string;
+    flags: number;
+    premium_type: DiscordNitroType;
+    public_flags: number;
+    global_name: string | null;
+    display_name: string | null;
+    banner_color: string | null;
+}
+
+enum DiscordNitroType {
+    None,
+    NitroClassic,
+    Nitro,
+    NitroBasic
+}
