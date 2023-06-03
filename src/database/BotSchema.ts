@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { MAIN_MODEL_NAME } from "../../constants.json";
+import { MODELS_NAME } from "../../constants.json";
 import type { BotStructure, VoteStructure } from "../typings";
 
 const BotSchema = new Schema<BotStructure>({
@@ -37,4 +37,4 @@ const BotSchema = new Schema<BotStructure>({
 	votes: Array<VoteStructure>
 });
 
-export default model(MAIN_MODEL_NAME, BotSchema);
+export default model(MODELS_NAME.Bots, BotSchema);

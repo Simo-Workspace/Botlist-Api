@@ -1,9 +1,9 @@
-import { AUTH } from "../../.config.json";
+import { AUTH } from "../../../.config.json";
 import { Request, Response } from "express";
-import { INVALID_AUTH, BOT_NOT_FOUND } from "./errors.json";
-import { default as BotSchema } from "../database/BotSchema";
-import { ExpressResponsePromise, Snowflake } from "../typings";
-import { UNAUTHORIZED, NOT_FOUND, OK } from "./status-code.json";
+import { default as BotSchema } from "../../database/BotSchema";
+import { ExpressResponsePromise, Snowflake } from "../../typings";
+import { INVALID_AUTH, BOT_NOT_FOUND, CANNOT_DELETE_THE_BOT } from "../errors.json";
+import { UNAUTHORIZED, NOT_FOUND, OK, INTERNAL_SERVER_ERROR } from "../status-code.json";
 
 /** Delete a bot */
 
@@ -16,6 +16,8 @@ export const DELETE: (req: Request, res: Response) => ExpressResponsePromise = a
 	if (!exists) return res.status(NOT_FOUND).json({ message: BOT_NOT_FOUND, code: NOT_FOUND });
 
 	const deletedBot = await BotSchema.findByIdAndDelete({ _id }, { new: true });
+
+	if (!deletedBot) return res.status(INTERNAL_SERVER_ERROR).json({ message: CANNOT_DELETE_THE_BOT, code: INTERNAL_SERVER_ERROR });
 
 	return res.status(OK).json(deletedBot);
 };

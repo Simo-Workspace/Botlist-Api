@@ -1,5 +1,6 @@
 import { Schema, model } from "mongoose";
 import type { UserStructure } from "../typings";
+import { MODELS_NAME } from "../../constants.json";
 
 const UserSchema = new Schema<UserStructure>({
 	_id: {
@@ -13,4 +14,4 @@ const UserSchema = new Schema<UserStructure>({
 	}
 });
 
-export default model("User", UserSchema);
+export default model(MODELS_NAME.Users, UserSchema);

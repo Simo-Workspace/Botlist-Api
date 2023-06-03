@@ -1,9 +1,9 @@
-import { AUTH } from "../../.config.json";
+import { AUTH } from "../../../.config.json";
 import { Request, Response } from "express";
-import { default as BotSchema } from "../database/BotSchema";
-import type { BotStructure, ExpressResponsePromise, Snowflake } from "../typings";
-import { INVALID_AUTH, CANNOT_EDIT_THE_BOT, BOT_NOT_FOUND } from "./errors.json";
-import { UNAUTHORIZED, NOT_FOUND, INTERNAL_SERVER_ERROR, OK } from "./status-code.json";
+import { default as BotSchema } from "../../database/BotSchema";
+import { INVALID_AUTH, CANNOT_EDIT_THE_BOT, BOT_NOT_FOUND } from "../errors.json";
+import type { BotStructure, ExpressResponsePromise, Snowflake } from "../../typings";
+import { UNAUTHORIZED, NOT_FOUND, INTERNAL_SERVER_ERROR, OK } from "../status-code.json";
 
 /** Edit a bot */
 
