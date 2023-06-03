@@ -11,5 +11,6 @@
         "USER": "/users/:id(\\d+)?",
         "AUTH": "/auth/callback",
         "GUILD": "/guilds/:id(\\d+)"
-    }
+    },
+    "REQUIRED_GUILD_PROPERTIES": ["verificationChannel", "logsChannel"]
 }
