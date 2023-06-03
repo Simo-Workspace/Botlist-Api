@@ -1,5 +1,5 @@
-import { AUTH } from "../../../.config.json";
 import { Request, Response } from "express";
+import { AUTH } from "../../../.config.json";
 import { default as BotSchema } from "../../database/BotSchema";
 import { INVALID_AUTH, CANNOT_EDIT_THE_BOT, BOT_NOT_FOUND } from "../errors.json";
 import type { BotStructure, ExpressResponsePromise, Snowflake } from "../../typings";

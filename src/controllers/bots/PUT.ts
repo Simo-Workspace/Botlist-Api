@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import BotSchema from "../../database/BotSchema";
 import { AUTH, CLIENT_TOKEN } from "../../../.config.json";
-import { BotStructure, ExpressResponsePromise } from "../../typings";
 import { INVALID_AUTH, CANNOT_EDIT_THE_BOT } from "../errors.json";
+import { BotStructure, ExpressResponsePromise } from "../../typings";
 import { UNAUTHORIZED, INTERNAL_SERVER_ERROR, OK } from "../status-code.json";
 
 /** Update specific things of a bot */
