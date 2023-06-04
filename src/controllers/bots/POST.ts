@@ -3,7 +3,7 @@ import { AUTH } from "../../../.config.json";
 import { default as BotSchema } from "../../database/BotSchema";
 import { REQUIRED_BOT_PROPERTIES } from "../../../constants.json";
 import type { BotStructure, ExpressResponsePromise, Snowflake } from "../../typings";
-import { UNAUTHORIZED, BAD_REQUEST, NOT_FOUND, INTERNAL_SERVER_ERROR, CREATED } from "../status-code.json";
+import { UNAUTHORIZED, BAD_REQUEST, INTERNAL_SERVER_ERROR, CREATED } from "../status-code.json";
 import { INVALID_AUTH, CANNOT_CREATE_THE_BOT, BOT_ALREADY_EXISTS, SOME_PROPERTIES_IS_MISSING } from "../errors.json";
 
 /** Create a bot */
@@ -19,7 +19,7 @@ export const POST: (req: Request, res: Response) => ExpressResponsePromise = asy
 
 	const exists: { _id: Snowflake; } | null = await BotSchema.exists({ _id });
 
-	if (exists) return res.status(NOT_FOUND).json({ message: BOT_ALREADY_EXISTS, code: NOT_FOUND });
+	if (exists) return res.status(BAD_REQUEST).json({ message: BOT_ALREADY_EXISTS, code: BAD_REQUEST });
 
 	const created = await BotSchema.create({ ...properties, _id });
 
