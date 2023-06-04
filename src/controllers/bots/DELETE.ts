@@ -1,6 +1,6 @@
-import { AUTH } from "../../../.config.json";
 import { Request, Response } from "express";
-import { default as BotSchema } from "../../database/BotSchema";
+import { AUTH } from "../../../.config.json";
+import { default as BotSchema } from "../../database/Bot";
 import { ExpressResponsePromise, Snowflake } from "../../typings";
 import { INVALID_AUTH, BOT_NOT_FOUND, CANNOT_DELETE_THE_BOT } from "../errors.json";
 import { UNAUTHORIZED, NOT_FOUND, OK, INTERNAL_SERVER_ERROR } from "../status-code.json";

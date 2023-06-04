@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { AUTH } from "../../../.config.json";
-import BotSchema from "../../database/BotSchema";
+import BotSchema from "../../database/Bot";
 import { ExpressResponsePromise, Snowflake } from "../../typings";
 import { INVALID_AUTH, GUILD_NOT_FOUND, CANNOT_DELETE_THE_GUILD } from "../errors.json";
 import { UNAUTHORIZED, NOT_FOUND, INTERNAL_SERVER_ERROR, OK } from "../status-code.json";
