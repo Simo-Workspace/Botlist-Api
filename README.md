@@ -1,5 +1,7 @@
 # DECREPATED
 
+Use [os exemplos](https://github.com/Simo-Workspace/Botlist-Api/tree/main/src/controllers).
+
 ## EndPoints & Headers
 
 - Endpoints: Atualmente com 2 (dois) endpoints, `/bots` e `/users`.
