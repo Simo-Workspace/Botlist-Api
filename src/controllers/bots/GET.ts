@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { AUTH } from "../../../.config.json";
 import { default as BotSchema } from "../../database/Bot";
-import { ExpressResponsePromise, Snowflake } from "../../typings";
+import { ExpressResponsePromise, Snowflake } from "../../types/types";
 import { UNAUTHORIZED, NOT_FOUND, OK, BAD_REQUEST } from "../status-code.json";
 import { BOT_NOT_FOUND, INVALID_AUTH, CANNOT_GET_BOT_VOTES } from "../errors.json";
 

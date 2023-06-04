@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { AUTH } from "../../../.config.json";
 import GuildSchema from "../../database/Guild";
-import { ExpressResponsePromise, Snowflake, GuildStructure } from "../../typings";
+import { ExpressResponsePromise, Snowflake, GuildStructure } from "../../types/types";
 import { INVALID_AUTH, CANNOT_EDIT_THE_GUILD, GUILD_NOT_FOUND } from "../errors.json";
 import { UNAUTHORIZED, NOT_FOUND, INTERNAL_SERVER_ERROR, OK } from "../status-code.json";
 

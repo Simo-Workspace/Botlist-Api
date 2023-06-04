@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import serialize from "serialize-javascript";
-import { DiscordUserStructure } from "../../typings";
+import { DiscordUserStructure } from "../../types/types";
 import { DISCORD_AUTH_ERROR } from "../errors.json";
-import { ExpressResponsePromise } from "../../typings";
+import { ExpressResponsePromise } from "../../types/types";
 import { INTERNAL_SERVER_ERROR } from "../status-code.json";
 import { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, SCOPES, REDIRECT_AUTH, AUTH_LINK } from "../../../.config.json";
 

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { AUTH } from "../../../.config.json";
 import GuildSchema from "../../database/Guild";
-import { ExpressResponsePromise } from "../../typings";
+import { ExpressResponsePromise } from "../../types/types";
 import { INVALID_AUTH, GUILD_NOT_FOUND } from "../errors.json";
 import { UNAUTHORIZED, NOT_FOUND, OK } from "../status-code.json";
 

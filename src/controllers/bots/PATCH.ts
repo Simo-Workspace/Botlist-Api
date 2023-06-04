@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { AUTH } from "../../../.config.json";
 import { default as BotSchema } from "../../database/Bot";
 import { INVALID_AUTH, CANNOT_EDIT_THE_BOT, BOT_NOT_FOUND } from "../errors.json";
-import type { BotStructure, ExpressResponsePromise, Snowflake } from "../../typings";
+import type { BotStructure, ExpressResponsePromise, Snowflake } from "../../types/types";
 import { UNAUTHORIZED, NOT_FOUND, INTERNAL_SERVER_ERROR, OK } from "../status-code.json";
 
 /** Edit a bot */

@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 import { MODELS_NAME } from "../../constants.json";
-import { FeedbackStructure } from "../typings/index";
+import { FeedbackStructure } from "../types/types";
 
 const FeedbackSchema = new Schema<FeedbackStructure>({
     author: String,

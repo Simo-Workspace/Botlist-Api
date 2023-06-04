@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import type { UserStructure } from "../typings";
+import type { UserStructure } from "../types/types";
 import { MODELS_NAME } from "../../constants.json";
 
 const UserSchema = new Schema<UserStructure>({

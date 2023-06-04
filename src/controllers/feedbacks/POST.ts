@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { AUTH } from "../../../.config.json";
 import FeedbackSchema from "../../database/Feedback";
 import { REQUIRED_FEEDBACK_PROPERTIES } from "../../../constants.json";
-import { ExpressResponsePromise, FeedbackStructure, Snowflake } from "../../typings";
+import { ExpressResponsePromise, FeedbackStructure, Snowflake } from "../../types/types";
 import { UNAUTHORIZED, BAD_REQUEST, INTERNAL_SERVER_ERROR, CREATED } from "../status-code.json";
 import { INVALID_AUTH, THE_USER_ALREADY_SENT, CANNOT_SEND_THE_FEEEDBACK, SOME_PROPERTIES_IS_MISSING } from "../errors.json";
 

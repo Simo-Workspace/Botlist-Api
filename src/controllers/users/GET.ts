@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { CLIENT_TOKEN, AUTH } from "../../.././.config.json";
 import { BOT_NOT_FOUND, INVALID_AUTH } from "../errors.json";
 import { NOT_FOUND, OK, UNAUTHORIZED } from "../status-code.json";
-import { ExpressResponsePromise, RawDiscordUser } from "../../typings";
+import { ExpressResponsePromise, RawDiscordUser } from "../../types/types";
 
 /** Get an user in Discord API */
 

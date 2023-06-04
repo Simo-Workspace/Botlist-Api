@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { AUTH } from "../../../.config.json";
 import GuildSchema from "../../database/Guild";
 import { REQUIRED_GUILD_PROPERTIES } from "../../../constants.json";
-import { GuildStructure, ExpressResponsePromise, Snowflake } from "../../typings";
+import { GuildStructure, ExpressResponsePromise, Snowflake } from "../../types/types";
 import { UNAUTHORIZED, BAD_REQUEST, INTERNAL_SERVER_ERROR, CREATED } from "../status-code.json";
 import { INVALID_AUTH, CANNOT_CREATE_THE_GUILD, GUILD_ALREADY_EXISTS, SOME_PROPERTIES_IS_MISSING } from "../errors.json";
 

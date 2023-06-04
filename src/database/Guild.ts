@@ -1,5 +1,5 @@
 import { Schema, model} from "mongoose";
-import { GuildStructure } from "../typings";
+import { GuildStructure } from "../types/types";
 import { MODELS_NAME } from "../../constants.json";
 
 const GuildSchema = new Schema<GuildStructure>({

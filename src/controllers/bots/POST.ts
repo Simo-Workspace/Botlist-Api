@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { AUTH } from "../../../.config.json";
 import { default as BotSchema } from "../../database/Bot";
 import { REQUIRED_BOT_PROPERTIES } from "../../../constants.json";
-import type { BotStructure, ExpressResponsePromise, Snowflake } from "../../typings";
+import type { BotStructure, ExpressResponsePromise, Snowflake } from "../../types/types";
 import { UNAUTHORIZED, BAD_REQUEST, INTERNAL_SERVER_ERROR, CREATED } from "../status-code.json";
 import { INVALID_AUTH, CANNOT_CREATE_THE_BOT, BOT_ALREADY_EXISTS, SOME_PROPERTIES_IS_MISSING } from "../errors.json";
 
