@@ -12,7 +12,7 @@ export const GET: (req: Request, res: Response) => ExpressResponsePromise = asyn
 
 	const query = req.query;
 
-	if (query) {
+	if (Object.keys(query).length > 0) {
 		const data = await BotSchema.find(query, null, { limit: parseInt(query.limit as string) || 500 });
 
 		return res.status(OK).json(data);
