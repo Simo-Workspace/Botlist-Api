@@ -67,6 +67,8 @@ export interface VoteStructure {
     lastVote: string;
 }
 
+/** Raw Discord API User */
+
 export interface RawDiscordUser extends DiscordUserStructure {
     discriminator: string;
     bot?: boolean;
@@ -85,12 +87,16 @@ export interface RawDiscordUser extends DiscordUserStructure {
     banner_color: string | null;
 }
 
+/** Types of Discord Nitro */
+
 enum DiscordNitroType {
     None,
     NitroClassic,
     Nitro,
     NitroBasic
 }
+
+/** API Guild structure */
 
 export interface GuildStructure {
     _id: Snowflake;
