@@ -104,3 +104,13 @@ export interface GuildStructure {
     logsChannel: Snowflake;
     addbotChannel: Snowflake | undefined;
 }
+
+/** API Feedback structure */
+
+export interface FeedbackStructure {
+    author: Snowflake;
+    stars: number;
+    postedAt: string;
+    content: string;
+    targetBot: Snowflake;
+}
