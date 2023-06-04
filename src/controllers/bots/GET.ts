@@ -1,5 +1,5 @@
-import { AUTH } from "../../../.config.json";
 import { Request, Response } from "express";
+import { AUTH } from "../../../.config.json";
 import { default as BotSchema } from "../../database/BotSchema";
 import { ExpressResponsePromise, Snowflake } from "../../typings";
 import { UNAUTHORIZED, NOT_FOUND, OK, BAD_REQUEST } from "../status-code.json";
@@ -13,9 +13,9 @@ export const GET: (req: Request, res: Response) => ExpressResponsePromise = asyn
 	const query = req.query;
 
 	if (query) {
-		const data = await BotSchema.find(query);
+		const data = await BotSchema.find(query, null, { limit: parseInt(query.limit as string) || 500 });
 
-		return res.status(OK).json(data.slice(0, parseInt(query.limit as string) || 500));
+		return res.status(OK).json(data);
 	}
 
 	const _id: Snowflake = req.params.id;
