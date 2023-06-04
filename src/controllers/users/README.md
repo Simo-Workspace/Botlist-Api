@@ -20,3 +20,5 @@ const APIURL: string = 'http://localhost:80/users/963124227911860264';
 
 fetch(APIURL, { method: 'GET', headers: { authorization: 'API-AUTH' } });
 ```
+
+Retornará uma [estrutura](https://discord.com/developers/docs/resources/user#user-object) de usuário do Discord.

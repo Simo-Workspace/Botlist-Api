@@ -16,18 +16,26 @@ Este método é usado para buscar um bot no banco de dados ou na API do Discord.
 #### Exemplo
 
 ```ts
-const URLS = {
+const APIURLS: Record<string, string> = {
     Bot: 'http://localhost:80/bots/971783455425847317',
     All: 'http://localhost:80/bots/@all',
     Votes: 'http://localhost:80/bots/971783455425847317/votes',
     Query: 'http://localhost:80/bots?name=Simo'
 };
+const requestInit: Record<string, string | object> = {
+    method: 'GET',
+    headers: {
+        authorization: 'API-AUTH'
+    }
+}
 
-fetch(URLS.Bot, { method: 'GET', headers: { authorization: 'API-AUTH' } }); // Busque por um bot específico
-fetch(URLS.All, { method: 'GET', headers: { authorization: 'API-AUTH' } }); // Busque por todos os bots
-fetch(URLS.Votes, { method: 'GET', headers: { authorization: 'API-AUTH' } }); // Busque por todos os votos de um bot
-fetch(URLS.Query, { method: 'GET', headers: { authorization: 'API-AUTH' } }); // Busque por vários bot que combinem com a consulta
+fetch(APIURLS.Bot, requestInit); // Busque por um bot específico
+fetch(APIURLS.All, requestInit); // Busque por todos os bots
+fetch(APIURLS.Votes, requestInit); // Busque por todos os votos de um bot
+fetch(APIURLS.Query, requestInit); // Busque por vários bot que combinem com a consulta
 ```
+
+Retornará uma [estrutura](https://github.com/Simo-Workspace/Botlist-Api/blob/main/src/typings/index.d.ts#L7) de bot, uma [array](https://github.com/Simo-Workspace/Botlist-Api/blob/main/src/typings/index.d.ts#L7) de bots, ou uma array de [votos](https://github.com/Simo-Workspace/Botlist-Api/blob/main/src/typings/index.d.ts#L64).
 
 ### DELETE
 
@@ -40,6 +48,8 @@ const APIURL: string = 'http://localhost:80/bots/971783455425847317';
 
 fetch(APIURL, { method: 'DELETE', headers: { authorization: 'API-AUTH' } });
 ```
+
+Retornará uma [estrutura](https://github.com/Simo-Workspace/Botlist-Api/blob/main/src/typings/index.d.ts#L7) de bot.
 
 ### PATCH
 
@@ -56,6 +66,8 @@ const properties: Record<string, string> = {
 fetch(APIURL, { method: 'PATCH', headers: { authorization: 'API-AUTH' }, body: JSON.stringify(properties) });
 ```
 
+Retornará uma [estrutura](https://github.com/Simo-Workspace/Botlist-Api/blob/main/src/typings/index.d.ts#L7) de bot.
+
 ### POST
 
 Este método é usado para adicionar um bot no banco de dados.
@@ -70,3 +82,5 @@ const properties: Record<string, string> = {
 
 fetch(APIURL, { method: 'POST', headers: { authorization: 'API-AUTH' }, body: JSON.stringify(properties) });
 ```
+
+Retornará uma [estrutura](https://github.com/Simo-Workspace/Botlist-Api/blob/main/src/typings/index.d.ts#L7) de bot.
