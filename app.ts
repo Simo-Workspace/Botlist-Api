@@ -10,8 +10,8 @@ import { POST } from "./src/controllers/bots/POST";
 import { PATCH } from "./src/controllers/bots/PATCH";
 import { default as express, Express } from "express";
 import { DELETE } from "./src/controllers/bots/DELETE";
+import { GENERICS } from "./src/controllers/errors.json";
 import { callback } from "./src/controllers/bots/GET-AUTH";
-import { MANY_REQUEST } from "./src/controllers/errors.json";
 import { GET as GET_USER } from "./src/controllers/users/GET";
 import { GET as GET_GUILD } from "./src/controllers/guilds/GET";
 import { POST as POST_GUILD } from "./src/controllers/guilds/POST";
@@ -28,7 +28,7 @@ const app: Express = express();
 const limiter: RateLimitRequestHandler = rateLimit({
     max: 10,
     message: {
-        error: MANY_REQUEST,
+        error: GENERICS.MANY_REQUEST,
         code: TOO_MANY_REQUESTS
     },
     statusCode: TOO_MANY_REQUESTS
