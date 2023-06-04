@@ -14,5 +14,6 @@
         "GUILD": "/guilds/:id(\\d+)",
         "FEEDBACK": "/feedbacks/:user(\\d+)"
     },
-    "REQUIRED_GUILD_PROPERTIES": ["verificationChannel", "logsChannel"]
+    "REQUIRED_GUILD_PROPERTIES": ["verificationChannel", "logsChannel"],
+    "REQUIRED_FEEDBACK_PROPERTIES": ["stars", "postedAt", "content", "targetBot"]
 }
