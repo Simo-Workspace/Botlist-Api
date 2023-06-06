@@ -1,3 +1,5 @@
+import { Response } from "express";
+
 /** Represents a discord ID */
 
 type Snowflake = string;
