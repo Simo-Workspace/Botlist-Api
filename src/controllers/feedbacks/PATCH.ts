@@ -2,10 +2,10 @@ import { Request, Response } from "express";
 import { AUTH } from "../../../.config.json";
 import { GENERICS, FEEDBACK } from "../errors.json";
 import FeedbackSchema from "../../database/Feedback";
-import { ExpressResponsePromise, FeedbackStructure, Snowflake } from "../../types/types";
+import { ExpressResponse, FeedbackStructure, Snowflake } from "../../types/types";
 import { UNAUTHORIZED, BAD_REQUEST, NOT_FOUND, INTERNAL_SERVER_ERROR, OK } from "../status-code.json";
 
-export const PATCH: (req: Request, res: Response) => ExpressResponsePromise = async (req: Request, res: Response): ExpressResponsePromise => {
+export const PATCH: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {
     if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
 
     const { content, stars, targetBot }: Partial<Pick<FeedbackStructure, "content" | "stars" | "targetBot">> = req.body;

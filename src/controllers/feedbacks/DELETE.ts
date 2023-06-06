@@ -2,12 +2,12 @@ import { Request, Response } from "express";
 import { AUTH } from "../../../.config.json";
 import { GENERICS, FEEDBACK } from "../errors.json";
 import FeedbackSchema from "../../database/Feedback";
-import { ExpressResponsePromise, Snowflake } from "../../types/types";
+import { ExpressResponse, Snowflake } from "../../types/types";
 import { UNAUTHORIZED, NOT_FOUND, OK, INTERNAL_SERVER_ERROR, BAD_REQUEST } from "../status-code.json";
 
 /** Delete a feedback */
 
-export const DELETE: (req: Request, res: Response) => ExpressResponsePromise = async (req: Request, res: Response): ExpressResponsePromise => {
+export const DELETE: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {
     if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
 
     const { targetBot }: { targetBot: Snowflake | undefined; } = req.body;

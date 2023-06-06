@@ -2,13 +2,13 @@ import { Request, Response } from "express";
 import { AUTH } from "../../../.config.json";
 import FeedbackSchema from "../../database/Feedback";
 import { REQUIRED_FEEDBACK_PROPERTIES } from "../../../constants.json";
-import { ExpressResponsePromise, FeedbackStructure, Snowflake } from "../../types/types";
+import { ExpressResponse, FeedbackStructure, Snowflake } from "../../types/types";
 import { UNAUTHORIZED, BAD_REQUEST, INTERNAL_SERVER_ERROR, CREATED } from "../status-code.json";
 import { GENERICS, FEEDBACK } from "../errors.json";
 
 /** Send a feedback */
 
-export const POST: (req: Request, res: Response) => ExpressResponsePromise = async (req: Request, res: Response): ExpressResponsePromise => {
+export const POST: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {
     if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
 
     const author: Snowflake = req.params.user;

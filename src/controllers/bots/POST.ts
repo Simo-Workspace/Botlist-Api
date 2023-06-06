@@ -3,12 +3,12 @@ import { AUTH } from "../../../.config.json";
 import { GENERICS, BOT } from "../errors.json";
 import { default as BotSchema } from "../../database/Bot";
 import { REQUIRED_BOT_PROPERTIES } from "../../../constants.json";
-import type { BotStructure, ExpressResponsePromise, Snowflake } from "../../types/types";
+import type { BotStructure, ExpressResponse, Snowflake } from "../../types/types";
 import { UNAUTHORIZED, BAD_REQUEST, INTERNAL_SERVER_ERROR, CREATED } from "../status-code.json";
 
 /** Create a bot */
 
-export const POST: (req: Request, res: Response) => ExpressResponsePromise = async (req: Request, res: Response): ExpressResponsePromise => {
+export const POST: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {
     if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
 
     const _id: Snowflake = req.params.id;

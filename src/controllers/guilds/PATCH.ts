@@ -2,12 +2,12 @@ import { Request, Response } from "express";
 import { AUTH } from "../../../.config.json";
 import GuildSchema from "../../database/Guild";
 import { GENERICS, GUILD } from "../errors.json";
-import { ExpressResponsePromise, Snowflake, GuildStructure } from "../../types/types";
+import { ExpressResponse, Snowflake, GuildStructure } from "../../types/types";
 import { UNAUTHORIZED, NOT_FOUND, INTERNAL_SERVER_ERROR, OK } from "../status-code.json";
 
 /** Edit a guild */
 
-export const PATCH: (req: Request, res: Response) => ExpressResponsePromise = async (req: Request, res: Response): ExpressResponsePromise => {
+export const PATCH: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {
     if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
 
     const _id = req.params.id;

@@ -3,12 +3,12 @@ import { AUTH } from "../../../.config.json";
 import GuildSchema from "../../database/Guild";
 import { GENERICS, GUILD } from "../errors.json";
 import { REQUIRED_GUILD_PROPERTIES } from "../../../constants.json";
-import { GuildStructure, ExpressResponsePromise, Snowflake } from "../../types/types";
+import { GuildStructure, ExpressResponse, Snowflake } from "../../types/types";
 import { UNAUTHORIZED, BAD_REQUEST, INTERNAL_SERVER_ERROR, CREATED } from "../status-code.json";
 
 /** Create a guild */
 
-export const POST: (req: Request, res: Response) => ExpressResponsePromise = async (req: Request, res: Response): ExpressResponsePromise => {
+export const POST: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {
     if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
 
     const _id: Snowflake = req.params.id;

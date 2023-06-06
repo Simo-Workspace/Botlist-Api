@@ -1,12 +1,12 @@
 import { GENERICS } from "../errors.json";
 import { Request, Response } from "express";
 import serialize from "serialize-javascript";
+import { ExpressResponse } from "../../types/types";
 import { DiscordUserStructure } from "../../types/types";
-import { ExpressResponsePromise } from "../../types/types";
 import { INTERNAL_SERVER_ERROR } from "../status-code.json";
 import { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, SCOPES, REDIRECT_AUTH, AUTH_LINK } from "../../../.config.json";
 
-export const callback: (req: Request, res: Response) => ExpressResponsePromise = async (req: Request, res: Response): ExpressResponsePromise => {
+export const callback: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {
     const code = req.query.code;
     const data = {
         client_id: CLIENT_ID,
