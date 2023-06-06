@@ -11,7 +11,7 @@
         "MAIN": "/bots/:id(\\d+|@all)?(/:method(votes?))?",
         "USER": "/users/:id(\\d+)?",
         "AUTH": "/auth/callback",
-        "GUILD": "/guilds/:id(\\d+)",
+        "GUILD": "/guilds/:id(\\d+)/(:method(bots))?",
         "FEEDBACK": "/feedbacks/:user(\\d+)"
     },
     "REQUIRED_GUILD_PROPERTIES": ["verificationChannel", "logsChannel"],
