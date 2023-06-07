@@ -1,3 +1,4 @@
+import { Types } from "mongoose";
 import { Request, Response } from "express";
 import { AUTH } from "../../../.config.json";
 import { GENERICS, FEEDBACK } from "../errors.json";
@@ -15,7 +16,7 @@ export const DELETE: (req: Request, res: Response) => ExpressResponse = async (r
     if (!targetBot) return res.status(BAD_REQUEST).json({ message: FEEDBACK.MISSING_TARGETBOT_PROP, code: BAD_REQUEST });
 
     const author: Snowflake = req.params.user;
-    const exists = await FeedbackSchema.exists({ author, targetBot });
+    const exists: { _id: Types.ObjectId; } | null = await FeedbackSchema.exists({ author, targetBot });
 
     if (!exists) return res.status(NOT_FOUND).json({ message: FEEDBACK.UNKNOWN_FEEDBACK, code: NOT_FOUND });
 

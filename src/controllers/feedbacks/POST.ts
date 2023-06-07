@@ -1,10 +1,11 @@
+import { Types } from "mongoose";
 import { Request, Response } from "express";
 import { AUTH } from "../../../.config.json";
 import FeedbackSchema from "../../database/Feedback";
+import { GENERICS, FEEDBACK } from "../errors.json";
 import { REQUIRED_FEEDBACK_PROPERTIES } from "../../../constants.json";
 import { ExpressResponse, FeedbackStructure, Snowflake } from "../../types/types";
 import { UNAUTHORIZED, BAD_REQUEST, INTERNAL_SERVER_ERROR, CREATED } from "../status-code.json";
-import { GENERICS, FEEDBACK } from "../errors.json";
 
 /** Send a feedback */
 
@@ -12,14 +13,14 @@ export const POST: (req: Request, res: Response) => ExpressResponse = async (req
     if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
 
     const author: Snowflake = req.params.user;
-    const exists = await FeedbackSchema.exists({ author });
+    const exists: { _id: Types.ObjectId; } | null = await FeedbackSchema.exists({ author });
 
     if (exists) return res.status(BAD_REQUEST).json({ message: FEEDBACK.THE_USER_ALREADY_SENT, code: BAD_REQUEST });
 
     const body: Partial<FeedbackStructure> = req.body;
     const keys: string[] = Object.keys(body);
 
-    if (!REQUIRED_FEEDBACK_PROPERTIES.every((prop: string): boolean => keys.includes(prop))) return res.status(BAD_REQUEST).json({ message: GENERICS.SOME_PROPERTIES_IS_MISSING, code: BAD_REQUEST });
+    if (!REQUIRED_FEEDBACK_PROPERTIES.every((property: string): boolean => keys.includes(property))) return res.status(BAD_REQUEST).json({ message: GENERICS.SOME_PROPERTIES_IS_MISSING, code: BAD_REQUEST });
 
     const created = await FeedbackSchema.create({ ...body, author });
 
