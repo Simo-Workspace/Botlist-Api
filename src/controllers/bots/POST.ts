@@ -15,7 +15,7 @@ export const POST: (req: Request, res: Response) => ExpressResponse = async (req
     const properties: Partial<BotStructure> = req.body;
     const keys: string[] = Object.keys(properties);
 
-    if (!REQUIRED_BOT_PROPERTIES.every((prop: string): boolean => keys.includes(prop))) return res.status(BAD_REQUEST).json({ message: GENERICS.SOME_PROPERTIES_IS_MISSING, code: BAD_REQUEST });
+    if (!REQUIRED_BOT_PROPERTIES.every((property: string): boolean => keys.includes(property))) return res.status(BAD_REQUEST).json({ message: GENERICS.SOME_PROPERTIES_IS_MISSING, code: BAD_REQUEST });
 
     const exists: { _id: Snowflake; } | null = await BotSchema.exists({ _id });
 
