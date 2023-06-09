@@ -46,7 +46,7 @@ app.use(express.json({ strict: true, limit: "50kb" }), cors({ credentials: true 
 
 app.route(ROUTES.USER).get(GET_USER);
 app.route(ROUTES.AUTH).get(callback);
-app.route(ROUTES.MAIN).get(GET).delete(DELETE).patch(PATCH).post(POST);
+app.route(ROUTES.BOTS).get(GET).delete(DELETE).patch(PATCH).post(POST);
 app.route(ROUTES.FEEDBACK).patch(PATCH_FEEDBACK).delete(DELETE_FEEDBACK).post(POST_FEEDBACK);
 app.route(ROUTES.GUILD).get(GET_GUILD).delete(DELETE_GUILD).patch(PATCH_GUILD).post(POST_GUILD);
 
