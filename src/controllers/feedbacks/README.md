@@ -7,7 +7,7 @@
 
 ## Rate Limit
 
-O rate limit está definido como 10 requesições por minuto.
+O rate limit está definido como 10 requisições por minuto.
 
 ### DELETE
 

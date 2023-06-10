@@ -1,6 +1,6 @@
 # Exemplos
 
-Use [os exemplos](https://github.com/Simo-Workspace/Botlist-Api/tree/main/src/controllers).
+Use [os exemplos](https://github.com/Simo-Workspace/Botlist-Api/tree/main/src/controllers) de cada pasta.
 
 ## EndPoints & Headers
 
@@ -13,4 +13,4 @@ Veja todos os status code usados em <https://restfulapi.net/http-status-codes/>.
 
 ## Rate Limit
 
-O rate limit de todos os endpoinst estão definidos como `10` requesições por minuto.
+O rate limit de todos os endpoints estão definidos como `10` requisições por minuto.
