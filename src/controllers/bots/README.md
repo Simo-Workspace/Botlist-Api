@@ -31,7 +31,7 @@ const requestInit: Record<string, string | object> = {
 
 fetch(APIURLS.Bot, requestInit); // Busque por um bot específico
 fetch(APIURLS.All, requestInit); // Busque por todos os bots
-fetch(APIURLS.Votes, requestInit); // Busque por todos os votos de um bot
+fetch(APIURLS.Votes, requestInit); // Busque pelos 
 fetch(APIURLS.Query, requestInit); // Busque por vários bot que combinem com a consulta
 ```
 
