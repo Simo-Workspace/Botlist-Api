@@ -18,7 +18,7 @@ Este método é usado para buscar um bot no banco de dados ou na API do Discord.
 ```ts
 const APIURLS: Record<string, string> = {
     Bot: 'http://localhost:80/bots/971783455425847317',
-    All: 'http://localhost:80/bots/@all',
+    All: 'http://localhost:80/bots',
     Votes: 'http://localhost:80/bots/971783455425847317/votes',
     Query: 'http://localhost:80/bots?name=Simo'
 };

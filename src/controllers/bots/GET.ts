@@ -18,8 +18,8 @@ export const GET: (req: Request, res: Response) => ExpressResponse = async (req:
         return res.status(OK).json(data);
     }
 
-    const _id: Snowflake = req.params.id;
-    const targetBot = await (_id === "@all" ? BotSchema.find({}) : BotSchema.findById({ _id }));
+    const _id: Snowflake | undefined = req.params.id;
+    const targetBot = await (!_id ? BotSchema.find({}) : BotSchema.findById({ _id }));
 
     if (!targetBot) return res.status(NOT_FOUND).json({ message: BOT.BOT_NOT_FOUND, code: NOT_FOUND });
     if (req.params.method === "votes") {
