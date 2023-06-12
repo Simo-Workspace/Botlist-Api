@@ -16,7 +16,7 @@ export const PATCH: (req: Request, res: Response) => ExpressResponse = async (re
     if (!exists) return res.status(NOT_FOUND).json({ message: GUILD.GUILD_NOT_FOUND, code: NOT_FOUND });
 
     const bodyData: Partial<GuildStructure> = req.body;
-    const updated = await GuildSchema.findByIdAndUpdate({ _id }, { ...bodyData }, { new: true });
+    const updated = await GuildSchema.findByIdAndUpdate({ _id }, bodyData, { new: true });
 
     if (!updated) return res.status(INTERNAL_SERVER_ERROR).json({ message: GUILD.CANNOT_EDIT_THE_GUILD, code: INTERNAL_SERVER_ERROR });
 
