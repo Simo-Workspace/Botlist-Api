@@ -1,12 +1,13 @@
 import { Request, Response } from "express";
 import { GENERICS, BOT } from "../errors.json";
-import { CLIENT_TOKEN, AUTH } from "../../.././.config.json";
 import { NOT_FOUND, OK, UNAUTHORIZED } from "../status-code.json";
 import { ExpressResponse, RawDiscordUser } from "../../types/types";
 
 /** Get an user in Discord API */
 
 export const GET: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {                 
+    const { AUTH, CLIENT_TOKEN }: NodeJS.ProcessEnv = process.env;
+
     if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
     
     const fetched: globalThis.Response = await fetch(`https://discord.com/api/v10/users/${req.params.id}`, { method: "GET", headers: { Authorization: `Bot ${CLIENT_TOKEN}` } });

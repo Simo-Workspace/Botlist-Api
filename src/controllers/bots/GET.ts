@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { AUTH } from "../../../.config.json";
 import {GENERICS, BOT } from "../errors.json";
 import { default as BotSchema } from "../../database/Bot";
 import { ExpressResponse, Snowflake } from "../../types/types";
@@ -8,6 +7,8 @@ import { UNAUTHORIZED, NOT_FOUND, OK, BAD_REQUEST } from "../status-code.json";
 /** Get a bot in the database or Discord API */
 
 export const GET: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {
+    const { AUTH }: NodeJS.ProcessEnv = process.env;
+    
     if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
 
     const query = req.query;

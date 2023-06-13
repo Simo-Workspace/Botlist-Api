@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { AUTH } from "../../../.config.json";
 import { GENERICS, BOT } from "../errors.json";
 import { default as BotSchema } from "../../database/Bot";
 import { REQUIRED_BOT_PROPERTIES } from "../../../constants.json";
@@ -9,8 +8,9 @@ import { UNAUTHORIZED, BAD_REQUEST, INTERNAL_SERVER_ERROR, CREATED } from "../st
 /** Create a bot */
 
 export const POST: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {
+    const { AUTH }: NodeJS.ProcessEnv = process.env;
+    
     if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
-
     if (req.params.method === "votes") {
         return res.json({ areSpyeiGay: true, code: "gay" });
     }

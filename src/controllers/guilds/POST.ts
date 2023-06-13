@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { AUTH } from "../../../.config.json";
 import GuildSchema from "../../database/Guild";
 import { GENERICS, GUILD } from "../errors.json";
 import { REQUIRED_GUILD_PROPERTIES } from "../../../constants.json";
@@ -9,6 +8,8 @@ import { UNAUTHORIZED, BAD_REQUEST, INTERNAL_SERVER_ERROR, CREATED } from "../st
 /** Create a guild */
 
 export const POST: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {
+    const { AUTH }: NodeJS.ProcessEnv = process.env;
+    
     if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
 
     const _id: Snowflake = req.params.id;

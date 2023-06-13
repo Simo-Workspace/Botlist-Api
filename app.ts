@@ -1,9 +1,8 @@
 import cors from "cors";
+import { config } from "dotenv";
 import { connect } from "mongoose";
 import session from "express-session";
 import cookieParser from "cookie-parser";
-import { MONGOOSE_URL } from "./.config.json";
-import { COOKIE_SECRET } from "./.config.json";
 import { PORT, ROUTES } from "./constants.json";
 import { GET } from "./src/controllers/bots/GET";
 import { POST } from "./src/controllers/bots/POST";
@@ -23,6 +22,8 @@ import { POST as POST_FEEDBACK } from "./src/controllers/feedbacks/POST";
 import { PATCH as PATCH_FEEDBACK } from "./src/controllers/feedbacks/PATCH";
 import { DELETE as DELETE_FEEDBACK } from "./src/controllers/feedbacks/DELETE";
 
+config();
+
 const app: Express = express();
 
 const limiter: RateLimitRequestHandler = rateLimit({
@@ -35,7 +36,7 @@ const limiter: RateLimitRequestHandler = rateLimit({
 });
 
 app.use(express.json({ strict: true, limit: "50kb" }), cors({ credentials: true }), limiter, cookieParser(), session({
-    secret: COOKIE_SECRET,
+    secret: process.env.COOKIE_SECRET as string,
     cookie: {
         maxAge: 24 * 60 * 60 * 1000 * 7,
     },
@@ -51,7 +52,7 @@ app.route(ROUTES.FEEDBACK).patch(PATCH_FEEDBACK).delete(DELETE_FEEDBACK).post(PO
 app.route(ROUTES.GUILD).get(GET_GUILD).delete(DELETE_GUILD).patch(PATCH_GUILD).post(POST_GUILD);
 
 app.listen(PORT, async (): Promise<void> => {
-    await connect(MONGOOSE_URL).catch(console.error);
+    await connect(process.env.MONGOOSE_URL as string).catch(console.error);
     
     console.info(`Servidor iniciado na porta ${PORT}`);
 });

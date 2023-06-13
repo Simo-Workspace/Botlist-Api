@@ -1,6 +1,5 @@
 import { Types } from "mongoose";
 import { Request, Response } from "express";
-import { AUTH } from "../../../.config.json";
 import { GENERICS, FEEDBACK } from "../errors.json";
 import FeedbackSchema from "../../database/Feedback";
 import { ExpressResponse, Snowflake } from "../../types/types";
@@ -9,6 +8,8 @@ import { UNAUTHORIZED, NOT_FOUND, OK, INTERNAL_SERVER_ERROR, BAD_REQUEST } from 
 /** Delete a feedback */
 
 export const DELETE: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {
+    const { AUTH }: NodeJS.ProcessEnv = process.env;
+    
     if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
 
     const { targetBot }: { targetBot: Snowflake | undefined; } = req.body;
