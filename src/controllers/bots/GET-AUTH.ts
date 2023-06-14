@@ -6,6 +6,8 @@ import { DiscordUserStructure } from "../../types/types";
 import { INTERNAL_SERVER_ERROR } from "../status-code.json";
 import { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, SCOPES, REDIRECT_AUTH, AUTH_LINK } from "../../../.config.json";
 
+/** Webiste callback */
+
 export const callback: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {
     const code = req.query.code;
     const data = {
