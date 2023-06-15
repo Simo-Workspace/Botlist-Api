@@ -4,6 +4,7 @@
 
 - Adicionando comentários (JSDoc) a funções
 - Arrumando código
+- Mudando arquivo `.config.json` para `.env`
 
 ## 13/06/2023
 
