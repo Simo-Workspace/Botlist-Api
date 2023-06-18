@@ -35,10 +35,12 @@ const limiter: RateLimitRequestHandler = rateLimit({
     statusCode: TOO_MANY_REQUESTS
 });
 
+const sevenDays: number = 24 * 60 * 60 * 1000 * 7;
+
 app.use(express.json({ strict: true, limit: "50kb" }), cors({ credentials: true }), limiter, cookieParser(), session({
     secret: process.env.COOKIE_SECRET as string,
     cookie: {
-        maxAge: 24 * 60 * 60 * 1000 * 7,
+        maxAge: sevenDays,
     },
     resave: false,
     saveUninitialized: false,
