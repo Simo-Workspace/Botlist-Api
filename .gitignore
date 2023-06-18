@@ -6,3 +6,7 @@ package-lock.json
 # Secrets
 
 .env
+
+# Tests
+
+index.test.ts
