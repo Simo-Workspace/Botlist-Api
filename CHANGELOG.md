@@ -1,5 +1,10 @@
 # API changelog
 
+## 18/06/2023
+
+- Adicionando um arquivo de testest (index.test.ts)
+- Implementando rota para votar
+
 ## 14/06/2023
 
 - Adicionando comentários (JSDoc) a funções
