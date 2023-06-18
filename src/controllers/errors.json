@@ -9,7 +9,9 @@
         "MISSING_USER_ID_PROP": "Cannot get bot votes without `user` property",
         "USER_IS_NOT_A_BOT": "The user is not a bot",
         "CANNOT_DELETE_THE_BOT": "Couldn't delete the bot, an error ocurred",
-        "CANNOT_VOTE_WITHOUT_USER": "Cannot vote without `user` property"
+        "CANNOT_VOTE_WITHOUT_USER": "Cannot vote without `user` property",
+        "BOT_CANNOT_VOTE_IN_A_BOT": "A bot cannot vote for a bot or itself",
+        "MISSING_USER_PROP": "Missing `user` propertie in body"
     },
     "GENERICS": {
         "INVALID_AUTH": "Invalid authenticator",
