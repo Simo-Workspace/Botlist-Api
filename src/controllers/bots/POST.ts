@@ -50,7 +50,7 @@ export const POST: (req: Request, res: Response) => ExpressResponse = async (req
         const oneDay: 86400000 = 8.64e+7;
         const timeLeft: number = (new Date().getTime() - new Date(lastVote).getTime());
 
-        if (timeLeft < oneDay) return res.status(BAD_REQUEST).json({ message: `You are on cooldown, wait ${ms(oneDay - timeLeft, { long: true })}`, code: BAD_REQUEST });
+        if (timeLeft < oneDay) return res.status(BAD_REQUEST).json({ message: BOT.COOLDOWN_VOTE.replace("{ms}", ms(oneDay - timeLeft, { long: true })), code: BAD_REQUEST });
 
         const vote = await BotSchema.findOneAndUpdate(
             { _id, "votes.user": properties.user },
