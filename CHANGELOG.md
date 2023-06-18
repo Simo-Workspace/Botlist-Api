@@ -4,6 +4,7 @@
 
 - Adicionando um arquivo de testest (index.test.ts)
 - Implementando rota para votar
+- Agora a rota `/bots/:id/votes` retorna uma array de votos
 
 ## 14/06/2023
 
