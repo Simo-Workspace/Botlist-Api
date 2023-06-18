@@ -6,7 +6,7 @@ import { REQUIRED_BOT_PROPERTIES } from "../../../constants.json";
 import type { BotStructure, ExpressResponse, Snowflake, VoteStructure } from "../../types/types";
 import { UNAUTHORIZED, BAD_REQUEST, INTERNAL_SERVER_ERROR, CREATED, NOT_FOUND } from "../status-code.json";
 
-/** Create a bot */
+/** Create a bot, or vote */
 
 export const POST: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {
     const { AUTH }: NodeJS.ProcessEnv = process.env;
