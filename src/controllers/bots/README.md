@@ -70,17 +70,26 @@ Retornará uma [estrutura](https://github.com/Simo-Workspace/Botlist-Api/blob/ma
 
 ### POST
 
-Este método é usado para adicionar um bot no banco de dados.
+Este método é usado para adicionar um bot no banco de dados, ou votar em um.
 
 #### Exemplo
 
 ```ts
-const APIURL: string = 'http://localhost:80/bots/971783455425847317';
+const URLS: Record<string, string> = {
+    Add: 'http://localhost:80/bots/971783455425847317',
+    Vote: 'http://localhost:80/bots/971783455425847317/votes'
+};
 const properties: Record<string, string> = {
     _id: '971783455425847317'
 };
 
-fetch(APIURL, { method: 'POST', headers: { authorization: 'API-AUTH' }, body: JSON.stringify(properties) });
+fetch(URLS.Add, { method: 'POST', headers: { authorization: 'API-AUTH' }, body: JSON.stringify(properties) }); // Adicionar um bot
+
+const voteProps: { user: string; } = {
+    user: '955095844275781693'
+}; // A propriedade `user` é obrigatório quando se vota em um bot, se não, lançará um erro
+
+fetch(URLS.Vote, { method: 'POST', headers: { authorization: 'API-AUTH' }, body: JSON.stringify(voteProps) }) // Vota em um bot. O cooldown é 24 horas (1 dia)
 ```
 
-Retornará uma [estrutura](https://github.com/Simo-Workspace/Botlist-Api/blob/main/src/typings/index.d.ts#L7) de bot.
+Retornará uma [estrutura](https://github.com/Simo-Workspace/Botlist-Api/blob/main/src/typings/index.d.ts#L7) de bot, ou uma [estrutura](https://github.com/Simo-Workspace/Botlist-Api/blob/main/src/typings/index.d.ts#L7) de voto.

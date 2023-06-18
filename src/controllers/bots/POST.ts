@@ -36,7 +36,7 @@ export const POST: (req: Request, res: Response) => ExpressResponse = async (req
                 { new: true }
             );
 
-            return res.status(CREATED).json(newVote);
+            return res.status(CREATED).json(newVote?.votes);
         }
 
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -53,7 +53,7 @@ export const POST: (req: Request, res: Response) => ExpressResponse = async (req
             { new: true }
         );
 
-        return res.status(CREATED).json(vote);
+        return res.status(CREATED).json(vote?.votes);
     }
 
     const keys: string[] = Object.keys(properties);
