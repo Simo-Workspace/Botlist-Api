@@ -7,6 +7,7 @@
 - Agora a rota `/bots/:id/votes` retorna uma array de votos
 - Sistema de voto mais seguro
 - Novos erros
+- Adicionando vercel ao projeto
 
 ## 14/06/2023
 
