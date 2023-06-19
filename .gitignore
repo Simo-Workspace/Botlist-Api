@@ -10,3 +10,7 @@ package-lock.json
 # Tests
 
 index.test.ts
+
+# Old methods
+
+src/controllers/feedbacks
