@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { GENERICS, BOT } from "../errors.json";
+import { GENERICS, USER } from "../errors.json";
 import { NOT_FOUND, OK, UNAUTHORIZED } from "../status-code.json";
 import { ExpressResponse, RawDiscordUser } from "../../types/types";
 
@@ -13,7 +13,7 @@ export const GET: (req: Request, res: Response) => ExpressResponse = async (req:
     const fetched: globalThis.Response = await fetch(`https://discord.com/api/v10/users/${req.params.id}`, { method: "GET", headers: { Authorization: `Bot ${CLIENT_TOKEN}` } });
     const data: RawDiscordUser = await fetched.json();
 
-    if ("message" in data) return res.status(NOT_FOUND).json({ message: BOT.BOT_NOT_FOUND, code: NOT_FOUND });
+    if ("message" in data) return res.status(NOT_FOUND).json({ message: USER.UNKNOWN_USER, code: NOT_FOUND });
 
     return res.status(OK).json(data);
 };
