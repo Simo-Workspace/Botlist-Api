@@ -9,6 +9,7 @@
 - Novos erros
 - Adicionando vercel ao projeto
 - Mudando a rota `/feedbacks` para `/bots/:id/feedbacks/:user`
+- Atualizando o README da rota `/bots/:id/feedbacls/:user`
 
 ## 14/06/2023
 
