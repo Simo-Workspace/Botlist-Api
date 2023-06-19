@@ -1,9 +1,9 @@
+import jwt from "jsonwebtoken";
 import { GENERICS } from "../errors.json";
 import { Request, Response } from "express";
-import jwt from 'jsonwebtoken';
+import { UNAUTHORIZED } from "../status-code.json";
 import { DiscordUserStructure } from "../../types/types";
 import { INTERNAL_SERVER_ERROR } from "../status-code.json";
-import { UNAUTHORIZED, NOT_FOUND, OK, BAD_REQUEST } from "../status-code.json";
 
 /** Webiste callback */
 
@@ -20,13 +20,13 @@ export const callback = async (req: Request, res: Response) => {
         scope: JSON.parse(SCOPES as string).join(" ")
     };
 
-    if(req.params.method === 'user') {
+    if(req.params.method === "user") {
         try {
             if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
-            const userData = jwt.verify(req.cookies.discordUser, JWT_SECRET as string)
+            const userData = jwt.verify(req.cookies.discordUser, JWT_SECRET as string);
             return res.json(userData);
         } catch(error: unknown) {
-            return res.json({ message: 'Token error, try sigin it again' })
+            return res.json({ message: "Token error, try sigin it again" });
         }
     }
 
@@ -52,7 +52,7 @@ export const callback = async (req: Request, res: Response) => {
 
         const token = jwt.sign({
             data: user
-          }, JWT_SECRET as string, { expiresIn: 24 * 60 * 60 * 1000 * 7 });
+        }, JWT_SECRET as string, { expiresIn: 24 * 60 * 60 * 1000 * 7 });
 
         res.cookie("discordUser", token, { maxAge: 24 * 60 * 60 * 1000 * 7, httpOnly: true });
 
