@@ -8,6 +8,7 @@
 - Implementando rota `/auth/user` para buscar informações do usuário pelo cookie
 - Retirando a possibilidade de um cookie ser modificado no console do navegador (mais segurança)
 - Novos erros, e arrumando mensagem de erro na rota `/users/:id`
+- Impondo limite de até 500 bots por consulta
 
 ## 18/06/2023
 
