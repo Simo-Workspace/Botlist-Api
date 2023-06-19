@@ -14,7 +14,8 @@ export const GET: (req: Request, res: Response) => ExpressResponse = async (req:
     const query = req.query;
 
     if (Object.keys(query).length > 0) {
-        const data = await BotSchema.find(query, null, { limit: parseInt(query.limit as string) || 500 });
+        const limit = parseInt(query.limit as string);
+        const data = await BotSchema.find(query, null, { limit: limit > 500 ? 500 : limit });
 
         return res.status(OK).json(data);
     }
