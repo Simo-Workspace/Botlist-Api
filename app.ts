@@ -18,9 +18,6 @@ import { PATCH as PATCH_GUILD } from "./src/controllers/guilds/PATCH";
 import { TOO_MANY_REQUESTS } from "./src/controllers/status-code.json";
 import rateLimit, { RateLimitRequestHandler } from "express-rate-limit";
 import { DELETE as DELETE_GUILD } from "./src/controllers/guilds/DELETE";
-import { POST as POST_FEEDBACK } from "./src/controllers/feedbacks/POST";
-import { PATCH as PATCH_FEEDBACK } from "./src/controllers/feedbacks/PATCH";
-import { DELETE as DELETE_FEEDBACK } from "./src/controllers/feedbacks/DELETE";
 
 config();
 
@@ -50,7 +47,6 @@ app.use(express.json({ strict: true, limit: "50kb" }), cors({ credentials: true 
 app.route(ROUTES.USER).get(GET_USER);
 app.route(ROUTES.AUTH).get(callback);
 app.route(ROUTES.BOTS).get(GET).delete(DELETE).patch(PATCH).post(POST);
-app.route(ROUTES.FEEDBACK).patch(PATCH_FEEDBACK).delete(DELETE_FEEDBACK).post(POST_FEEDBACK);
 app.route(ROUTES.GUILD).get(GET_GUILD).delete(DELETE_GUILD).patch(PATCH_GUILD).post(POST_GUILD);
 
 app.listen(PORT, async (): Promise<void> => {
