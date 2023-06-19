@@ -39,45 +39,59 @@ Retornará uma [estrutura](https://github.com/Simo-Workspace/Botlist-Api/blob/ma
 
 ### DELETE
 
-Este método é usado para deletar um bot no banco de dados.
+Este método é usado para deletar um bot/feedback no banco de dados.
 
 #### Exemplo
 
 ```ts
-const APIURL: string = 'http://localhost:80/bots/971783455425847317';
+const URLS: Record<string, string> = {
+    Bot: 'http://localhost:80/bots/971783455425847317',
+    Feedback: 'http://localhost:80/bots/971783455425847317/feedbacks/963124227911860264'
+};
 
-fetch(APIURL, { method: 'DELETE', headers: { authorization: 'API-AUTH' } });
+fetch(URLS.Bot, { method: 'DELETE', headers: { authorization: 'API-AUTH' } }); // Deletar um bot no banco de dados
+fetch(URLS.Feedback, { method: 'DELETE', headers: { authorization: 'API-AUTH' } }); // Deletar um feedback no banco de dados
 ```
 
-Retornará uma [estrutura](https://github.com/Simo-Workspace/Botlist-Api/blob/main/src/typings/index.d.ts#L7) de bot.
+Retornará uma [estrutura](https://github.com/Simo-Workspace/Botlist-Api/blob/main/src/typings/index.d.ts#L7) de bot, ou uma [estrutura](https://github.com/Simo-Workspace/Botlist-Api/blob/main/src/typings/index.d.ts#L7) de feedback.
 
 ### PATCH
 
-Este método é usado para editar um bot no banco de dados.
+Este método é usado para editar um bot/feedback no banco de dados.
 
 #### Exemplo
 
 ```ts
-const APIURL: string = 'http://localhost:80/bots/971783455425847317';
+const URLS: Record<string, string> = {
+    Update: 'http://localhost:80/bots/971783455425847317',
+    UpdateFeedback: 'http://localhost:80/bots/971783455425847317/feedbacks/963124227911860264' /* The last ID is of the user who sent the feedback  */
+};
 const properties: Record<string, string> = {
     name: 'Bot-carl'
 };
 
-fetch(APIURL, { method: 'PATCH', headers: { authorization: 'API-AUTH' }, body: JSON.stringify(properties) });
+fetch(URLS.Update, { method: 'PATCH', headers: { authorization: 'API-AUTH' }, body: JSON.stringify(properties) });
+
+const newFeedbackProps: { stars: number; } = {
+    stars: 5
+};
+
+fetch(URLS.UpdateFeedback, { method: 'PATCH', headers: { authorization: 'API-AUTH' }, body: JSON.stringify(newFeedbackProps) })
 ```
 
-Retornará uma [estrutura](https://github.com/Simo-Workspace/Botlist-Api/blob/main/src/typings/index.d.ts#L7) de bot.
+Retornará uma [estrutura](https://github.com/Simo-Workspace/Botlist-Api/blob/main/src/typings/index.d.ts#L7) de bot, ou uma [estrutura](https://github.com/Simo-Workspace/Botlist-Api/blob/main/src/typings/index.d.ts#L7) de feedback.
 
 ### POST
 
-Este método é usado para adicionar um bot no banco de dados, ou votar em um.
+Este método é usado para adicionar um bot/feedback no banco de dados, ou votar em um.
 
 #### Exemplo
 
 ```ts
 const URLS: Record<string, string> = {
     Add: 'http://localhost:80/bots/971783455425847317',
-    Vote: 'http://localhost:80/bots/971783455425847317/votes'
+    Vote: 'http://localhost:80/bots/971783455425847317/votes',
+    Feedback: 'http://localhost:80/bots/971783455425847317/feedbacks/963124227911860264'
 };
 const properties: Record<string, string> = {
     _id: '971783455425847317'
@@ -89,7 +103,15 @@ const voteProps: { user: string; } = {
     user: '955095844275781693'
 }; // A propriedade `user` é obrigatório quando se vota em um bot, se não, lançará um erro
 
-fetch(URLS.Vote, { method: 'POST', headers: { authorization: 'API-AUTH' }, body: JSON.stringify(voteProps) }) // Vota em um bot. O cooldown é 24 horas (1 dia)
+fetch(URLS.Vote, { method: 'POST', headers: { authorization: 'API-AUTH' }, body: JSON.stringify(voteProps) }); // Vota em um bot. O cooldown é 24 horas (1 dia)
+
+const feedbackProps: Record<string, string | number> = {
+    stars: 5,
+    postedAt: new Date().toISOString(),
+    content: 'Pablo bot is an amazing bot'
+};
+
+fetch(URLS.Feedback, { method: 'POST', headers: { authorization: 'API-AUTH' }, body: JSON.stringify(feedbackProps) }); // Adicione um feedback no bot
 ```
 
-Retornará uma [estrutura](https://github.com/Simo-Workspace/Botlist-Api/blob/main/src/typings/index.d.ts#L7) de bot, ou uma [estrutura](https://github.com/Simo-Workspace/Botlist-Api/blob/main/src/typings/index.d.ts#L7) de voto.
+Retornará uma [estrutura](https://github.com/Simo-Workspace/Botlist-Api/blob/main/src/typings/index.d.ts#L7) de bot, uma [estrutura](https://github.com/Simo-Workspace/Botlist-Api/blob/main/src/typings/index.d.ts#L7) de voto, ou uma [estrutura](https://github.com/Simo-Workspace/Botlist-Api/blob/main/src/typings/index.d.ts#L7) de feedback.
