@@ -4,7 +4,8 @@
   "description": "API for interact with nothing",
   "main": "app.ts",
   "scripts": {
-    "app": "tsx app.ts"
+    "app": "tsx app.ts",
+    "build": "tsc && node dist/app.js"
   },
   "keywords": [],
   "author": "",
