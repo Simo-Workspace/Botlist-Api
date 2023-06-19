@@ -35,5 +35,8 @@
         "MISSING_TARGETBOT_PROP": "Cannot modify a feedback without `targetBot` property",
         "UNKNOWN_FEEDBACK": "Unknown feedback",
         "CANNOT_DELETE_THE_FEEEDBACK": "Couldn't delete the feedback, an error ocurred"
+    },
+    "USER": {
+        "UNKNOWN_USER": "Unknown user"
     }
 }
