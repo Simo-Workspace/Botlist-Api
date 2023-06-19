@@ -5,7 +5,10 @@ import FeedbackSchema from "../../database/Feedback";
 import { ExpressResponse, Snowflake } from "../../types/types";
 import { UNAUTHORIZED, NOT_FOUND, OK, INTERNAL_SERVER_ERROR, BAD_REQUEST } from "../status-code.json";
 
-/** Delete a feedback */
+/**
+ * Delete a feedback
+ * @deprecated
+ */
 
 export const DELETE: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {
     const { AUTH }: NodeJS.ProcessEnv = process.env;

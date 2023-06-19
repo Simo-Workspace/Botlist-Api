@@ -5,7 +5,10 @@ import FeedbackSchema from "../../database/Feedback";
 import { ExpressResponse, FeedbackStructure, Snowflake } from "../../types/types";
 import { UNAUTHORIZED, BAD_REQUEST, NOT_FOUND, INTERNAL_SERVER_ERROR, OK } from "../status-code.json";
 
-/** Update a feedback */
+/**
+ * Update a feedback
+ * @deprecated
+ */
 
 export const PATCH: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {
     const { AUTH }: NodeJS.ProcessEnv = process.env;

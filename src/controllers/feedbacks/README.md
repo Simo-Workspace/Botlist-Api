@@ -1,4 +1,6 @@
-# BotList API
+# DEPRECADO
+
+Use a rota `/bots/:id/feedbacks/:user`
 
 ## EndPoints e Métodos
 

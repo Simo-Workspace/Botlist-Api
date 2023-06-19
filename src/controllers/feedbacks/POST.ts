@@ -6,7 +6,10 @@ import { REQUIRED_FEEDBACK_PROPERTIES } from "../../../constants.json";
 import { ExpressResponse, FeedbackStructure, Snowflake } from "../../types/types";
 import { UNAUTHORIZED, BAD_REQUEST, INTERNAL_SERVER_ERROR, CREATED } from "../status-code.json";
 
-/** Send a feedback */
+/**
+ * Submit a feedback
+ * @deprecated
+ */
 
 export const POST: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {
     const { AUTH }: NodeJS.ProcessEnv = process.env;
