@@ -3,13 +3,14 @@ import { Request, Response } from "express";
 import jwt from 'jsonwebtoken';
 import { DiscordUserStructure } from "../../types/types";
 import { INTERNAL_SERVER_ERROR } from "../status-code.json";
+import { UNAUTHORIZED, NOT_FOUND, OK, BAD_REQUEST } from "../status-code.json";
 
 /** Webiste callback */
 
-export const callback: (req: Request, res: Response) => Promise<void> = async (req: Request, res: Response): Promise<void> => {
-    const { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, SCOPES, REDIRECT_AUTH, AUTH_LINK, JWT_SECRET }: NodeJS.ProcessEnv = process.env;
+export const callback = async (req: Request, res: Response) => {
+    const { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, SCOPES, REDIRECT_AUTH, AUTH_LINK, JWT_SECRET, AUTH }: NodeJS.ProcessEnv = process.env;
+    const { code } = req.query;
 
-    const code = req.query.code;
     const data = {
         client_id: CLIENT_ID,
         client_secret: CLIENT_SECRET,
@@ -19,7 +20,18 @@ export const callback: (req: Request, res: Response) => Promise<void> = async (r
         scope: JSON.parse(SCOPES as string).join(" ")
     };
 
+    if(req.params.method === 'user') {
+        try {
+            if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
+            const userData = jwt.verify(req.cookies.discordUser, JWT_SECRET as string)
+            return res.json(userData);
+        } catch(error: unknown) {
+            return res.json({ message: 'Token error, try sigin it again' })
+        }
+    }
+
     try {
+        
         const req: globalThis.Response = await fetch("https://discord.com/api/v10/oauth2/token", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(data as Record<string, string>) });
         const response: { error: string; access_token: string; } = await req.json();
 
@@ -42,7 +54,7 @@ export const callback: (req: Request, res: Response) => Promise<void> = async (r
             data: user
           }, JWT_SECRET as string, { expiresIn: 24 * 60 * 60 * 1000 * 7 });
 
-        res.cookie("discordUser", token, { maxAge: 24 * 60 * 60 * 1000 * 7, httpOnly: false });
+        res.cookie("discordUser", token, { maxAge: 24 * 60 * 60 * 1000 * 7, httpOnly: true });
 
         res.redirect(REDIRECT_AUTH as string);
     } catch (error: unknown) {
