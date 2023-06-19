@@ -1,13 +1,13 @@
 import { GENERICS } from "../errors.json";
 import { Request, Response } from "express";
-import serialize from "serialize-javascript";
+import jwt from 'jsonwebtoken';
 import { DiscordUserStructure } from "../../types/types";
 import { INTERNAL_SERVER_ERROR } from "../status-code.json";
 
 /** Webiste callback */
 
 export const callback: (req: Request, res: Response) => Promise<void> = async (req: Request, res: Response): Promise<void> => {
-    const { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, SCOPES, REDIRECT_AUTH, AUTH_LINK }: NodeJS.ProcessEnv = process.env;
+    const { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, SCOPES, REDIRECT_AUTH, AUTH_LINK, JWT_SECRET }: NodeJS.ProcessEnv = process.env;
 
     const code = req.query.code;
     const data = {
@@ -38,7 +38,11 @@ export const callback: (req: Request, res: Response) => Promise<void> = async (r
             avatar
         };
 
-        res.cookie("discordUser", serialize(user), { maxAge: 24 * 60 * 60 * 1000 * 7, httpOnly: false });
+        const token = jwt.sign({
+            data: user
+          }, JWT_SECRET as string, { expiresIn: 24 * 60 * 60 * 1000 * 7 });
+
+        res.cookie("discordUser", token, { maxAge: 24 * 60 * 60 * 1000 * 7, httpOnly: false });
 
         res.redirect(REDIRECT_AUTH as string);
     } catch (error: unknown) {
