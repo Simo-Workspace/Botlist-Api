@@ -1,17 +1,35 @@
+import { Types } from "mongoose";
+import BotSchema from "../../database/Bot";
 import { Request, Response } from "express";
-import { GENERICS, BOT } from "../errors.json";
-import { default as BotSchema } from "../../database/Bot";
-import { ExpressResponse, Snowflake } from "../../types/types";
+import FeedbackSchema from "../../database/Feedback";
+import { GENERICS, BOT, FEEDBACK } from "../errors.json";
+import { ExpressResponse, FeedbackStructure, Snowflake } from "../../types/types";
 import { UNAUTHORIZED, NOT_FOUND, INTERNAL_SERVER_ERROR, OK } from "../status-code.json";
 
-/** Edit a bot */
+/** Edit a bot, or edit a feedback */
 
 export const PATCH: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {
     const { AUTH }: NodeJS.ProcessEnv = process.env;
-    
+
     if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
 
-    const _id = req.params.id;
+    const _id: Snowflake = req.params.id;
+
+    if (req.params.method === "feedbacks") {
+        const { content, stars }: Partial<Pick<FeedbackStructure, "content" | "stars" | "targetBot">> = req.body;
+
+        const author: Snowflake = req.params.user;
+        const exists: { _id: Types.ObjectId; } | null = await FeedbackSchema.exists({ author, targetBot: _id });
+
+        if (!exists) return res.status(NOT_FOUND).json({ message: FEEDBACK.UNKNOWN_FEEDBACK, code: NOT_FOUND });
+
+        const updated = await FeedbackSchema.findOneAndUpdate({ author, targetBot: _id }, { content, stars }, { new: true });
+
+        if (!updated) return res.status(INTERNAL_SERVER_ERROR).json({ message: FEEDBACK.CANNOT_SEND_THE_FEEEDBACK, code: INTERNAL_SERVER_ERROR });
+
+        return res.status(OK).json(updated);
+    }
+
     const exists: { _id: Snowflake; } | null = await BotSchema.exists({ _id });
 
     if (!exists) return res.status(NOT_FOUND).json({ message: BOT.BOT_NOT_FOUND, code: NOT_FOUND });
