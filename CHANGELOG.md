@@ -4,16 +4,16 @@
 
 - Utilizando JsonWebtoken para ter mais segurança nos cookies
 - Implementando rota `/auth/user` para buscar informações do usuário pelo cookie
-- Retirando a possibilidade do cookie ser modificado no console do navegador (mais segurança)
+- Retirando a possibilidade de um cookie ser modificado no console do navegador (mais segurança)
 
 ## 18/06/2023
 
-- Adicionando um arquivo de tests (index.test.ts)
-- Implementando nova rota de votos
+- Adicionando um arquivo de testes (index.test.ts)
+- Implementando nova rota de votos (`/bots/:id/votes`)
 - Agora a rota `/bots/:id/votes` retorna uma array de votos
 - Sistema de voto mais seguro
 - Novos erros
-- Adicionando vercel ao projeto
+- Adicionando Vercel ao projeto
 - Mudando a rota `/feedbacks` para `/bots/:id/feedbacks/:user`
 - Atualizando o README da rota `/bots/:id/feedbacls/:user`
 
