@@ -1,10 +1,10 @@
 {
   "name": "some-secret",
   "version": "1.0.0",
-  "description": "API for interact with nothing",
-  "main": "app.ts",
+  "description": "Simo's API",
+  "main": "src/index.ts",
   "scripts": {
-    "app": "tsx app.ts",
+    "app": "tsx src/index.ts",
     "build": "tsc && node dist/app.js"
   },
   "keywords": [],
