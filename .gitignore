@@ -7,10 +7,6 @@ package-lock.json
 
 .env
 
-# Tests
-
-index.test.ts
-
 # Old methods
 
 src/controllers/feedbacks
