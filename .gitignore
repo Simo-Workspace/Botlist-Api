@@ -6,7 +6,3 @@ package-lock.json
 # Secrets
 
 .env
-
-# Old methods
-
-src/controllers/feedbacks
