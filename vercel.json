@@ -3,15 +3,15 @@
     "name": "botlistapi",
     "version": 2,
     "builds": [
-      {
-        "src": "app.ts",
-        "use": "@vercel/node"
-      }
+        {
+            "src": "app.ts",
+            "use": "@vercel/node"
+        }
     ],
     "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "app.ts"
-      }
+        {
+            "src": "/(.*)",
+            "dest": "app.ts"
+        }
     ]
-  }
+}
