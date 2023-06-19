@@ -11,8 +11,7 @@
         "BOTS": "/bots/:id(\\d+|@all)?(/:method(votes?|feedbacks))?(:user(\\d+)?",
         "USER": "/users/:id(\\d+)?",
         "AUTH": "/auth/callback",
-        "GUILD": "/guilds/:id(\\d+)/(:method(bots))?",
-        "FEEDBACK": "/feedbacks/:user(\\d+)"
+        "GUILD": "/guilds/:id(\\d+)/(:method(bots))?"
     },
     "REQUIRED_GUILD_PROPERTIES": ["verificationChannel", "logsChannel"],
     "REQUIRED_FEEDBACK_PROPERTIES": ["stars", "postedAt", "content", "targetBot"]
