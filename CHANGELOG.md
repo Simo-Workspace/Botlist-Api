@@ -7,6 +7,7 @@
 - Utilizando JsonWebtoken para ter mais segurança nos cookies
 - Implementando rota `/auth/user` para buscar informações do usuário pelo cookie
 - Retirando a possibilidade de um cookie ser modificado no console do navegador (mais segurança)
+- Novos erros, e arrumando mensagem de erro na rota `/users/:id`
 
 ## 18/06/2023
 
