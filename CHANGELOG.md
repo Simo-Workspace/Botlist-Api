@@ -8,6 +8,7 @@
 - Sistema de voto mais seguro
 - Novos erros
 - Adicionando vercel ao projeto
+- Mudando a rota `/feedbacks` para `/bots/:id/feedbacks/:user`
 
 ## 14/06/2023
 
