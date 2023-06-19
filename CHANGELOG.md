@@ -1,5 +1,11 @@
 # API changelog
 
+## 19/06/2023
+
+- Utilizando JsonWebtoken para ter mais segurança nos cookies
+- Implementando rota `/auth/user` para buscar informações do usuário pelo cookie
+- Retirando a possibilidade do cookie ser modificado no console do navegador (mais segurança)
+
 ## 18/06/2023
 
 - Adicionando um arquivo de tests (index.test.ts)
