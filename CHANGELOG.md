@@ -1,5 +1,9 @@
 # API changelog
 
+## 20/06/26
+
+- Arrumando documentação (README) de cada pasta de handlers
+
 ## 19/06/2023
 
 - Arrumando scripts do arquivo `package.json`, e alterando a descrição da API
