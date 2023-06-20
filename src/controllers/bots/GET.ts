@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import {GENERICS, BOT } from "../errors.json";
+import { GENERICS, BOT } from "../errors.json";
 import { default as BotSchema } from "../../database/Bot";
 import { ExpressResponse, Snowflake } from "../../types/types";
 import { UNAUTHORIZED, NOT_FOUND, OK, BAD_REQUEST } from "../status-code.json";
