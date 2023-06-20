@@ -4,6 +4,7 @@
 
 - Arrumando documentação (README) de cada pasta de handlers
 - Removendo tipos desnecessários
+- Alterando a rota `/users/:id` para que o `id` seja obrigatório
 
 ## 19/06/2023
 
