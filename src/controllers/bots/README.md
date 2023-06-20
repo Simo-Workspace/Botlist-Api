@@ -13,7 +13,7 @@ O rate limit está definido como 10 requisições por minuto.
 
 Este método é usado para buscar um bot no banco de dados ou na API do Discord.
 
-#### Exemplo
+#### Exemplo (GET)
 
 ```ts
 const APIURLS: Record<string, string> = {
@@ -41,7 +41,7 @@ Retornará uma [estrutura](https://github.com/Simo-Workspace/Botlist-Api/blob/ma
 
 Este método é usado para deletar um bot/feedback no banco de dados.
 
-#### Exemplo
+#### Exemplo (DELETE)
 
 ```ts
 const URLS: Record<string, string> = {
@@ -59,7 +59,7 @@ Retornará uma [estrutura](https://github.com/Simo-Workspace/Botlist-Api/blob/ma
 
 Este método é usado para editar um bot/feedback no banco de dados.
 
-#### Exemplo
+#### Exemplo (PATCH)
 
 ```ts
 const URLS: Record<string, string> = {
@@ -85,7 +85,7 @@ Retornará uma [estrutura](https://github.com/Simo-Workspace/Botlist-Api/blob/ma
 
 Este método é usado para adicionar um bot/feedback no banco de dados, ou votar em um.
 
-#### Exemplo
+#### Exemplo (POST)
 
 ```ts
 const URLS: Record<string, string> = {

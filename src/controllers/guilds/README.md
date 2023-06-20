@@ -13,7 +13,7 @@ O rate limit está definido como 10 requisições por minuto.
 
 Este método é usado para buscar uma guilda no banco de dados.
 
-#### Exemplo
+#### Exemplo (GET)
 
 ```ts
 const APIURL: string = 'http://localhost:80/guilds/963067593479057468';
@@ -27,7 +27,7 @@ Retornará uma [estrutura](https://github.com/Simo-Workspace/Botlist-Api/blob/ma
 
 Este método é usado para deletar uma guilda no banco de dados.
 
-#### Exemplo
+#### Exemplo (DELETE)
 
 ```ts
 const APIURL: string = 'http://localhost:80/guilds/963067593479057468';
@@ -41,7 +41,7 @@ Retornará uma [estrutura](https://github.com/Simo-Workspace/Botlist-Api/blob/ma
 
 Este método é usado para editar uma guilda no banco de dados.
 
-#### Exemplo
+#### Exemplo (PATCH)
 
 ```ts
 const APIURL: string = 'http://localhost:80/guilds/963067593479057468';
@@ -58,7 +58,7 @@ Retornará uma [estrutura](https://github.com/Simo-Workspace/Botlist-Api/blob/ma
 
 Este método é usado para adicionar uma guilda no banco de dados.
 
-#### Exemplo
+#### Exemplo (POST)
 
 ```ts
 const APIURL: string = 'http://localhost:80/guilds/963067593479057468';
