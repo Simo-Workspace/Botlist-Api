@@ -20,7 +20,7 @@
         "MANY_REQUEST": "Many requests made in less than 1 minute",
         "DISCORD_AUTH_ERROR": "Authentication error with Discord",
         "NO_QUERY_IN_BODY": "No query was provided in `body`",
-        "INTERNAL_SERVER_ERROR": "An internal server erro ocurred, try again"
+        "INTERNAL_SERVER_ERROR": "An internal server error ocurred, try again"
     },
     "GUILD": {
         "GUILD_NOT_FOUND": "Unknown guild",
@@ -32,7 +32,6 @@
     "FEEDBACK": {
         "THE_USER_ALREADY_SENT": "The user has already sent his feedback",
         "CANNOT_SEND_THE_FEEEDBACK": "Couldn't send/modify the feedback, an error ocurred",
-        "MISSING_TARGETBOT_PROP": "Cannot modify a feedback without `targetBot` property",
         "UNKNOWN_FEEDBACK": "Unknown feedback",
         "CANNOT_DELETE_THE_FEEEDBACK": "Couldn't delete the feedback, an error ocurred"
     },
