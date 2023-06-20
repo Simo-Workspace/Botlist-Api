@@ -3,6 +3,7 @@
 ## 20/06/26
 
 - Arrumando documentação (README) de cada pasta de handlers
+- Removendo tipos desnecessários
 
 ## 19/06/2023
 
