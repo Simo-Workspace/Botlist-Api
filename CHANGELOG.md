@@ -6,6 +6,8 @@
 - Removendo tipos desnecessários
 - Alterando a rota `/users/:id` para que o `id` seja obrigatório
 - `.env.example` mais legível
+- Tipagem arrumada
+- Removendo um erro desnecessário e modificando a mensagem de um
 
 ## 19/06/2023
 
