@@ -2,7 +2,7 @@
 
 ## EndPoints e Métodos
 
-- URL base: `/bots/:id`.
+- URL base: `/bots/:id/:method/:user`.
 - Métodos: `GET`, `DELETE`, `PATCH` e `POST`.
 
 ## Rate Limit
