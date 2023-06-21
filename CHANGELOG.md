@@ -2,7 +2,7 @@
 
 ## 21/06/2023
 
-- Colocando /api no inicio de todas as rotas, para fazer o proxy
+- Colocando `/api` no início de todas as rotas, para fazer o proxy
 
 ## 20/06/26
 
