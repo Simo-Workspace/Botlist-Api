@@ -8,6 +8,6 @@ squarecloud.app
 
 .env
 
-# dist
+# Dist
 
 dist/
