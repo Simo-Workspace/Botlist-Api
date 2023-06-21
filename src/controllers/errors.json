@@ -34,8 +34,5 @@
         "CANNOT_SEND_THE_FEEEDBACK": "Couldn't send/modify the feedback, an error ocurred",
         "UNKNOWN_FEEDBACK": "Unknown feedback",
         "CANNOT_DELETE_THE_FEEEDBACK": "Couldn't delete the feedback, an error ocurred"
-    },
-    "USER": {
-        "UNKNOWN_USER": "Unknown user"
     }
 }
