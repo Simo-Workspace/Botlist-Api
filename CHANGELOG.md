@@ -1,5 +1,9 @@
 # API changelog
 
+## 21/06/2023
+
+- Colocando /api no inicio de todas as rotas, para fazer o proxy
+
 ## 19/06/2023
 
 - Arrumando scripts do arquivo `package.json`, e alterando a descrição da API
