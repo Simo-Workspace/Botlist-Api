@@ -2,6 +2,7 @@
 
 ## 21/06/2023
 
+- Adicionando `required: true` em algumas chaves de esquemas
 - Melhorando a tipagem de interfaces
 - Colocando `/api` no início de todas as rotas, para fazer o proxy
 
