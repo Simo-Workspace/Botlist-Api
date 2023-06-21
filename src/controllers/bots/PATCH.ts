@@ -16,7 +16,7 @@ export const PATCH: (req: Request, res: Response) => ExpressResponse = async (re
     const _id: Snowflake = req.params.id;
 
     if (req.params.method === "feedbacks") {
-        const { content, stars }: Partial<Pick<FeedbackStructure, "content" | "stars" | "targetBot">> = req.body;
+        const { content, stars }: Partial<Pick<FeedbackStructure, "content" | "stars">> = req.body;
 
         const author: Snowflake = req.params.user;
         const exists: { _id: Types.ObjectId; } | null = await FeedbackSchema.exists({ author, targetBot: _id });

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import {GENERICS, BOT } from "../errors.json";
+import { GENERICS, BOT } from "../errors.json";
 import { default as BotSchema } from "../../database/Bot";
 import { ExpressResponse, Snowflake } from "../../types/types";
 import { UNAUTHORIZED, NOT_FOUND, OK, BAD_REQUEST } from "../status-code.json";
@@ -14,7 +14,7 @@ export const GET: (req: Request, res: Response) => ExpressResponse = async (req:
     const query = req.query;
 
     if (Object.keys(query).length > 0) {
-        const limit = parseInt(query.limit as string);
+        const limit: number = parseInt(query.limit as string);
         const data = await BotSchema.find(query, null, { limit: limit > 500 ? 500 : limit });
 
         return res.status(OK).json(data);

@@ -25,18 +25,6 @@ export interface BotStructure {
     votes: VoteStructure[];
 }
 
-/** Structure for search bots */
-
-export interface SearchBotOptions {
-    query: SearchBotQueryOptions;
-}
-
-/** Query options for search */
-
-interface SearchBotQueryOptions extends Partial<BotStructure> {
-    limit?: number;
-}
-
 /** Represents an express promised response  */
 
 export type ExpressResponse = Promise<Response<unknown, Record<string, unknown>>>;

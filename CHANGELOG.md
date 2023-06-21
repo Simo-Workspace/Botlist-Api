@@ -4,6 +4,15 @@
 
 - Colocando /api no inicio de todas as rotas, para fazer o proxy
 
+## 20/06/26
+
+- Arrumando documentação (README) de cada pasta de handlers
+- Removendo tipos desnecessários
+- Alterando a rota `/users/:id` para que o `id` seja obrigatório
+- `.env.example` mais legível
+- Tipagem arrumada
+- Removendo um erro desnecessário e modificando a mensagem de um
+
 ## 19/06/2023
 
 - Arrumando scripts do arquivo `package.json`, e alterando a descrição da API
@@ -13,6 +22,7 @@
 - Retirando a possibilidade de um cookie ser modificado no console do navegador (mais segurança)
 - Novos erros, e arrumando mensagem de erro na rota `/users/:id`
 - Impondo limite de até 500 bots por consulta
+- Adicionando URL de origem ao cors
 
 ## 18/06/2023
 
