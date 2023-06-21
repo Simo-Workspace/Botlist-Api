@@ -33,7 +33,9 @@ const BotSchema = new Schema<BotStructure>({
     createdAt: {
         type: String, required: true
     },
-    verifiedBot: Boolean,
+    verifiedBot: {
+        type: Boolean, required: true
+    },
     tags: {
         type: [String], required: true
     },
