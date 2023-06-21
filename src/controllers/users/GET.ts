@@ -1,5 +1,5 @@
+import { GENERICS } from "../errors.json";
 import { Request, Response } from "express";
-import { GENERICS, USER } from "../errors.json";
 import { NOT_FOUND, OK, UNAUTHORIZED } from "../status-code.json";
 import { ExpressResponse, RawDiscordUser } from "../../types/types";
 
@@ -9,11 +9,11 @@ export const GET: (req: Request, res: Response) => ExpressResponse = async (req:
     const { AUTH, CLIENT_TOKEN }: NodeJS.ProcessEnv = process.env;
 
     if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
-    
+
     const fetched: globalThis.Response = await fetch(`https://discord.com/api/v10/users/${req.params.id}`, { method: "GET", headers: { Authorization: `Bot ${CLIENT_TOKEN}` } });
     const data: RawDiscordUser = await fetched.json();
 
-    if ("message" in data) return res.status(NOT_FOUND).json({ message: USER.UNKNOWN_USER, code: NOT_FOUND });
+    if ("message" in data) return res.status(NOT_FOUND).json({ message: data.message, code: NOT_FOUND });
 
     return res.status(OK).json(data);
 };
