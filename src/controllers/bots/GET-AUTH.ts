@@ -22,7 +22,7 @@ export const callback = async (req: Request, res: Response) => {
 
     if(req.params.method === 'user') {
         try {
-            if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
+            //if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
             const userData = jwt.verify(req.cookies.discordUser, JWT_SECRET as string)
             return res.json(userData);
         } catch(error: unknown) {
@@ -64,7 +64,7 @@ export const callback = async (req: Request, res: Response) => {
             data: user
           }, JWT_SECRET as string, { expiresIn: 24 * 60 * 60 * 1000 * 7 });
 
-        res.cookie("discordUser", token, { maxAge: 24 * 60 * 60 * 1000 * 7, httpOnly: true });
+        res.cookie("discordUser", token, { maxAge: 24 * 60 * 60 * 1000 * 7, httpOnly: false });
 
         res.redirect(REDIRECT_AUTH as string);
     } catch (error: unknown) {
