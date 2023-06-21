@@ -15,10 +15,10 @@
         "avatar"
     ],
     "ROUTES": {
-        "BOTS": "/bots/:id(\\d+|@all)?(/:method(votes?|feedbacks))?(:user(\\d+)?)",
-        "USER": "/users/:id(\\d+)?",
-        "AUTH": "/auth/(:method(callback|user))",
-        "GUILD": "/guilds/:id(\\d+)/(:method(bots))?"
+        "BOTS": "/api/bots/:id(\\d+|@all)?(/:method(votes?|feedbacks))?(:user(\\d+)?)",
+        "USER": "/api/users/:id(\\d+)?",
+        "AUTH": "/api/auth/(:method(callback|user))",
+        "GUILD": "/api/guilds/:id(\\d+)/(:method(bots))?"
     },
     "REQUIRED_GUILD_PROPERTIES": ["verificationChannel", "logsChannel"],
     "REQUIRED_FEEDBACK_PROPERTIES": [
