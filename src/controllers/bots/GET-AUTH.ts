@@ -22,7 +22,7 @@ export const callback = async (req: Request, res: Response) => {
 
     if(req.params.method === 'user') {
         try {
-           if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
+            if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
             const userData = jwt.verify(req.cookies.discordUser, JWT_SECRET as string)
             return res.json(userData);
         } catch(error: unknown) {

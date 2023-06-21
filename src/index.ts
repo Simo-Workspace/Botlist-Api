@@ -34,7 +34,7 @@ const limiter: RateLimitRequestHandler = rateLimit({
 
 const sevenDays: number = 24 * 60 * 60 * 1000 * 7;
 
-app.use(express.json({ strict: true, limit: "50kb" }), cors({ credentials: true, origin: "https://botlist-website.vercel.app" }), limiter, cookieParser(), session({
+app.use(express.json({ strict: true, limit: "50kb" }), cors({ credentials: true, origin: ["https://botlist-website.vercel.app", "http://localhost:5173"] }), limiter, cookieParser(), session({
     secret: process.env.COOKIE_SECRET as string,
     cookie: {
         maxAge: sevenDays,
