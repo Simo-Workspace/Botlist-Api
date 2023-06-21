@@ -30,6 +30,16 @@ export const callback = async (req: Request, res: Response) => {
         }
     }
 
+    if(req.params.method === 'logout') {
+        try {
+            if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
+            res.clearCookie("discordUser");
+            return res.send({ message: 'Success!' })
+        } catch (error: unknown) {
+            return res.json({ message: 'Error', error });
+        }
+    }
+
     try {
         
         const req: globalThis.Response = await fetch("https://discord.com/api/v10/oauth2/token", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(data as Record<string, string>) });

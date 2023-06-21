@@ -17,7 +17,7 @@
     "ROUTES": {
         "BOTS": "/api/bots/:id(\\d{16,20}|@all)?(/:method(votes?|feedbacks))?(:user(\\d{16,20})?)",
         "USER": "/api/users/:id(\\d{16,20})",
-        "AUTH": "/api/auth/(:method(callback|user))",
+        "AUTH": "/api/auth/(:method(callback|user|logout))",
         "GUILD": "/api/guilds/:id(\\d{16,20})/(:method(bots))?"
     },
     "REQUIRED_GUILD_PROPERTIES": ["verificationChannel", "logsChannel"],
