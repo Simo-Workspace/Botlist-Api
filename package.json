@@ -1,7 +1,7 @@
 {
   "name": "some-secret",
   "version": "1.0.0",
-  "description": "Simo's API",
+  "description": "A REST API referenced to Simo's community",
   "main": "src/index.ts",
   "scripts": {
     "app": "tsx src/index.ts",
