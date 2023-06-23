@@ -20,7 +20,8 @@
         "MANY_REQUEST": "Many requests made in less than 1 minute",
         "DISCORD_AUTH_ERROR": "Authentication error with Discord",
         "NO_QUERY_IN_BODY": "No query was provided in `body`",
-        "INTERNAL_SERVER_ERROR": "An internal server error ocurred, try again"
+        "INTERNAL_SERVER_ERROR": "An internal server error ocurred, try again",
+        "SUCCESS": "Success!"
     },
     "GUILD": {
         "GUILD_NOT_FOUND": "Unknown guild",
