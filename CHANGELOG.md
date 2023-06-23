@@ -1,5 +1,11 @@
 # API changelog
 
+## 23/06/2023
+
+- Arrumando e estilizando arquivo `GET-AUTH.ts`
+- Adicionando novo erro
+- Agora a propriedade `inviteURL` é obrigatória no esquema `addbots`
+
 ## 21/06/2023
 
 - Adicionando `required: true` em algumas chaves de esquemas
