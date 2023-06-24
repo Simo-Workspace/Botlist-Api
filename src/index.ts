@@ -5,7 +5,6 @@ import session from "express-session";
 import cookieParser from "cookie-parser";
 import { GET } from "./controllers/bots/GET";
 import { POST } from "./controllers/bots/POST";
-import { PORT, ROUTES } from "../constants.json";
 import { PATCH } from "./controllers/bots/PATCH";
 import { DELETE } from "./controllers/bots/DELETE";
 import { GENERICS } from "./controllers/errors.json";
@@ -17,6 +16,7 @@ import { POST as POST_GUILD } from "./controllers/guilds/POST";
 import { PATCH as PATCH_GUILD } from "./controllers/guilds/PATCH";
 import { TOO_MANY_REQUESTS } from "./controllers/status-code.json";
 import { DELETE as DELETE_GUILD } from "./controllers/guilds/DELETE";
+import { PORT, ROUTES, MAX_REQUESTS_PER_MIN } from "../constants.json";
 import rateLimit, { RateLimitRequestHandler } from "express-rate-limit";
 
 config();
@@ -24,7 +24,7 @@ config();
 const app: Express = express();
 
 const limiter: RateLimitRequestHandler = rateLimit({
-    max: 25,
+    max: MAX_REQUESTS_PER_MIN,
     message: {
         error: GENERICS.MANY_REQUEST,
         code: TOO_MANY_REQUESTS

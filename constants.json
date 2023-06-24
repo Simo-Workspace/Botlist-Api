@@ -31,5 +31,6 @@
             "verificationChannel",
             "logsChannel"
         ]
-    }
+    },
+    "MAX_REQUESTS_PER_MIN": 25
 }
