@@ -26,7 +26,7 @@ export const POST: (req: Request, res: Response) => ExpressResponse = async (req
         const body: Partial<FeedbackStructure> = req.body;
         const keys: string[] = Object.keys(body);
 
-        if (!REQUIRED_PROPS.FEEDBACK.every((property: string): boolean => keys.includes(property))) return res.status(BAD_REQUEST).json({ message: GENERICS.SOME_PROPERTIES_IS_MISSING, code: BAD_REQUEST });
+        if (!REQUIRED_PROPS.FEEDBACK.every((property: string): boolean => keys.includes(property))) return res.status(BAD_REQUEST).json({ message: GENERICS.SOME_PROPERTIES_IS_MISSING, code: BAD_REQUEST, bonus: { missing_properties: REQUIRED_PROPS.FEEDBACK.filter((property: string): boolean => !keys.includes(property)) } });
 
         const created = await FeedbackSchema.create({ ...body, author, targetBot: _id });
 
@@ -84,7 +84,7 @@ export const POST: (req: Request, res: Response) => ExpressResponse = async (req
 
     const keys: string[] = Object.keys(properties);
 
-    if (!REQUIRED_PROPS.BOT.every((property: string): boolean => keys.includes(property))) return res.status(BAD_REQUEST).json({ message: GENERICS.SOME_PROPERTIES_IS_MISSING, code: BAD_REQUEST });
+    if (!REQUIRED_PROPS.BOT.every((property: string): boolean => keys.includes(property))) return res.status(BAD_REQUEST).json({ message: GENERICS.SOME_PROPERTIES_IS_MISSING, code: BAD_REQUEST, bonus: { missing_properties: REQUIRED_PROPS.BOT.filter((property: string): boolean => !keys.includes(property)) } });
     if (exists) return res.status(BAD_REQUEST).json({ message: BOT.BOT_ALREADY_EXISTS, code: BAD_REQUEST });
 
     const created = await BotSchema.create({ ...properties, _id });

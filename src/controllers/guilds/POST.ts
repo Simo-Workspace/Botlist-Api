@@ -16,7 +16,7 @@ export const POST: (req: Request, res: Response) => ExpressResponse = async (req
     const properties: Partial<GuildStructure> = req.body;
     const keys: string[] = Object.keys(properties);
 
-    if (!REQUIRED_PROPS.GUILD.every((prop: string): boolean => keys.includes(prop))) return res.status(BAD_REQUEST).json({ message: GENERICS.SOME_PROPERTIES_IS_MISSING, code: BAD_REQUEST });
+    if (!REQUIRED_PROPS.GUILD.every((prop: string): boolean => keys.includes(prop))) return res.status(BAD_REQUEST).json({ message: GENERICS.SOME_PROPERTIES_IS_MISSING, code: BAD_REQUEST, bonus: { missing_properties: REQUIRED_PROPS.GUILD.filter((property: string): boolean => !keys.includes(property)) } });
 
     const exists: { _id: Snowflake; } | null = await GuildSchema.exists({ _id });
 
