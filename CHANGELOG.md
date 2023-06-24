@@ -2,6 +2,8 @@
 
 ## 24/06/2023
 
+- Agora os handlers de método `POST` dizem quais propriedades estão faltando
+- Adicionando nova key (`bonus`) para mostrar as propriedades faltantes
 - Melhorando tipagens e códigos
 - `.env` mais legível
 - Arrumando mensagens de errors
