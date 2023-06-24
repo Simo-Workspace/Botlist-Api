@@ -2,9 +2,11 @@
 
 ## 24/06/2023
 
+- Melhorando tipagens e códigos
+- `.env` mais legível
+- Arrumando mensagens de errors
 - Instalando as bibliotecas `typescript` e `tsx` como depedência de desenvolvedor
 - Arrumando arquivo `README.md` de cada handler e o principal
-- Arrumando tipagem do tipo `BotStructure`
 - Adicionando nova propriedade (MAX_REQUESTS_PER_MIN) no arquivo `constants.json`
 - Mudando nome de propriedades no arquivo `constants.json`
 - Arrumando rotas dinâmicas da API
