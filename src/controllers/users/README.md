@@ -2,7 +2,7 @@
 
 ## EndPoints e Métodos
 
-- Rota: `/users/:id`.
+- Rota: `/api/users/:id`.
 - Métodos: `GET`.
 
 ## Rate Limit

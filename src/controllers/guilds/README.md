@@ -2,7 +2,7 @@
 
 ## EndPoints e Métodos
 
-- Rota: `/guilds/:id`.
+- Rota: `/api/guilds/:id`.
 - Métodos: `GET`, `DELETE`, `PATCH` e `POST`.
 
 ## Rate Limit
