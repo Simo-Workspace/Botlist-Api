@@ -2,6 +2,7 @@
 
 ## 24/06/2023
 
+- Adicionando nova propriedade (MAX_REQUESTS_PER_MIN) no arquivo `constants.json`
 - Mudando nome de propriedades no arquivo `constants.json`
 - Arrumando rotas dinâmicas da API
 
