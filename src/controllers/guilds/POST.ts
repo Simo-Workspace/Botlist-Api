@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import GuildSchema from "../../database/Guild";
 import { GENERICS, GUILD } from "../errors.json";
-import { REQUIRED_GUILD_PROPERTIES } from "../../../constants.json";
+import { REQUIRED_PROPS } from "../../../constants.json";
 import { GuildStructure, ExpressResponse, Snowflake } from "../../types/types";
 import { UNAUTHORIZED, BAD_REQUEST, INTERNAL_SERVER_ERROR, CREATED } from "../status-code.json";
 
@@ -16,7 +16,7 @@ export const POST: (req: Request, res: Response) => ExpressResponse = async (req
     const properties: Partial<GuildStructure> = req.body;
     const keys: string[] = Object.keys(properties);
 
-    if (!REQUIRED_GUILD_PROPERTIES.every((prop: string): boolean => keys.includes(prop))) return res.status(BAD_REQUEST).json({ message: GENERICS.SOME_PROPERTIES_IS_MISSING, code: BAD_REQUEST });
+    if (!REQUIRED_PROPS.GUILD.every((prop: string): boolean => keys.includes(prop))) return res.status(BAD_REQUEST).json({ message: GENERICS.SOME_PROPERTIES_IS_MISSING, code: BAD_REQUEST });
 
     const exists: { _id: Snowflake; } | null = await GuildSchema.exists({ _id });
 

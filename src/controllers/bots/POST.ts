@@ -3,8 +3,8 @@ import { Types } from "mongoose";
 import { Request, Response } from "express";
 import FeedbackSchema from "../../database/Feedback";
 import { GENERICS, BOT, FEEDBACK } from "../errors.json";
+import { REQUIRED_PROPS } from "../../../constants.json";
 import { default as BotSchema } from "../../database/Bot";
-import { REQUIRED_BOT_PROPERTIES, REQUIRED_FEEDBACK_PROPERTIES } from "../../../constants.json";
 import { UNAUTHORIZED, BAD_REQUEST, INTERNAL_SERVER_ERROR, CREATED, NOT_FOUND } from "../status-code.json";
 import type { BotStructure, ExpressResponse, FeedbackStructure, Snowflake, VoteStructure } from "../../types/types";
 
@@ -26,7 +26,7 @@ export const POST: (req: Request, res: Response) => ExpressResponse = async (req
         const body: Partial<FeedbackStructure> = req.body;
         const keys: string[] = Object.keys(body);
 
-        if (!REQUIRED_FEEDBACK_PROPERTIES.every((property: string): boolean => keys.includes(property))) return res.status(BAD_REQUEST).json({ message: GENERICS.SOME_PROPERTIES_IS_MISSING, code: BAD_REQUEST });
+        if (!REQUIRED_PROPS.FEEDBACK.every((property: string): boolean => keys.includes(property))) return res.status(BAD_REQUEST).json({ message: GENERICS.SOME_PROPERTIES_IS_MISSING, code: BAD_REQUEST });
 
         const created = await FeedbackSchema.create({ ...body, author, targetBot: _id });
 
@@ -84,7 +84,7 @@ export const POST: (req: Request, res: Response) => ExpressResponse = async (req
 
     const keys: string[] = Object.keys(properties);
 
-    if (!REQUIRED_BOT_PROPERTIES.every((property: string): boolean => keys.includes(property))) return res.status(BAD_REQUEST).json({ message: GENERICS.SOME_PROPERTIES_IS_MISSING, code: BAD_REQUEST });
+    if (!REQUIRED_PROPS.BOT.every((property: string): boolean => keys.includes(property))) return res.status(BAD_REQUEST).json({ message: GENERICS.SOME_PROPERTIES_IS_MISSING, code: BAD_REQUEST });
     if (exists) return res.status(BAD_REQUEST).json({ message: BOT.BOT_ALREADY_EXISTS, code: BAD_REQUEST });
 
     const created = await BotSchema.create({ ...properties, _id });

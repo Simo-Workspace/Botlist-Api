@@ -6,25 +6,30 @@
         "Feedbacks": "Feedbacks"
     },
     "PORT": 80,
-    "REQUIRED_BOT_PROPERTIES": [
-        "name",
-        "shortDescription",
-        "longDescription",
-        "createdAt",
-        "approved",
-        "avatar"
-    ],
     "ROUTES": {
         "BOTS": "/api/bots/:id(\\d{16,19})?(/:method(votes?|feedbacks))?(:user(\\d{16,19})?)",
         "USER": "/api/users/:id(\\d{16,19})",
         "AUTH": "/api/auth/(:method(callback|user|logout))",
         "GUILD": "/api/guilds/:id(\\d{16,19})/(:method(bots))?"
     },
-    "REQUIRED_GUILD_PROPERTIES": ["verificationChannel", "logsChannel"],
-    "REQUIRED_FEEDBACK_PROPERTIES": [
-        "stars",
-        "postedAt",
-        "content",
-        "targetBot"
-    ]
+    "REQUIRED_PROPS": {
+        "FEEDBACK": [
+            "stars",
+            "postedAt",
+            "content",
+            "targetBot"
+        ],
+        "BOT": [
+            "name",
+            "shortDescription",
+            "longDescription",
+            "createdAt",
+            "approved",
+            "avatar"
+        ],
+        "GUILD": [
+            "verificationChannel",
+            "logsChannel"
+        ]
+    }
 }
