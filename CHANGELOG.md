@@ -1,5 +1,10 @@
 # API changelog
 
+## 24/06/2023
+
+- Mudando nome de propriedades no arquivo `constants.json`
+- Arrumando rotas dinâmicas da API
+
 ## 23/06/2023
 
 - Arrumando e estilizando arquivo `GET-AUTH.ts`
