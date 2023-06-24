@@ -7,7 +7,7 @@
 
 ## Rate Limit
 
-O rate limit está definido como 10 requisições por minuto.
+O rate limit está definido como 25 requisições por minuto.
 
 ### GET
 
@@ -97,7 +97,7 @@ const properties: Record<string, string> = {
     _id: '971783455425847317'
 };
 
-fetch(URLS.Add, { method: 'POST', headers: { authorization: 'API-AUTH' }, body: JSON.stringify(properties) }); // Adicionar um bot
+fetch(URLS.Add, { method: 'POST', headers: { authorization: 'API-AUTH' }, body: JSON.stringify(properties) }); // Adicionar um bot. Veja todas as propriedades obrigatórias no arquivo `constants.json` -> REQUIRED_PROPS -> BOT
 
 const voteProps: { user: string; } = {
     user: '955095844275781693'

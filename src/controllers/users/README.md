@@ -7,7 +7,7 @@
 
 ## Rate Limit
 
-O rate limit está definido como 10 requisições por minuto.
+O rate limit está definido como 25 requisições por minuto.
 
 ### GET
 
