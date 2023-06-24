@@ -1,13 +1,14 @@
 import jwt from "jsonwebtoken";
 import { GENERICS } from "../errors.json";
+import { JwtPayload } from "jsonwebtoken";
 import { Request, Response } from "express";
 import { UNAUTHORIZED, OK } from "../status-code.json";
-import { DiscordUserStructure } from "../../types/types";
 import { INTERNAL_SERVER_ERROR } from "../status-code.json";
+import { DiscordUserStructure, ExpressResponse } from "../../types/types";
 
 /** Webiste callback */
 
-export const callback = async (req: Request, res: Response) => {
+export const callback: (req: Request, res: Response) => void = async (req: Request, res: Response): Promise<ExpressResponse | void> => {
     const { code } = req.query;
     const { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, SCOPES, REDIRECT_AUTH, AUTH_LINK, JWT_SECRET, AUTH }: NodeJS.ProcessEnv = process.env;
 
@@ -23,22 +24,23 @@ export const callback = async (req: Request, res: Response) => {
     if (req.params.method === "user") {
         try {
             //if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
-            const userData = jwt.verify(req.cookies.discordUser, JWT_SECRET as string);
+            const userData: string | JwtPayload = jwt.verify(req.cookies.discordUser, JWT_SECRET as string);
             
             return res.json(userData);
         } catch (error: unknown) {
-            return res.send(JSON.stringify(error));
+            return res.status(INTERNAL_SERVER_ERROR).json({ message: JSON.stringify(error), code: INTERNAL_SERVER_ERROR });
         }
     }
 
     if (req.params.method === "logout") {
         try {
             if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
+            
             res.clearCookie("discordUser");
 
-            return res.send({ message: GENERICS.SUCCESS, code: OK });
+            return res.status(OK).json({ message: GENERICS.SUCCESS, code: OK });
         } catch (error: unknown) {
-            return res.json({ message: GENERICS.DISCORD_AUTH_ERROR, code: INTERNAL_SERVER_ERROR });
+            return res.status(INTERNAL_SERVER_ERROR).json({ message: GENERICS.DISCORD_AUTH_ERROR, code: INTERNAL_SERVER_ERROR });
         }
     }
 
@@ -57,7 +59,7 @@ export const callback = async (req: Request, res: Response) => {
         const { username, id, avatar }: DiscordUserStructure = await request.json();
         const sevenDays: 604800000 = 604800000 as const;
 
-        const token = jwt.sign({
+        const token: string = jwt.sign({
             data: { username, id, avatar }
         }, JWT_SECRET as string, { expiresIn: sevenDays });
 
