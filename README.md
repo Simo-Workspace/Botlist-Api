@@ -4,7 +4,7 @@ Use os exemplos de cada [pasta](https://github.com/Simo-Workspace/Botlist-Api/tr
 
 ## EndPoints & Headers
 
-- Endpoints: Atualmente com 3 (três) endpoints, `/bots`, `/users` e `/guilds`.
+- Endpoints: Atualmente com 3 (três) endpoints, `/api/bots`, `/api/users` e `/api/guilds`.
 - Headers: O `header` sempre deve conter o cabeçalho `authorization` (sensitive case) com a autorização para utilizar a API, se não lançará um erro 401.
 
 ## Status Code

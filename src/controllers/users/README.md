@@ -16,7 +16,7 @@ Este método é usado para buscar um usuário na API do Discord.
 #### Exemplo (GET)
 
 ```ts
-const APIURL: string = 'http://localhost:80/users/963124227911860264';
+const APIURL: string = 'http://localhost:80/api/users/963124227911860264';
 
 fetch(APIURL, { method: 'GET', headers: { authorization: 'API-AUTH' } });
 ```

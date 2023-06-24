@@ -17,10 +17,10 @@ Este método é usado para buscar um bot no banco de dados ou na API do Discord.
 
 ```ts
 const APIURLS: Record<string, string> = {
-    Bot: 'http://localhost:80/bots/971783455425847317',
-    All: 'http://localhost:80/bots',
-    Votes: 'http://localhost:80/bots/971783455425847317/votes',
-    Query: 'http://localhost:80/bots?name=Simo'
+    Bot: 'http://localhost:80/api/bots/971783455425847317',
+    All: 'http://localhost:80/api/bots',
+    Votes: 'http://localhost:80/api/bots/971783455425847317/votes',
+    Query: 'http://localhost:80/api/bots?name=Simo'
 };
 const requestInit: Record<string, string | object> = {
     method: 'GET',
@@ -45,8 +45,8 @@ Este método é usado para deletar um bot/feedback no banco de dados.
 
 ```ts
 const URLS: Record<string, string> = {
-    Bot: 'http://localhost:80/bots/971783455425847317',
-    Feedback: 'http://localhost:80/bots/971783455425847317/feedbacks/963124227911860264'
+    Bot: 'http://localhost:80/api/bots/971783455425847317',
+    Feedback: 'http://localhost:80/api/bots/971783455425847317/feedbacks/963124227911860264'
 };
 
 fetch(URLS.Bot, { method: 'DELETE', headers: { authorization: 'API-AUTH' } }); // Deletar um bot no banco de dados
@@ -63,8 +63,8 @@ Este método é usado para editar um bot/feedback no banco de dados.
 
 ```ts
 const URLS: Record<string, string> = {
-    Update: 'http://localhost:80/bots/971783455425847317',
-    UpdateFeedback: 'http://localhost:80/bots/971783455425847317/feedbacks/963124227911860264' /* The last ID is of the user who sent the feedback  */
+    Update: 'http://localhost:80/api/bots/971783455425847317',
+    UpdateFeedback: 'http://localhost:80/api/bots/971783455425847317/feedbacks/963124227911860264' /* The last ID is of the user who sent the feedback  */
 };
 const properties: Record<string, string> = {
     name: 'Bot-carl'
@@ -89,9 +89,9 @@ Este método é usado para adicionar um bot/feedback no banco de dados, ou votar
 
 ```ts
 const URLS: Record<string, string> = {
-    Add: 'http://localhost:80/bots/971783455425847317',
-    Vote: 'http://localhost:80/bots/971783455425847317/votes',
-    Feedback: 'http://localhost:80/bots/971783455425847317/feedbacks/963124227911860264'
+    Add: 'http://localhost:80/api/bots/971783455425847317',
+    Vote: 'http://localhost:80/api/bots/971783455425847317/votes',
+    Feedback: 'http://localhost:80/api/bots/971783455425847317/feedbacks/963124227911860264'
 };
 const properties: Record<string, string> = {
     _id: '971783455425847317'
