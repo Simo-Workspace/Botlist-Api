@@ -23,10 +23,10 @@ export const callback: (req: Request, res: Response) => void = async (req: Reque
 
     if (req.params.method === "user") {
         try {
-            //if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
+             if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
             const userData: string | JwtPayload = jwt.verify(req.cookies.discordUser, JWT_SECRET as string);
             
-            return res.json(userData);
+            return res.send(userData);
         } catch (error: unknown) {
             return res.status(INTERNAL_SERVER_ERROR).json({ message: JSON.stringify(error), code: INTERNAL_SERVER_ERROR });
         }
@@ -44,31 +44,33 @@ export const callback: (req: Request, res: Response) => void = async (req: Reque
         }
     }
 
-    try {
-        const req: globalThis.Response = await fetch("https://discord.com/api/v10/oauth2/token", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(data as Record<string, string>) });
-        const response: { error: string; access_token: string; } = await req.json();
+    if(req.params.method === "callback") {
+        try {
+            const req: globalThis.Response = await fetch("https://discord.com/api/v10/oauth2/token", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(data as Record<string, string>) });
+            const response: { error: string; access_token: string; } = await req.json();
 
-        if (response.error === "invalid_grant") return res.redirect(AUTH_LINK as string);
+            if (response.error === "invalid_grant") return res.redirect(AUTH_LINK as string);
 
-        const accessToken: string = response.access_token;
-        const request: globalThis.Response = await fetch("https://discord.com/api/v10/users/@me", {
-            headers: {
+            const accessToken: string = response.access_token;
+            const request: globalThis.Response = await fetch("https://discord.com/api/v10/users/@me", {
+                headers: {
                 Authorization: `Bearer ${accessToken}`
-            }
-        });
-        const { username, id, avatar }: DiscordUserStructure = await request.json();
-        const sevenDays: 604800000 = 604800000 as const;
+                }
+            });
+            const { username, id, avatar }: DiscordUserStructure = await request.json();
+            const sevenDays: 604800000 = 604800000 as const;
 
-        const token: string = jwt.sign({
+            const token: string = jwt.sign({
             data: { username, id, avatar }
-        }, JWT_SECRET as string, { expiresIn: sevenDays });
+            }, JWT_SECRET as string, { expiresIn: sevenDays });
 
-        res.cookie("discordUser", token, { maxAge: sevenDays, httpOnly: false });
+            res.cookie("discordUser", token, { maxAge: sevenDays });
 
-        res.redirect(REDIRECT_AUTH as string);
-    } catch (error: unknown) {
-        console.error(error);
+            res.redirect(REDIRECT_AUTH as string);
+        } catch (error: unknown) {
+            console.error(error);
 
-        res.status(INTERNAL_SERVER_ERROR).json({ message: GENERICS.DISCORD_AUTH_ERROR, code: INTERNAL_SERVER_ERROR });
+            res.status(INTERNAL_SERVER_ERROR).json({ message: GENERICS.DISCORD_AUTH_ERROR, code: INTERNAL_SERVER_ERROR });
+        }
     }
 };
