@@ -23,9 +23,9 @@ export const callback: (req: Request, res: Response) => void = async (req: Reque
 
     if (req.params.method === "user") {
         try {
-             if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
+            // if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
             const userData: string | JwtPayload = jwt.verify(req.cookies.discordUser, JWT_SECRET as string);
-            
+            res.setHeader('Set-Cookie', req.cookies.discordUser);
             return res.send(userData);
         } catch (error: unknown) {
             return res.status(INTERNAL_SERVER_ERROR).json({ message: JSON.stringify(error), code: INTERNAL_SERVER_ERROR });
