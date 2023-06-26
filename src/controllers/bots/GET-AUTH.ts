@@ -25,7 +25,7 @@ export const callback: (req: Request, res: Response) => void = async (req: Reque
         try {
             // if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
             const userData: string | JwtPayload = jwt.verify(req.cookies.discordUser, JWT_SECRET as string);
-            res.setHeader('Set-Cookie', req.cookies.discordUser);
+
             return res.send(userData);
         } catch (error: unknown) {
             return res.status(INTERNAL_SERVER_ERROR).json({ message: JSON.stringify(error), code: INTERNAL_SERVER_ERROR });
@@ -64,7 +64,7 @@ export const callback: (req: Request, res: Response) => void = async (req: Reque
             data: { username, id, avatar }
             }, JWT_SECRET as string, { expiresIn: sevenDays });
 
-            res.cookie("discordUser", token, { maxAge: sevenDays });
+            res.cookie("discordUser", token, { maxAge: sevenDays, secure: true, signed: true });
 
             res.redirect(REDIRECT_AUTH as string);
         } catch (error: unknown) {
