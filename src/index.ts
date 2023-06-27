@@ -34,15 +34,7 @@ const limiter: RateLimitRequestHandler = rateLimit({
 
 const sevenDays: 604800000 = 604800000 as const;
 
-app.use(express.json({ strict: true, limit: "50kb" }), cors({ credentials: true, origin: ["https://botlist-website.vercel.app", "http://localhost:5173"] }), limiter, cookieParser(), session({
-    secret: process.env.COOKIE_SECRET as string,
-    cookie: {
-        maxAge: sevenDays,
-    },
-    resave: false,
-    saveUninitialized: false,
-    name: "discord.login"
-}));
+app.use(express.json({ strict: true, limit: "50kb" }), cors({ credentials: true, origin: ["https://botlist-website.vercel.app", "http://localhost:5173"] }), limiter, cookieParser());
 
 app.route(ROUTES.USER).get(GET_USER);
 app.route(ROUTES.AUTH).get(callback);
