@@ -2,7 +2,8 @@
 
 ## 27/06/2023
 
-- Tipando constantes
+- Novos tipos criados (APIScopes e Schema<T, I>)
+- Tipando todas constantes
 
 ## 24/06/2023
 
