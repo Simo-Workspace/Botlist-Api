@@ -1,5 +1,9 @@
 # API changelog
 
+## 27/06/2023
+
+- Tipando constantes
+
 ## 24/06/2023
 
 - Agora os handlers de método `POST` dizem quais propriedades estão faltando
