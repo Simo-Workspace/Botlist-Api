@@ -3,8 +3,8 @@ import BotSchema from "../../database/Bot";
 import { Request, Response } from "express";
 import FeedbackSchema from "../../database/Feedback";
 import { GENERICS, BOT, FEEDBACK } from "../errors.json";
-import { ExpressResponse, FeedbackStructure, Snowflake } from "../../types/types";
 import { UNAUTHORIZED, NOT_FOUND, INTERNAL_SERVER_ERROR, OK } from "../status-code.json";
+import { BotStructure, ExpressResponse, FeedbackStructure, Schema, Snowflake } from "../../types/types";
 
 /** Edit a bot, or edit a feedback */
 
@@ -23,7 +23,7 @@ export const PATCH: (req: Request, res: Response) => ExpressResponse = async (re
 
         if (!exists) return res.status(NOT_FOUND).json({ message: FEEDBACK.UNKNOWN_FEEDBACK, code: NOT_FOUND });
 
-        const updated = await FeedbackSchema.findOneAndUpdate({ author, targetBot: _id }, { content, stars }, { new: true });
+        const updated: Schema<FeedbackStructure> | null = await FeedbackSchema.findOneAndUpdate({ author, targetBot: _id }, { content, stars }, { new: true });
 
         if (!updated) return res.status(INTERNAL_SERVER_ERROR).json({ message: FEEDBACK.CANNOT_SEND_THE_FEEEDBACK, code: INTERNAL_SERVER_ERROR });
 
@@ -34,7 +34,7 @@ export const PATCH: (req: Request, res: Response) => ExpressResponse = async (re
 
     if (!exists) return res.status(NOT_FOUND).json({ message: BOT.BOT_NOT_FOUND, code: NOT_FOUND });
 
-    const updated = await BotSchema.findByIdAndUpdate({ _id }, req.body, { new: true });
+    const updated: Schema<BotStructure> | null = await BotSchema.findByIdAndUpdate({ _id }, req.body, { new: true });
 
     if (!updated) return res.status(INTERNAL_SERVER_ERROR).json({ message: BOT.CANNOT_EDIT_THE_BOT, code: INTERNAL_SERVER_ERROR });
 

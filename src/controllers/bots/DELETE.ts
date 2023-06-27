@@ -3,8 +3,8 @@ import { Request, Response } from "express";
 import BotSchema  from "../../database/Bot";
 import FeedbackSchema from "../../database/Feedback";
 import { GENERICS, BOT, FEEDBACK } from "../errors.json";
-import { ExpressResponse, Snowflake } from "../../types/types";
 import { UNAUTHORIZED, NOT_FOUND, OK, INTERNAL_SERVER_ERROR } from "../status-code.json";
+import { BotStructure, ExpressResponse, FeedbackStructure, Schema, Snowflake } from "../../types/types";
 
 /** Delete a bot or a feedback */
 
@@ -21,7 +21,7 @@ export const DELETE: (req: Request, res: Response) => ExpressResponse = async (r
 
         if (!exists) return res.status(NOT_FOUND).json({ message: FEEDBACK.UNKNOWN_FEEDBACK, code: NOT_FOUND });
 
-        const deleted = await FeedbackSchema.findOneAndDelete({ author, targetBot: _id }, { new: true });
+        const deleted: Schema<FeedbackStructure> | null = await FeedbackSchema.findOneAndDelete({ author, targetBot: _id }, { new: true });
 
         return res.status(OK).json(deleted);
     }
@@ -30,7 +30,7 @@ export const DELETE: (req: Request, res: Response) => ExpressResponse = async (r
 
     if (!exists) return res.status(NOT_FOUND).json({ message: BOT.BOT_NOT_FOUND, code: NOT_FOUND });
 
-    const deletedBot = await BotSchema.findByIdAndDelete({ _id }, { new: true });
+    const deletedBot: Schema<BotStructure> | null = await BotSchema.findByIdAndDelete({ _id }, { new: true });
 
     if (!deletedBot) return res.status(INTERNAL_SERVER_ERROR).json({ message: BOT.CANNOT_DELETE_THE_BOT, code: INTERNAL_SERVER_ERROR });
 

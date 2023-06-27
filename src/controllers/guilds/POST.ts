@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import GuildSchema from "../../database/Guild";
 import { GENERICS, GUILD } from "../errors.json";
 import { REQUIRED_PROPS } from "../../../constants.json";
-import { GuildStructure, ExpressResponse, Snowflake } from "../../types/types";
+import { GuildStructure, ExpressResponse, Snowflake, Schema } from "../../types/types";
 import { UNAUTHORIZED, BAD_REQUEST, INTERNAL_SERVER_ERROR, CREATED } from "../status-code.json";
 
 /** Create a guild */
@@ -22,7 +22,7 @@ export const POST: (req: Request, res: Response) => ExpressResponse = async (req
 
     if (exists) return res.status(BAD_REQUEST).json({ message: GUILD.GUILD_ALREADY_EXISTS, code: BAD_REQUEST });
 
-    const created = await GuildSchema.create({ ...properties, _id });
+    const created: Schema<GuildStructure> = await GuildSchema.create({ ...properties, _id });
 
     if (!created) return res.status(INTERNAL_SERVER_ERROR).json({ message: GUILD.CANNOT_CREATE_THE_GUILD, code: INTERNAL_SERVER_ERROR });
 

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import GuildSchema from "../../database/Guild";
 import { GENERICS, GUILD } from "../errors.json";
-import { ExpressResponse, Snowflake, GuildStructure } from "../../types/types";
+import { ExpressResponse, Snowflake, GuildStructure, Schema } from "../../types/types";
 import { UNAUTHORIZED, NOT_FOUND, INTERNAL_SERVER_ERROR, OK } from "../status-code.json";
 
 /** Edit a guild */
@@ -17,7 +17,7 @@ export const PATCH: (req: Request, res: Response) => ExpressResponse = async (re
     if (!exists) return res.status(NOT_FOUND).json({ message: GUILD.GUILD_NOT_FOUND, code: NOT_FOUND });
 
     const bodyData: Partial<GuildStructure> = req.body;
-    const updated = await GuildSchema.findByIdAndUpdate({ _id }, bodyData, { new: true });
+    const updated: Schema<GuildStructure> | null = await GuildSchema.findByIdAndUpdate({ _id }, bodyData, { new: true });
 
     if (!updated) return res.status(INTERNAL_SERVER_ERROR).json({ message: GUILD.CANNOT_EDIT_THE_GUILD, code: INTERNAL_SERVER_ERROR });
 

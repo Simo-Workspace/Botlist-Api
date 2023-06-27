@@ -6,7 +6,7 @@ import { GENERICS, BOT, FEEDBACK } from "../errors.json";
 import { REQUIRED_PROPS } from "../../../constants.json";
 import { default as BotSchema } from "../../database/Bot";
 import { UNAUTHORIZED, BAD_REQUEST, INTERNAL_SERVER_ERROR, CREATED, NOT_FOUND } from "../status-code.json";
-import type { BotStructure, ExpressResponse, FeedbackStructure, Snowflake, VoteStructure } from "../../types/types";
+import type { BotStructure, ExpressResponse, FeedbackStructure, Schema, Snowflake, VoteStructure } from "../../types/types";
 
 /** Create a bot, vote, or submit a feedback */
 
@@ -28,7 +28,7 @@ export const POST: (req: Request, res: Response) => ExpressResponse = async (req
 
         if (!REQUIRED_PROPS.FEEDBACK.every((property: string): boolean => keys.includes(property))) return res.status(BAD_REQUEST).json({ message: GENERICS.SOME_PROPERTIES_IS_MISSING, code: BAD_REQUEST, bonus: { missing_properties: REQUIRED_PROPS.FEEDBACK.filter((property: string): boolean => !keys.includes(property)) } });
 
-        const created = await FeedbackSchema.create({ ...body, author, targetBot: _id });
+        const created: Schema<FeedbackStructure, Types.ObjectId> = await FeedbackSchema.create({ ...body, author, targetBot: _id });
 
         if (!created) return res.status(INTERNAL_SERVER_ERROR).json({ message: FEEDBACK.CANNOT_SEND_THE_FEEEDBACK, code: INTERNAL_SERVER_ERROR });
 
@@ -47,7 +47,7 @@ export const POST: (req: Request, res: Response) => ExpressResponse = async (req
 
         if (bot || properties.user === _id) return res.status(BAD_REQUEST).json({ message: BOT.BOT_CANNOT_VOTE_IN_A_BOT, code: BAD_REQUEST });
 
-        const votes = await BotSchema.findOne({ _id, "votes.user": properties.user });
+        const votes: Schema<BotStructure> | null = await BotSchema.findOne({ _id, "votes.user": properties.user });
 
         if (!votes) {
             const voteBody: { user: Snowflake; lastVote: string; votes: number; } = {
@@ -73,7 +73,7 @@ export const POST: (req: Request, res: Response) => ExpressResponse = async (req
 
         if (timeLeft < oneDay) return res.status(BAD_REQUEST).json({ message: BOT.COOLDOWN_VOTE.replace("{ms}", ms(oneDay - timeLeft, { long: true })), code: BAD_REQUEST });
 
-        const vote = await BotSchema.findOneAndUpdate(
+        const vote: Schema<BotStructure> | null = await BotSchema.findOneAndUpdate(
             { _id, "votes.user": properties.user },
             { $inc: { "votes.$.votes": 1 }, $set: { "votes.$.lastVote": new Date().toISOString() } },
             { new: true }
@@ -87,7 +87,7 @@ export const POST: (req: Request, res: Response) => ExpressResponse = async (req
     if (!REQUIRED_PROPS.BOT.every((property: string): boolean => keys.includes(property))) return res.status(BAD_REQUEST).json({ message: GENERICS.SOME_PROPERTIES_IS_MISSING, code: BAD_REQUEST, bonus: { missing_properties: REQUIRED_PROPS.BOT.filter((property: string): boolean => !keys.includes(property)) } });
     if (exists) return res.status(BAD_REQUEST).json({ message: BOT.BOT_ALREADY_EXISTS, code: BAD_REQUEST });
 
-    const created = await BotSchema.create({ ...properties, _id });
+    const created: Schema<BotStructure> = await BotSchema.create({ ...properties, _id });
 
     if (!created) return res.status(INTERNAL_SERVER_ERROR).json({ message: BOT.CANNOT_CREATE_THE_BOT, code: INTERNAL_SERVER_ERROR });
 
