@@ -44,3 +44,6 @@ app.listen(PORT, async (): Promise<void> => {
     
     console.info(`Servidor iniciado na porta ${PORT}`);
 });
+
+process.on("uncaughtException", console.error);
+process.on("unhandledRejection", console.error);
