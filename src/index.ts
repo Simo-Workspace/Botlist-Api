@@ -31,7 +31,7 @@ const limiter: RateLimitRequestHandler = rateLimit({
     statusCode: TOO_MANY_REQUESTS
 });
 
-app.set('trust proxy', 1)
+app.set("trust proxy", 1);
 app.use(express.json({ strict: true, limit: "50kb" }), cors({ credentials: true, origin: ["https://botlist-website.vercel.app", "http://localhost:5173"] }), limiter, cookieParser());
 
 app.route(ROUTES.USER).get(GET_USER);
