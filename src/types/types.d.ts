@@ -156,3 +156,12 @@ enum UserFlags {
     BotHTPPInteractions = 1 << 19,
     ActiveDeveloper = 1 << 22
 }
+
+/**
+ * Represents used scopes in GET-AUTH function
+ */
+
+export enum APIScopes {
+    Identify = "identify",
+    Guilds = "guilds"
+}
