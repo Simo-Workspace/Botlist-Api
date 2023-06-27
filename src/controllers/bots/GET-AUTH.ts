@@ -10,7 +10,7 @@ import { DiscordUserStructure, ExpressResponse } from "../../types/types";
 
 export const callback: (req: Request, res: Response) => void = async (req: Request, res: Response): Promise<ExpressResponse | void> => {
     const { code } = req.query;
-    const { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, SCOPES, REDIRECT_AUTH, AUTH_LINK, JWT_SECRET, AUTH }: NodeJS.ProcessEnv = process.env;
+    const { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, SCOPES, REDIRECT_AUTH, AUTH_LINK, JWT_SECRET, AUTH, COOKIE_SECRET }: NodeJS.ProcessEnv = process.env;
 
     const data = {
         client_id: CLIENT_ID,
@@ -64,7 +64,7 @@ export const callback: (req: Request, res: Response) => void = async (req: Reque
             data: { username, id, avatar }
             }, JWT_SECRET as string, { expiresIn: sevenDays });
 
-            res.cookie("discordUser", token, { maxAge: sevenDays, secure: true, signed: true });
+            res.cookie("discordUser", token, { maxAge: sevenDays });
 
             res.redirect(REDIRECT_AUTH as string);
         } catch (error: unknown) {
