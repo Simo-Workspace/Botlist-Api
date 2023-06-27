@@ -1,4 +1,5 @@
 import { Response } from "express";
+import { Document } from "mongoose";
 
 /** Represents a discord ID */
 
@@ -165,3 +166,7 @@ export enum APIScopes {
     Identify = "identify",
     Guilds = "guilds"
 }
+
+export type Schema<T, I = string> = Document<unknown, Record<string, never>, T> & Omit<T & Required<{
+    _id: I;
+}>, never>
