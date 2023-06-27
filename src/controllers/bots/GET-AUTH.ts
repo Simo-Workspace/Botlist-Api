@@ -1,8 +1,7 @@
-import jwt from "jsonwebtoken";
 import { GENERICS } from "../errors.json";
-import { JwtPayload } from "jsonwebtoken";
 import { Request, Response } from "express";
 import { UNAUTHORIZED, OK } from "../status-code.json";
+import { JwtPayload, sign, verify } from "jsonwebtoken";
 import { INTERNAL_SERVER_ERROR } from "../status-code.json";
 import { APIScopes, DiscordUserStructure, ExpressResponse, Snowflake } from "../../types/types";
 
@@ -24,7 +23,7 @@ export const callback: (req: Request, res: Response) => void = async (req: Reque
     if (req.params.method === "user") {
         try {
             // if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
-            const userData: string | JwtPayload = jwt.verify(req.cookies.discordUser, JWT_SECRET as string);
+            const userData: string | JwtPayload = verify(req.cookies.discordUser, JWT_SECRET as string);
 
             return res.send(userData);
         } catch (error: unknown) {
@@ -60,7 +59,7 @@ export const callback: (req: Request, res: Response) => void = async (req: Reque
             const { username, id, avatar }: DiscordUserStructure = await request.json();
             const sevenDays: 604800000 = 604800000 as const;
 
-            const token: string = jwt.sign({
+            const token: string = sign({
                 data: { username, id, avatar }
             }, JWT_SECRET as string, { expiresIn: sevenDays });
 
