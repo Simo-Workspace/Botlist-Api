@@ -2,6 +2,7 @@
 
 ## 27/06/2023
 
+- Adicionando anti-crashs
 - Novos tipos criados (APIScopes e Schema<T, I>)
 - Tipando todas constantes
 
