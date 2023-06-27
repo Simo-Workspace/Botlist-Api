@@ -1,7 +1,6 @@
 import cors from "cors";
 import { config } from "dotenv";
 import { connect } from "mongoose";
-import session from "express-session";
 import cookieParser from "cookie-parser";
 import { GET } from "./controllers/bots/GET";
 import { POST } from "./controllers/bots/POST";
@@ -32,8 +31,7 @@ const limiter: RateLimitRequestHandler = rateLimit({
     statusCode: TOO_MANY_REQUESTS
 });
 
-const sevenDays: 604800000 = 604800000 as const;
-
+app.set('trust proxy', 1)
 app.use(express.json({ strict: true, limit: "50kb" }), cors({ credentials: true, origin: ["https://botlist-website.vercel.app", "http://localhost:5173"] }), limiter, cookieParser());
 
 app.route(ROUTES.USER).get(GET_USER);
