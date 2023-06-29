@@ -2,6 +2,7 @@
 
 ## 29/06/2023
 
+- Atualizando o README da pasta src/controllers/bots
 - Implementando o método `exists` na rota GET
 - Editando rota de bots, para implementar o método `exists`
 
