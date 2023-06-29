@@ -19,7 +19,7 @@ export const PATCH: (req: Request, res: Response) => ExpressResponse = async (re
     const bodyData: Partial<GuildStructure> = req.body;
     const updated: Schema<GuildStructure> | null = await GuildSchema.findByIdAndUpdate({ _id }, bodyData, { new: true });
 
-    if (!updated) return res.status(INTERNAL_SERVER_ERROR).json({ message: GUILD.CANNOT_EDIT_THE_GUILD, code: INTERNAL_SERVER_ERROR });
+    if (!updated) return res.status(INTERNAL_SERVER_ERROR).json({ message: GENERICS.INTERNAL_SERVER_ERROR, code: INTERNAL_SERVER_ERROR });
 
     return res.status(OK).json(updated);
 };

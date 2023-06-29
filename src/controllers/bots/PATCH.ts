@@ -25,7 +25,7 @@ export const PATCH: (req: Request, res: Response) => ExpressResponse = async (re
 
         const updated: Schema<FeedbackStructure> | null = await FeedbackSchema.findOneAndUpdate({ author, targetBot: _id }, { content, stars }, { new: true });
 
-        if (!updated) return res.status(INTERNAL_SERVER_ERROR).json({ message: FEEDBACK.CANNOT_SEND_THE_FEEEDBACK, code: INTERNAL_SERVER_ERROR });
+        if (!updated) return res.status(INTERNAL_SERVER_ERROR).json({ message: GENERICS.INTERNAL_SERVER_ERROR, code: INTERNAL_SERVER_ERROR });
 
         return res.status(OK).json(updated);
     }
@@ -36,7 +36,7 @@ export const PATCH: (req: Request, res: Response) => ExpressResponse = async (re
 
     const updated: Schema<BotStructure> | null = await BotSchema.findByIdAndUpdate({ _id }, req.body, { new: true });
 
-    if (!updated) return res.status(INTERNAL_SERVER_ERROR).json({ message: BOT.CANNOT_EDIT_THE_BOT, code: INTERNAL_SERVER_ERROR });
+    if (!updated) return res.status(INTERNAL_SERVER_ERROR).json({ message: GENERICS.INTERNAL_SERVER_ERROR, code: INTERNAL_SERVER_ERROR });
 
     return res.status(OK).json(updated);
 };

@@ -24,7 +24,7 @@ export const POST: (req: Request, res: Response) => ExpressResponse = async (req
 
     const created: Schema<GuildStructure> = await GuildSchema.create({ ...properties, _id });
 
-    if (!created) return res.status(INTERNAL_SERVER_ERROR).json({ message: GUILD.CANNOT_CREATE_THE_GUILD, code: INTERNAL_SERVER_ERROR });
+    if (!created) return res.status(INTERNAL_SERVER_ERROR).json({ message: GENERICS.INTERNAL_SERVER_ERROR, code: INTERNAL_SERVER_ERROR });
 
     return res.status(CREATED).json(created);
 };

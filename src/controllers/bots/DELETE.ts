@@ -32,7 +32,7 @@ export const DELETE: (req: Request, res: Response) => ExpressResponse = async (r
 
     const deletedBot: Schema<BotStructure> | null = await BotSchema.findByIdAndDelete({ _id }, { new: true });
 
-    if (!deletedBot) return res.status(INTERNAL_SERVER_ERROR).json({ message: BOT.CANNOT_DELETE_THE_BOT, code: INTERNAL_SERVER_ERROR });
+    if (!deletedBot) return res.status(INTERNAL_SERVER_ERROR).json({ message: GENERICS.INTERNAL_SERVER_ERROR, code: INTERNAL_SERVER_ERROR });
 
     return res.status(OK).json(deletedBot);
 };

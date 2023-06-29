@@ -30,7 +30,7 @@ export const POST: (req: Request, res: Response) => ExpressResponse = async (req
 
         const created: Schema<FeedbackStructure, Types.ObjectId> = await FeedbackSchema.create({ ...body, author, targetBot: _id });
 
-        if (!created) return res.status(INTERNAL_SERVER_ERROR).json({ message: FEEDBACK.CANNOT_SEND_THE_FEEEDBACK, code: INTERNAL_SERVER_ERROR });
+        if (!created) return res.status(INTERNAL_SERVER_ERROR).json({ message: GENERICS.INTERNAL_SERVER_ERROR, code: INTERNAL_SERVER_ERROR });
 
         return res.status(CREATED).json(created);
     }
@@ -89,7 +89,7 @@ export const POST: (req: Request, res: Response) => ExpressResponse = async (req
 
     const created: Schema<BotStructure> = await BotSchema.create({ ...properties, _id });
 
-    if (!created) return res.status(INTERNAL_SERVER_ERROR).json({ message: BOT.CANNOT_CREATE_THE_BOT, code: INTERNAL_SERVER_ERROR });
+    if (!created) return res.status(INTERNAL_SERVER_ERROR).json({ message: GENERICS.INTERNAL_SERVER_ERROR, code: INTERNAL_SERVER_ERROR });
 
     return res.status(CREATED).json(created);
 };
