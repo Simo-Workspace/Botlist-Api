@@ -2,6 +2,7 @@
 
 ## 29/06/2023
 
+- Atualizando README principal
 - Removendo erros desnecessários
 - Atualizando o README da pasta `src/controllers/bots`
 - Implementando o método `exists` na rota GET de `/api/bots/:id/exists`
