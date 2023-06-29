@@ -1,15 +1,9 @@
 {
     "BOT": {
         "BOT_NOT_FOUND": "Unknown bot",
-        "CANNOT_EDIT_THE_BOT": "Couldn't edit the bot, an error ocurred",
-        "MISSING_ID_PROPERTY": "Couldn't edit a bot without `_id` property",
-        "CANNOT_CREATE_THE_BOT": "Couldn't create the bot, an error ocurred",
         "BOT_ALREADY_EXISTS": "Cannot add a bot that already exists",
         "CANNOT_GET_BOT_VOTES": "Couldn't get bot votes",
-        "MISSING_USER_ID_PROP": "Cannot get bot votes without `user` property",
         "USER_IS_NOT_A_BOT": "The user is not a bot",
-        "CANNOT_DELETE_THE_BOT": "Couldn't delete the bot, an error ocurred",
-        "CANNOT_VOTE_WITHOUT_USER": "Cannot vote without `user` property",
         "BOT_CANNOT_VOTE_IN_A_BOT": "A bot cannot vote for a bot or itself",
         "MISSING_USER_PROP": "Missing `user` property in body",
         "COOLDOWN_VOTE": "You are on cooldown, wait {ms}"
@@ -25,15 +19,10 @@
     },
     "GUILD": {
         "GUILD_NOT_FOUND": "Unknown guild",
-        "CANNOT_DELETE_THE_GUILD": "Couldn't delete the guild, an error ocurred",
-        "CANNOT_CREATE_THE_GUILD": "Couldn't create the guild, an error ocurred",
-        "GUILD_ALREADY_EXISTS": "Cannot add a guild that already exists",
-        "CANNOT_EDIT_THE_GUILD": "Couldn't edit the guild, an error ocurred"
+        "GUILD_ALREADY_EXISTS": "Cannot add a guild that already exists"
     },
     "FEEDBACK": {
         "THE_USER_ALREADY_SENT": "The user has already sent the feedback",
-        "CANNOT_SEND_THE_FEEEDBACK": "Couldn't send/modify the feedback, an error ocurred",
-        "UNKNOWN_FEEDBACK": "Unknown feedback",
-        "CANNOT_DELETE_THE_FEEEDBACK": "Couldn't delete the feedback, an error ocurred"
+        "UNKNOWN_FEEDBACK": "Unknown feedback"
     }
 }
