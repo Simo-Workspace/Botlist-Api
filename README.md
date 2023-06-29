@@ -4,7 +4,7 @@ Simo API é uma API referente ao servidor da comunidade [Simo](https://discord.g
 
 ## Exemplos
 
-Use os exemplos de cada [pasta](https://github.com/Simo-Workspace/Botlist-Api/tree/main/src/controllers) de handlers.
+Use os exemplos de cada [pasta](src/controllers/) de handlers.
 
 ## EndPoints & Headers
 
