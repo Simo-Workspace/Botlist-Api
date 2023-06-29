@@ -21,6 +21,13 @@ export const GET: (req: Request, res: Response) => ExpressResponse = async (req:
     }
 
     const _id: Snowflake | undefined = req.params.id;
+
+    if (req.params.method === "exists") {
+        const exists: { _id: Snowflake; } | null = await BotSchema.exists({ _id });
+
+        return res.status(OK).json({ exists: exists ? true : false });
+    }
+
     const targetBot: Schema<BotStructure> | Schema<BotStructure>[] | null = await (!_id ? BotSchema.find({}) : BotSchema.findById({ _id }));
 
     if (!targetBot) return res.status(NOT_FOUND).json({ message: BOT.BOT_NOT_FOUND, code: NOT_FOUND });
