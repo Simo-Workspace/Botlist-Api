@@ -1,5 +1,10 @@
 # API changelog
 
+## 29/06/2023
+
+- Implementando o método `exists` na rota GET
+- Editando rota de bots, para implementar o método `exists`
+
 ## 27/06/2023
 
 - Adicionando anti-crashs
