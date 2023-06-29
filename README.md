@@ -1,6 +1,10 @@
-# Exemplos
+# Simo API (Não pública)
 
-Use os exemplos de cada [pasta](https://github.com/Simo-Workspace/Botlist-Api/tree/main/src/controllers)
+Simo API é uma API referente ao servidor da comunidade [Simo](https://discord.gg/tUYhTcAHnt). Especialmente feita para o desenvolvimento do site da botlist do [Simo](https://github.com/Simo-Workspace/Botlist-Website).
+
+## Exemplos
+
+Use os exemplos de cada [pasta](https://github.com/Simo-Workspace/Botlist-Api/tree/main/src/controllers) de handlers.
 
 ## EndPoints & Headers
 
@@ -9,7 +13,7 @@ Use os exemplos de cada [pasta](https://github.com/Simo-Workspace/Botlist-Api/tr
 
 ## Status Code
 
-Veja todos os status code usados em <https://restfulapi.net/http-status-codes/>.
+Veja todos os status code usados no arquivo de [status](src/controllers/status-code.json) de erros.
 
 ## Rate Limit
 
