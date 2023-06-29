@@ -3,15 +3,15 @@
 ## 29/06/2023
 
 - Removendo erros desnecessários
-- Atualizando o README da pasta src/controllers/bots
-- Implementando o método `exists` na rota GET
+- Atualizando o README da pasta `src/controllers/bots`
+- Implementando o método `exists` na rota GET de `/api/bots/:id/exists`
 - Editando rota de bots, para implementar o método `exists`
 
 ## 27/06/2023
 
 - Adicionando anti-crashs
-- Novos tipos criados (APIScopes e Schema<T, I>)
-- Tipando todas constantes
+- Novas tipagens criados (APIScopes e Schema<T, I>)
+- Tipando todas as constantes
 
 ## 24/06/2023
 
@@ -20,7 +20,7 @@
 - Melhorando tipagens e códigos
 - `.env` mais legível
 - Arrumando mensagens de errors
-- Instalando as bibliotecas `typescript` e `tsx` como depedência de desenvolvedor
+- Instalando as bibliotecas `typescript` e `tsx` como depedências de desenvolvedor
 - Arrumando arquivo `README.md` de cada handler e o principal
 - Adicionando nova propriedade (MAX_REQUESTS_PER_MIN) no arquivo `constants.json`
 - Mudando nome de propriedades no arquivo `constants.json`
@@ -29,7 +29,7 @@
 ## 23/06/2023
 
 - Arrumando e estilizando arquivo `GET-AUTH.ts`
-- Adicionando novo erro
+- Adicionando nova mensagem de erro
 - Agora a propriedade `inviteURL` é obrigatória no esquema `addbots`
 
 ## 21/06/2023
@@ -40,8 +40,8 @@
 
 ## 20/06/26
 
-- Arrumando documentação (README) de cada pasta de handlers
-- Removendo tipos desnecessários
+- Arrumando documentação (README) de cada pasta dos handlers
+- Removendo tipagens desnecessárias
 - Alterando a rota `/users/:id` para que o `id` seja obrigatório
 - `.env.example` mais legível
 - Tipagem arrumada
