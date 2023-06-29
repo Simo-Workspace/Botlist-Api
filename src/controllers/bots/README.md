@@ -20,7 +20,8 @@ const APIURLS: Record<string, string> = {
     Bot: 'http://localhost:80/api/bots/971783455425847317',
     All: 'http://localhost:80/api/bots',
     Votes: 'http://localhost:80/api/bots/971783455425847317/votes',
-    Query: 'http://localhost:80/api/bots?name=Simo'
+    Query: 'http://localhost:80/api/bots?name=Simo',
+    Exists: 'http://localhost:80/api/bots/235148962103951360/exists'
 };
 const requestInit: Record<string, string | object> = {
     method: 'GET',
@@ -33,6 +34,7 @@ fetch(APIURLS.Bot, requestInit); // Busque por um bot específico
 fetch(APIURLS.All, requestInit); // Busque por todos os bots
 fetch(APIURLS.Votes, requestInit); // Busque pelos 
 fetch(APIURLS.Query, requestInit); // Busque por vários bot que combinem com a consulta
+fetch(APIURLS.Exists, requestInit); // Verifique se o bot exists, retornará `{ exists: boolean; }`
 ```
 
 Retornará uma [estrutura](https://github.com/Simo-Workspace/Botlist-Api/blob/main/src/typings/index.d.ts#L7) de bot, uma [array](https://github.com/Simo-Workspace/Botlist-Api/blob/main/src/typings/index.d.ts#L7) de bots, ou uma array de [votos](https://github.com/Simo-Workspace/Botlist-Api/blob/main/src/typings/index.d.ts#L64).
