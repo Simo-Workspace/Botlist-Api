@@ -5,10 +5,6 @@
 - Rota: `/api/users/:id`.
 - Métodos: `GET`.
 
-## Rate Limit
-
-O rate limit está definido como 25 requisições por minuto.
-
 ### GET
 
 Este método é usado para buscar um usuário na API do Discord.

@@ -5,10 +5,6 @@
 - URL base: `/api/bots/:id/:method/:user`.
 - Métodos: `GET`, `DELETE`, `PATCH` e `POST`.
 
-## Rate Limit
-
-O rate limit está definido como 25 requisições por minuto.
-
 ### GET
 
 Este método é usado para buscar um bot no banco de dados ou na API do Discord.

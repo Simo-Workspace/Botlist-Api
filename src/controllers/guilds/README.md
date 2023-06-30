@@ -5,10 +5,6 @@
 - Rota: `/api/guilds/:id`.
 - Métodos: `GET`, `DELETE`, `PATCH` e `POST`.
 
-## Rate Limit
-
-O rate limit está definido como 25 requisições por minuto.
-
 ### GET
 
 Este método é usado para buscar uma guilda no banco de dados.
