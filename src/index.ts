@@ -42,7 +42,7 @@ app.route(ROUTES.GUILD).get(GET_GUILD).delete(DELETE_GUILD).patch(PATCH_GUILD).p
 app.listen(PORT, async (): Promise<void> => {
     await connect(process.env.MONGOOSE_URL as string).catch(console.error);
     
-    console.info(`Servidor iniciado na porta ${PORT}`);
+    console.info(`API iniciada na porta ${PORT}`);
 });
 
 process.on("uncaughtException", console.error);
