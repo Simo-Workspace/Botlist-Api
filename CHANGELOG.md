@@ -1,5 +1,10 @@
 # API changelog
 
+## 30/06/2023
+
+- Editando mensagem de quando a API fica online
+- Removendo informações desnecessárias de cada README de [handler](src/controllers)
+
 ## 29/06/2023
 
 - Atualizando README principal
