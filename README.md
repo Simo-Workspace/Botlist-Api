@@ -8,7 +8,7 @@ Use os exemplos de cada [pasta](src/controllers/) de handlers.
 
 ## EndPoints & Headers
 
-- Endpoints: Atualmente com 3 (três) endpoints, `/api/bots`, `/api/users` e `/api/guilds`.
+- Endpoints: Atualmente com 4 (quatro) endpoints, `/api/bots/:id/:method/:user`, `/api/users/:id`, `/api/guilds/:id/:method` e `/api/auth/:method`.
 - Headers: O `header` sempre deve conter o cabeçalho `authorization` (sensitive case) com a autorização para utilizar a API, se não lançará um erro 401.
 
 ## Status Code
@@ -17,4 +17,8 @@ Veja todos os status code usados no arquivo de [status](src/controllers/status-c
 
 ## Rate Limit
 
-O rate limit de todos os endpoints estão definidos como `25` requisições por minuto.
+Todas as rotas são aplicados rate-limits.
+
+| Rota | Max | Atordoamento |
+| - | - | - |
+| * | 25 | Nenhum |
