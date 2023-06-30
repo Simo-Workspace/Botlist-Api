@@ -2,6 +2,7 @@
 
 ## 30/06/2023
 
+- Editando README principal
 - Editando mensagem de quando a API fica online
 - Removendo informações desnecessárias de cada README de [handler](src/controllers)
 
