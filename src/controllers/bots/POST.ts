@@ -1,10 +1,10 @@
 import ms from "ms";
 import { Types } from "mongoose";
 import { Request, Response } from "express";
-import FeedbackSchema from "../../database/Feedback";
+import FeedbackSchema from "../../schemas/Feedback";
 import { GENERICS, BOT, FEEDBACK } from "../errors.json";
 import { REQUIRED_PROPS } from "../../../constants.json";
-import { default as BotSchema } from "../../database/Bot";
+import { default as BotSchema } from "../../schemas/Bot";
 import { UNAUTHORIZED, BAD_REQUEST, INTERNAL_SERVER_ERROR, CREATED, NOT_FOUND } from "../status-code.json";
 import type { BotStructure, ExpressResponse, FeedbackStructure, Schema, Snowflake, VoteStructure } from "../../types/types";
 

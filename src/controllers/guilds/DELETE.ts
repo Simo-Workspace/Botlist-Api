@@ -1,4 +1,4 @@
-import BotSchema from "../../database/Bot";
+import BotSchema from "../../schemas/Bot";
 import { Request, Response } from "express";
 import { GENERICS, GUILD } from "../errors.json";
 import { BotStructure, ExpressResponse, Schema, Snowflake } from "../../types/types";

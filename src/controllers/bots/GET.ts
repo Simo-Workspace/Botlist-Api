@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { GENERICS, BOT } from "../errors.json";
-import { default as BotSchema } from "../../database/Bot";
+import { default as BotSchema } from "../../schemas/Bot";
 import { UNAUTHORIZED, NOT_FOUND, OK, BAD_REQUEST } from "../status-code.json";
 import { BotStructure, ExpressResponse, Schema, Snowflake } from "../../types/types";
 

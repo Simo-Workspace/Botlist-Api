@@ -1,7 +1,7 @@
 import { Types } from "mongoose";
 import { Request, Response } from "express";
-import BotSchema  from "../../database/Bot";
-import FeedbackSchema from "../../database/Feedback";
+import BotSchema  from "../../schemas/Bot";
+import FeedbackSchema from "../../schemas/Feedback";
 import { GENERICS, BOT, FEEDBACK } from "../errors.json";
 import { UNAUTHORIZED, NOT_FOUND, OK, INTERNAL_SERVER_ERROR } from "../status-code.json";
 import { BotStructure, ExpressResponse, FeedbackStructure, Schema, Snowflake } from "../../types/types";

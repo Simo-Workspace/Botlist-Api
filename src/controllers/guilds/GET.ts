@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import GuildSchema from "../../database/Guild";
+import GuildSchema from "../../schemas/Guild";
 import { GENERICS, GUILD } from "../errors.json";
 import { UNAUTHORIZED, NOT_FOUND, OK } from "../status-code.json";
 import { ExpressResponse, GuildStructure, Schema, Snowflake } from "../../types/types";
