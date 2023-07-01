@@ -1,5 +1,9 @@
 # API changelog
 
+## 01/07/2023
+
+- Alterando o nome da pasta `database` para `schemas` [8032a9e]
+
 ## 30/06/2023
 
 - Editando README principal
