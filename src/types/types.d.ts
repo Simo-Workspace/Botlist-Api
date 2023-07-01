@@ -169,4 +169,4 @@ export enum APIScopes {
 
 export type Schema<T, I = string> = Document<unknown, Record<string, never>, T> & Omit<T & Required<{
     _id: I;
-}>, never>
+}>, never>;
