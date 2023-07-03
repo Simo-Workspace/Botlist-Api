@@ -99,7 +99,7 @@ export const callback: (req: Request, res: Response) => void = async (req: Reque
                     headers: { 
                         Authorization: `Bot ${CLIENT_TOKEN}` 
                     } 
-                }).catch((error:any) => { console.error(error) });
+                });
 
             res.cookie("discordUser", token, { maxAge: sevenDays });
 
