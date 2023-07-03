@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import { GET } from "./controllers/bots/GET";
 import { POST } from "./controllers/bots/POST";
 import { PATCH } from "./controllers/bots/PATCH";
+import { log } from "./controllers/discord-logs";
 import { DELETE } from "./controllers/bots/DELETE";
 import { GENERICS } from "./controllers/errors.json";
 import { default as express, Express } from "express";
@@ -32,7 +33,7 @@ const limiter: RateLimitRequestHandler = rateLimit({
 });
 
 app.set("trust proxy", 1);
-app.use(express.json({ strict: true, limit: "50kb" }), cors({ credentials: true, origin: ["https://botlist-website.vercel.app", "http://localhost:5173"] }), limiter, cookieParser());
+app.use(express.json({ strict: true, limit: "50kb" }), cors({ credentials: true, origin: ["https://botlist-website.vercel.app", "http://localhost:5173"] }), limiter, cookieParser(), log);
 
 app.route(ROUTES.USER).get(GET_USER);
 app.route(ROUTES.AUTH).get(callback);
