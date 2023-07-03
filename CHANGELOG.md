@@ -2,7 +2,7 @@
 
 ## 02/07/2023
 
-- Adicionando novo método `log` que loga toda vez que um usuário fizer requisição na API
+- Adicionando novo método `log` que loga toda vez que um usuário fizer requisição na API [dba580b]
 
 ## 01/07/2023
 
