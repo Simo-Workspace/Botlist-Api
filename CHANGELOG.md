@@ -2,15 +2,16 @@
 
 ## 03/07/2023
 
-- Adicionando logs no discord quando um usuário efetua o login no site [00fce76]
+- Remove constantes desnecessárias e paramêtros de funções desnecessários [b37405c, 28f2d7d]
+- Adicionando logs no discord quando um usuário efetua o login no site \[00fce76]
 
 ## 02/07/2023
 
-- Adicionando novo método `log` que loga toda vez que um usuário fizer requisição na API [dba580b]
+- Adicionando novo método `log` que loga toda vez que um usuário fizer requisição na API \[dba580b]
 
 ## 01/07/2023
 
-- Alterando o nome da pasta `database` para `schemas` [8032a9e]
+- Alterando o nome da pasta `database` para `schemas` \[8032a9e]
 
 ## 30/06/2023
 
