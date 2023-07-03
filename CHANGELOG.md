@@ -1,5 +1,9 @@
 # API changelog
 
+## 02/07/2023
+
+- Adicionando novo método `log` que loga toda vez que um usuário fizer requisição na API
+
 ## 01/07/2023
 
 - Alterando o nome da pasta `database` para `schemas` [8032a9e]
