@@ -4,12 +4,13 @@ import { UNAUTHORIZED, OK } from "../status-code.json";
 import { JwtPayload, sign, verify } from "jsonwebtoken";
 import { INTERNAL_SERVER_ERROR } from "../status-code.json";
 import { APIScopes, DiscordUserStructure, ExpressResponse, Snowflake } from "../../types/types";
+import axios from 'axios';
 
 /** Webiste callback */
 
 export const callback: (req: Request, res: Response) => void = async (req: Request, res: Response): Promise<ExpressResponse | void> => {
     const { code } = req.query;
-    const { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, SCOPES, REDIRECT_AUTH, AUTH_LINK, JWT_SECRET, AUTH }: NodeJS.ProcessEnv = process.env;
+    const { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, SCOPES, REDIRECT_AUTH, AUTH_LINK, JWT_SECRET, AUTH, WEBHOOK_TOKEN, CLIENT_TOKEN }: NodeJS.ProcessEnv = process.env;
 
     const data: { client_id: Snowflake; client_secret: string; grant_type: string; code: unknown; redirect_uri: string; scope: APIScopes[]; } = {
         client_id: CLIENT_ID as Snowflake,
@@ -62,6 +63,43 @@ export const callback: (req: Request, res: Response) => void = async (req: Reque
             const token: string = sign({
                 data: { username, id, avatar }
             }, JWT_SECRET as string, { expiresIn: sevenDays });
+
+            await axios.post(`https://discord.com/api/webhooks/1125236689485435011/${WEBHOOK_TOKEN}`, 
+                {
+                    username: "Api Logs", 
+                    avatar_url: "https://cdn.discordapp.com/avatars/908442729145569300/471c2723ba426df10c25190d8deb17a5.png?size=2048", 
+                    embeds: [
+                        {
+                            title: "Login Logs",
+                            color:  65441,
+                            fields: [
+                                {
+                                    name: "Informações",
+                                    value: `O usuario **${username}**, com o ID: **${id}** fez um novo login.`,
+                                    inline: false,
+                                },
+                                {
+                                    name: "Sessão",
+                                    value: `A sessão do usuário expira <t:${Math.round(Date.now() / 1000 + 604800)}:R>.`,
+                                    inline: false,
+                                },
+                                {
+                                    name: "JsonWebtoken",
+                                    value: `O JWT da sessão atual é: ||${token}||`,
+                                    inline: false,
+                                }
+                            ],
+                            thumbnail: { 
+                                url: `https://cdn.discordapp.com/avatars/${id}/${avatar}.png?size=2048` 
+                            }
+                        }
+                    ]
+                }, 
+                {
+                    headers: { 
+                        Authorization: `Bot ${CLIENT_TOKEN}` 
+                    } 
+                }).catch((error:any) => { console.error(error) });
 
             res.cookie("discordUser", token, { maxAge: sevenDays });
 
