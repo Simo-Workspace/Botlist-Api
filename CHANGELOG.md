@@ -1,5 +1,9 @@
 # API changelog
 
+## 03/07/2023
+
+- Adicionando logs no discord quando um usuário efetua o login no site [00fce76]
+
 ## 02/07/2023
 
 - Adicionando novo método `log` que loga toda vez que um usuário fizer requisição na API [dba580b]
