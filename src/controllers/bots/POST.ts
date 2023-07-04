@@ -42,7 +42,7 @@ export const POST: (req: Request, res: Response) => ExpressResponse = async (req
         if (!exists) return res.status(NOT_FOUND).json({ message: BOT.BOT_NOT_FOUND, code: NOT_FOUND });
         if (!("user" in properties)) return res.status(BAD_REQUEST).json({ message: BOT.MISSING_USER_PROP, code: BAD_REQUEST });
 
-        const fetched: globalThis.Response = await fetch(`https://discord.com/api/v10/users/${req.params.id}`, { method: "GET", headers: { Authorization: `Bot ${process.env.CLIENT_TOKEN}` } });
+        const fetched: globalThis.Response = await fetch(`https://discord.com/api/v10/users/${_id}`, { method: "GET", headers: { Authorization: `Bot ${process.env.CLIENT_TOKEN}` } });
         const { bot }: { bot: boolean; } = await fetched.json();
 
         if (bot || properties.user === _id) return res.status(BAD_REQUEST).json({ message: BOT.BOT_CANNOT_VOTE_IN_A_BOT, code: BAD_REQUEST });
