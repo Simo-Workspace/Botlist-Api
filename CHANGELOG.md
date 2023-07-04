@@ -2,7 +2,7 @@
 
 ## 03/07/2023
 
-- Remove constantes desnecessárias e paramêtros de funções desnecessários [b37405c, 28f2d7d]
+- Removendo constantes desnecessárias e paramêtros desnecessários de funções [b37405c, 28f2d7d]
 - Adicionando logs no discord quando um usuário efetua o login no site \[00fce76]
 
 ## 02/07/2023
