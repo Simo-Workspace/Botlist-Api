@@ -7,17 +7,16 @@
     },
     "PORT": 80,
     "ROUTES": {
-        "BOTS": "/api/bots/:id(\\d{16,19})?(/:method(votes?|feedbacks|exists))?(:user(\\d{16,19})?)",
-        "USER": "/api/users/:id(\\d{16,19})",
+        "BOTS": "/api/bots/:id(\\d{16,21})?(/:method(votes?|feedbacks|exists))?(:user(\\d{16,21})?)",
+        "USER": "/api/users/:id(\\d{16,21})",
         "AUTH": "/api/auth/(:method(callback|user|logout))",
-        "GUILD": "/api/guilds/:id(\\d{16,19})/(:method(bots))?"
+        "GUILD": "/api/guilds/:id(\\d{16,21})/(:method(bots))?"
     },
     "REQUIRED_PROPS": {
         "FEEDBACK": [
             "stars",
             "postedAt",
-            "content",
-            "targetBot"
+            "content"
         ],
         "BOT": [
             "name",
