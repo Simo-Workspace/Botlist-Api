@@ -68,10 +68,10 @@ export const POST: (req: Request, res: Response) => ExpressResponse = async (req
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const { lastVote }: { lastVote: string; } = votes.votes.find((vote: VoteStructure): boolean => vote.user === properties.user)!;
 
-        const oneDay: 86400000 = 8.64e+7;
+        const twelveHours: 43200000 = 4.32e+7;
         const timeLeft: number = (new Date().getTime() - new Date(lastVote).getTime());
 
-        if (timeLeft < oneDay) return res.status(BAD_REQUEST).json({ message: BOT.COOLDOWN_VOTE.replace("{ms}", ms(oneDay - timeLeft, { long: true })), code: BAD_REQUEST });
+        if (timeLeft < twelveHours) return res.status(BAD_REQUEST).json({ message: BOT.COOLDOWN_VOTE.replace("{ms}", ms(twelveHours - timeLeft, { long: true })), code: BAD_REQUEST });
 
         const vote: Schema<BotStructure> | null = await BotSchema.findOneAndUpdate(
             { _id, "votes.user": properties.user },
