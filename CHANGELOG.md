@@ -1,8 +1,13 @@
 # API changelog
 
+## 04/07/2023
+
+- Mudando cooldown de vote para 12 horas
+- Arrumando erros de português \[d718b8e]
+
 ## 03/07/2023
 
-- Removendo constantes desnecessárias e paramêtros desnecessários de funções [b37405c, 28f2d7d]
+- Removendo constantes desnecessárias e paramêtros desnecessários de funções \[b37405c, 28f2d7d]
 - Adicionando logs no discord quando um usuário efetua o login no site \[00fce76]
 
 ## 02/07/2023
