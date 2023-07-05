@@ -18,7 +18,10 @@ export const POST: (req: Request, res: Response) => ExpressResponse = async (req
     const _id: Snowflake = req.params.id;
 
     if (req.params.method === "feedbacks") {
-        const author: Snowflake = req.params.user;
+        const author: Snowflake | undefined = req.params.user;
+
+        if (!author) return res.status(BAD_REQUEST).json({ message: FEEDBACK.UNKNOWN_USER, code: BAD_REQUEST });
+
         const exists: { _id: Types.ObjectId; } | null = await FeedbackSchema.exists({ author });
 
         if (exists) return res.status(BAD_REQUEST).json({ message: FEEDBACK.THE_USER_ALREADY_SENT, code: BAD_REQUEST });
