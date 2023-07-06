@@ -8,8 +8,6 @@ import { ExpressResponse, RawDiscordUser } from "../../types/types";
 export const GET: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {                 
     const { AUTH, CLIENT_TOKEN }: NodeJS.ProcessEnv = process.env;
 
-    if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
-
     const fetched: globalThis.Response = await fetch(`https://discord.com/api/v10/users/${req.params.id}`, { method: "GET", headers: { Authorization: `Bot ${CLIENT_TOKEN}` } });
     const data: RawDiscordUser = await fetched.json();
 
