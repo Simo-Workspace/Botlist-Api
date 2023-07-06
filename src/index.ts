@@ -35,9 +35,9 @@ const limiter: RateLimitRequestHandler = rateLimit({
 });
 
 app.set("trust proxy", 1);
-app.use(express.json({ strict: true, limit: "50kb" }), cors({ credentials: true, origin: ["https://botlist-website.vercel.app", "http://localhost:5173"] }), limiter, cookieParser());
+app.use(express.json({ strict: true, limit: "50kb" }), cors({ credentials: true, origin: ["https://simo-botlist.vercel.app", "http://localhost:5173"] }), limiter, cookieParser());
 
-app.route(ROUTES.USER).get(auth, GET_USER);
+app.route(ROUTES.USER).get(GET_USER);
 app.route(ROUTES.AUTH).get(callback);
 app.route(ROUTES.BOTS).get(GET).delete(auth, DELETE).patch(auth, PATCH).post(auth, POST);
 app.route(ROUTES.GUILD).get(GET_GUILD).delete(auth, DELETE_GUILD).patch(auth, PATCH_GUILD).post(auth, POST_GUILD);
