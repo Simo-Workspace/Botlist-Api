@@ -9,7 +9,9 @@ import { log } from "./controllers/discord-logs";
 import { DELETE } from "./controllers/bots/DELETE";
 import { GENERICS } from "./controllers/errors.json";
 import { default as express, Express } from "express";
-import { callback } from "./controllers/bots/GET-AUTH";
+import { callback } from "./controllers/auth/GET";
+import { auth } from "./middlewares/auth";
+import { getToken } from "./controllers/auth/TOKEN";
 import { GET as GET_USER } from "./controllers/users/GET";
 import { GET as GET_GUILD } from "./controllers/guilds/GET";
 import { POST as POST_GUILD } from "./controllers/guilds/POST";
@@ -33,12 +35,13 @@ const limiter: RateLimitRequestHandler = rateLimit({
 });
 
 app.set("trust proxy", 1);
-app.use(express.json({ strict: true, limit: "50kb" }), cors({ credentials: true, origin: ["https://botlist-website.vercel.app", "http://localhost:5173"] }), limiter, cookieParser(), log);
+app.use(express.json({ strict: true, limit: "50kb" }), cors({ credentials: true, origin: ["https://botlist-website.vercel.app", "http://localhost:5173"] }), limiter, cookieParser());
 
-app.route(ROUTES.USER).get(GET_USER);
-app.route(ROUTES.AUTH).get(callback);
-app.route(ROUTES.BOTS).get(GET).delete(DELETE).patch(PATCH).post(POST);
-app.route(ROUTES.GUILD).get(GET_GUILD).delete(DELETE_GUILD).patch(PATCH_GUILD).post(POST_GUILD);
+app.route(ROUTES.USER).get(auth, GET_USER);
+app.route(ROUTES.AUTH).get(auth, callback);
+app.route(ROUTES.BOTS).get(auth, GET).delete(auth, DELETE).patch(auth, PATCH).post(auth, POST);
+app.route(ROUTES.GUILD).get(auth, GET_GUILD).delete(auth, DELETE_GUILD).patch(auth, PATCH_GUILD).post(auth, POST_GUILD);
+app.route(ROUTES.TOKEN).get(getToken);
 
 app.listen(PORT, async (): Promise<void> => {
     await connect(process.env.MONGOOSE_URL as string).catch(console.error);
