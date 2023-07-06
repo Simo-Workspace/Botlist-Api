@@ -4,7 +4,7 @@ import { UNAUTHORIZED, OK } from "../status-code.json";
 import { JwtPayload, sign, verify } from "jsonwebtoken";
 import { INTERNAL_SERVER_ERROR } from "../status-code.json";
 import { APIScopes, DiscordUserStructure, ExpressResponse, Snowflake } from "../../types/types";
-import axios from 'axios';
+import axios from "axios";
 
 /** Webiste callback */
 
@@ -28,8 +28,8 @@ export const callback: (req: Request, res: Response) => void = async (req: Reque
             return res.send(userData);
         } catch (error: unknown) {
             return res.status(INTERNAL_SERVER_ERROR).json({ message: JSON.stringify(error), code: INTERNAL_SERVER_ERROR });
-        };
-    };
+        }
+    }
 
     if (req.params.method === "logout") {
         try {
@@ -38,8 +38,8 @@ export const callback: (req: Request, res: Response) => void = async (req: Reque
             return res.status(OK).json({ message: GENERICS.SUCCESS, code: OK });
         } catch (error: unknown) {
             return res.status(INTERNAL_SERVER_ERROR).json({ message: GENERICS.DISCORD_AUTH_ERROR, code: INTERNAL_SERVER_ERROR });
-        };
-    };
+        }
+    }
 
     if (req.params.method === "callback") {
         try {
