@@ -7,10 +7,6 @@ import { BotStructure, ExpressResponse, Schema, Snowflake } from "../../types/ty
 /** Get a bot in the database or Discord API */
 
 export const GET: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {
-    const { AUTH }: NodeJS.ProcessEnv = process.env;
-    
-    if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
-
     const query = req.query;
 
     if (Object.keys(query).length > 0) {

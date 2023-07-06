@@ -9,10 +9,6 @@ import { BotStructure, ExpressResponse, FeedbackStructure, Schema, Snowflake } f
 /** Delete a bot or a feedback */
 
 export const DELETE: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {
-    const { AUTH }: NodeJS.ProcessEnv = process.env;
-    
-    if (req.headers.authorization !== AUTH) return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
-
     const _id: Snowflake = req.params.id;
 
     if (req.params.method === "feedbacks") {
