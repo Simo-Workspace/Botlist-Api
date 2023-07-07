@@ -59,16 +59,16 @@ export const callback: (req: Request, res: Response) => void = async (req: Reque
 
             const token: string = sign(
                 { username, id, avatar },
-            JWT_SECRET as string);
+                JWT_SECRET as string);
 
-            await axios.post(`https://discord.com/api/webhooks/1125236689485435011/${WEBHOOK_TOKEN}`, 
+            await axios.post(`https://discord.com/api/webhooks/1125236689485435011/${WEBHOOK_TOKEN}`,
                 {
-                    username: "Api Logs", 
-                    avatar_url: "https://cdn.discordapp.com/avatars/908442729145569300/471c2723ba426df10c25190d8deb17a5.png?size=2048", 
+                    username: "Api Logs",
+                    avatar_url: "https://cdn.discordapp.com/avatars/908442729145569300/471c2723ba426df10c25190d8deb17a5.png?size=2048",
                     embeds: [
                         {
                             title: "Login Logs",
-                            color:  65441,
+                            color: 65441,
                             fields: [
                                 {
                                     name: "Informações",
@@ -86,16 +86,16 @@ export const callback: (req: Request, res: Response) => void = async (req: Reque
                                     inline: false,
                                 }
                             ],
-                            thumbnail: { 
-                                url: `https://cdn.discordapp.com/avatars/${id}/${avatar}.png?size=2048` 
+                            thumbnail: {
+                                url: `https://cdn.discordapp.com/avatars/${id}/${avatar}.png?size=2048`
                             }
                         }
                     ]
-                }, 
+                },
                 {
-                    headers: { 
-                        Authorization: `Bot ${CLIENT_TOKEN}` 
-                    } 
+                    headers: {
+                        Authorization: `Bot ${CLIENT_TOKEN}`
+                    }
                 });
 
             res.cookie("discordUser", token, { maxAge: sevenDays });
