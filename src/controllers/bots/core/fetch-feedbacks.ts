@@ -9,7 +9,7 @@ export const fetchFeedbacks = async (req: Request, res: Response) => {
 
     const data: Schema<FeedbackStructure>[] | null = await FeedbackSchema.find({ targetBot });
 
-    if (!data) return res.status(NOT_FOUND).json({ message: FEEDBACK.NO_FEEDBACKS, code: NOT_FOUND });
+    if (!data || data.length < 1) return res.status(NOT_FOUND).json({ message: FEEDBACK.NO_FEEDBACKS, code: NOT_FOUND });
 
     return res.status(OK).json(data);
 };
