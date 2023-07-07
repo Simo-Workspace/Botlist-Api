@@ -1,8 +1,8 @@
 import BotSchema from "../../schemas/Bot";
 import { Request, Response } from "express";
 import { GENERICS, GUILD } from "../errors.json";
+import { NOT_FOUND, INTERNAL_SERVER_ERROR, OK } from "../status-code.json";
 import { BotStructure, ExpressResponse, Schema, Snowflake } from "../../types/types";
-import { UNAUTHORIZED, NOT_FOUND, INTERNAL_SERVER_ERROR, OK } from "../status-code.json";
 
 /** Delete a guild */
 

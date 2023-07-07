@@ -1,8 +1,8 @@
+import { BOT } from "../errors.json";
 import { Request, Response } from "express";
-import { GENERICS, BOT } from "../errors.json";
 import { voteStatus } from "./core/vote-status";
 import { default as BotSchema } from "../../schemas/Bot";
-import { UNAUTHORIZED, NOT_FOUND, OK, BAD_REQUEST } from "../status-code.json";
+import { NOT_FOUND, OK, BAD_REQUEST } from "../status-code.json";
 import { BotStructure, ExpressResponse, Schema, Snowflake } from "../../types/types";
 
 /** Get a bot in the database or Discord API */

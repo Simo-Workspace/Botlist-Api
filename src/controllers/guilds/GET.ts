@@ -1,7 +1,7 @@
+import { GUILD } from "../errors.json";
 import { Request, Response } from "express";
 import GuildSchema from "../../schemas/Guild";
-import { GENERICS, GUILD } from "../errors.json";
-import { UNAUTHORIZED, NOT_FOUND, OK } from "../status-code.json";
+import { NOT_FOUND, OK } from "../status-code.json";
 import { ExpressResponse, GuildStructure, Schema, Snowflake } from "../../types/types";
 
 /** Get a guild in the database */

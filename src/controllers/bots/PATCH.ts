@@ -3,7 +3,7 @@ import BotSchema from "../../schemas/Bot";
 import { Request, Response } from "express";
 import FeedbackSchema from "../../schemas/Feedback";
 import { GENERICS, BOT, FEEDBACK } from "../errors.json";
-import { UNAUTHORIZED, NOT_FOUND, INTERNAL_SERVER_ERROR, OK } from "../status-code.json";
+import { NOT_FOUND, INTERNAL_SERVER_ERROR, OK } from "../status-code.json";
 import { BotStructure, ExpressResponse, FeedbackStructure, Schema, Snowflake } from "../../types/types";
 
 /** Edit a bot, or edit a feedback */

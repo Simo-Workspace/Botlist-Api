@@ -1,16 +1,16 @@
+import axios from "axios";
+import { OK } from "../status-code.json";
 import { GENERICS } from "../errors.json";
 import { Request, Response } from "express";
-import { UNAUTHORIZED, OK } from "../status-code.json";
 import { JwtPayload, sign, verify } from "jsonwebtoken";
 import { INTERNAL_SERVER_ERROR } from "../status-code.json";
 import { APIScopes, DiscordUserStructure, ExpressResponse, Snowflake } from "../../types/types";
-import axios from "axios";
 
 /** Webiste callback */
 
 export const callback: (req: Request, res: Response) => void = async (req: Request, res: Response): Promise<ExpressResponse | void> => {
     const { code } = req.query;
-    const { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, SCOPES, REDIRECT_AUTH, AUTH_LINK, JWT_SECRET, AUTH, WEBHOOK_TOKEN, CLIENT_TOKEN }: NodeJS.ProcessEnv = process.env;
+    const { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, SCOPES, REDIRECT_AUTH, AUTH_LINK, JWT_SECRET, WEBHOOK_TOKEN, CLIENT_TOKEN }: NodeJS.ProcessEnv = process.env;
 
     const data: { client_id: Snowflake; client_secret: string; grant_type: string; code: unknown; redirect_uri: string; scope: APIScopes[]; } = {
         client_id: CLIENT_ID as Snowflake,

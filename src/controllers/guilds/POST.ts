@@ -2,8 +2,8 @@ import { Request, Response } from "express";
 import GuildSchema from "../../schemas/Guild";
 import { GENERICS, GUILD } from "../errors.json";
 import { REQUIRED_PROPS } from "../../../constants.json";
+import {BAD_REQUEST, INTERNAL_SERVER_ERROR, CREATED } from "../status-code.json";
 import { GuildStructure, ExpressResponse, Snowflake, Schema } from "../../types/types";
-import { UNAUTHORIZED, BAD_REQUEST, INTERNAL_SERVER_ERROR, CREATED } from "../status-code.json";
 
 /** Create a guild */
 

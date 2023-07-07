@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import GuildSchema from "../../schemas/Guild";
 import { GENERICS, GUILD } from "../errors.json";
+import { NOT_FOUND, INTERNAL_SERVER_ERROR, OK } from "../status-code.json";
 import { ExpressResponse, Snowflake, GuildStructure, Schema } from "../../types/types";
-import { UNAUTHORIZED, NOT_FOUND, INTERNAL_SERVER_ERROR, OK } from "../status-code.json";
 
 /** Edit a guild */
 
