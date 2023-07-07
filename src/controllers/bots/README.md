@@ -17,7 +17,8 @@ const APIURLS: Record<string, string> = {
     All: 'http://localhost:80/api/bots',
     Votes: 'http://localhost:80/api/bots/971783455425847317/votes',
     Query: 'http://localhost:80/api/bots?name=Simo',
-    Exists: 'http://localhost:80/api/bots/235148962103951360/exists'
+    Exists: 'http://localhost:80/api/bots/235148962103951360/exists',
+    VoteStatus: 'http://localhost:80/api/bots/235148962103951360/vote-status/963124227911860264' // Replace `963124227911860264` with the user to check, and `235148962103951360` with the bot to check
 };
 const requestInit: Record<string, string | object> = {
     method: 'GET',
@@ -31,9 +32,10 @@ fetch(APIURLS.All, requestInit); // Busque por todos os bots
 fetch(APIURLS.Votes, requestInit); // Busque pelos 
 fetch(APIURLS.Query, requestInit); // Busque por vários bot que combinem com a consulta
 fetch(APIURLS.Exists, requestInit); // Verifique se o bot exists, retornará `{ exists: boolean; }`
+fetch(APIURLS.VoteStatus, requestInit); // Veja o status de votação de um usuário em relação a um bot, retorna `{ canVote: boolean; restTime: string; }`
 ```
 
-Retornará uma [estrutura](https://github.com/Simo-Workspace/Botlist-Api/blob/main/src/typings/index.d.ts#L7) de bot, uma [array](https://github.com/Simo-Workspace/Botlist-Api/blob/main/src/typings/index.d.ts#L7) de bots, ou uma array de [votos](https://github.com/Simo-Workspace/Botlist-Api/blob/main/src/typings/index.d.ts#L64).
+Retornará uma [estrutura](https://github.com/Simo-Workspace/Botlist-Api/blob/main/src/typings/index.d.ts#L7) de bot, uma [array](https://github.com/Simo-Workspace/Botlist-Api/blob/main/src/typings/index.d.ts#L7) de bots, uma array de [votos](https://github.com/Simo-Workspace/Botlist-Api/blob/main/src/typings/index.d.ts#L64), ou uma estrutura de vote-status.
 
 ### DELETE
 
