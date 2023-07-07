@@ -25,6 +25,7 @@
     "FEEDBACK": {
         "THE_USER_ALREADY_SENT": "The user has already sent the feedback",
         "UNKNOWN_FEEDBACK": "Unknown feedback",
-        "UNKNOWN_USER": "Cannot send a feedback without user"
+        "UNKNOWN_USER": "Cannot send a feedback without user",
+        "NO_FEEDBACKS": "This bot has no feedbacks"
     }
 }
