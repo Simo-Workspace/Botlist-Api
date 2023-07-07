@@ -9,10 +9,9 @@ import { BotStructure, ExpressResponse, FeedbackStructure, Schema, Snowflake } f
 /** Delete a bot or a feedback */
 
 export const DELETE: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {
-    const _id: Snowflake = req.params.id;
+    const { id: _id, method, user: author } = req.params;
 
-    if (req.params.method === "feedbacks") {
-        const author: Snowflake = req.params.user;
+    if (method === "feedbacks") {
         const exists: { _id: Types.ObjectId; } | null = await FeedbackSchema.exists({ targetBot: _id, author });
 
         if (!exists) return res.status(NOT_FOUND).json({ message: FEEDBACK.UNKNOWN_FEEDBACK, code: NOT_FOUND });

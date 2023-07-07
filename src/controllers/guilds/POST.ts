@@ -8,7 +8,7 @@ import { GuildStructure, ExpressResponse, Snowflake, Schema } from "../../types/
 /** Create a guild */
 
 export const POST: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {
-    const _id: Snowflake = req.params.id;
+    const { id: _id } = req.params;
     const properties: Partial<GuildStructure> = req.body;
     const keys: string[] = Object.keys(properties);
 

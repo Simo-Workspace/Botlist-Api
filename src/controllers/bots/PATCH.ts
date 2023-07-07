@@ -9,12 +9,11 @@ import { BotStructure, ExpressResponse, FeedbackStructure, Schema, Snowflake } f
 /** Edit a bot, or edit a feedback */
 
 export const PATCH: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {
-    const _id: Snowflake = req.params.id;
+    const { _id, method, user: author } = req.params;
 
-    if (req.params.method === "feedbacks") {
+    if (method === "feedbacks") {
         const { content, stars }: Partial<Pick<FeedbackStructure, "content" | "stars">> = req.body;
 
-        const author: Snowflake = req.params.user;
         const exists: { _id: Types.ObjectId; } | null = await FeedbackSchema.exists({ author, targetBot: _id });
 
         if (!exists) return res.status(NOT_FOUND).json({ message: FEEDBACK.UNKNOWN_FEEDBACK, code: NOT_FOUND });

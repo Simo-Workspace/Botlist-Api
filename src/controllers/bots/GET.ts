@@ -18,10 +18,10 @@ export const GET: (req: Request, res: Response) => ExpressResponse = async (req:
         return res.status(OK).json(data);
     }
 
-    const _id: Snowflake | undefined = req.params.id;
+    const { id: _id, method } = req.params;
 
-    if (req.params.method === "feedbacks") return fetchFeedbacks(req, res);
-    if (req.params.method === "exists") {
+    if (method === "feedbacks") return fetchFeedbacks(req, res);
+    if (method === "exists") {
         const exists: { _id: Snowflake; } | null = await BotSchema.exists({ _id });
 
         return res.status(OK).json({ exists: exists ? true : false });
@@ -30,12 +30,12 @@ export const GET: (req: Request, res: Response) => ExpressResponse = async (req:
     const targetBot: Schema<BotStructure> | Schema<BotStructure>[] | null = await (!_id ? BotSchema.find({}) : BotSchema.findById({ _id }));
 
     if (!targetBot) return res.status(NOT_FOUND).json({ message: BOT.BOT_NOT_FOUND, code: NOT_FOUND });
-    if (req.params.method === "votes") {
+    if (method === "votes") {
         if (Array.isArray(targetBot)) return res.status(BAD_REQUEST).json({ message: BOT.CANNOT_GET_BOT_VOTES, code: BAD_REQUEST });
 
         return res.status(OK).json(targetBot.votes);
     }
-    if (req.params.method === "vote-status") return voteStatus(req, res);
+    if (method === "vote-status") return voteStatus(req, res);
 
     return res.status(OK).json(targetBot);
 };

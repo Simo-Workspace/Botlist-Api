@@ -7,7 +7,7 @@ import { BotStructure, ExpressResponse, Schema, Snowflake } from "../../types/ty
 /** Delete a guild */
 
 export const DELETE: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {
-    const _id: Snowflake = req.params.id;
+    const { id: _id } = req.params;
     const exists: { _id: Snowflake; } | null = await BotSchema.exists({ _id });
 
     if (!exists) return res.status(NOT_FOUND).json({ message: GUILD.GUILD_NOT_FOUND, code: NOT_FOUND });

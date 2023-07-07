@@ -13,12 +13,12 @@ export const voteStatus: (req: Request, res: Response) => ExpressResponse = asyn
 
     if (!data) return res.status(BAD_REQUEST).json({ message: BOT.BOT_NOT_FOUND, code: BAD_REQUEST });
 
-    const d = data.votes.find((vote: VoteStructure): boolean => vote.user === user);
+    const vote = data.votes.find((vote: VoteStructure): boolean => vote.user === user);
 
-    if (!d) return res.status(OK).json({ canVote: true, restTime: "" });
+    if (!vote) return res.status(OK).json({ canVote: true, restTime: "" });
 
     const twelveHours: 43200000 = 4.32e+7;
-    const timeLeft: number = (new Date().getTime() - new Date(d.lastVote).getTime());
+    const timeLeft: number = (new Date().getTime() - new Date(vote.lastVote).getTime());
 
     return res.status(OK).json({ canVote: timeLeft > twelveHours, restTime: timeLeft > twelveHours ? "" : twelveHours - timeLeft });
 };

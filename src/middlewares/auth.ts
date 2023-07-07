@@ -11,7 +11,7 @@ export const auth = (req: Request, res: Response, next: NextFunction) => {
     if (token) {
         try {
             verify(token, secret);
-            
+
             status = true;
         } catch (error: unknown) {
             status = false;

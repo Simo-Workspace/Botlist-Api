@@ -11,11 +11,9 @@ import type { BotStructure, ExpressResponse, FeedbackStructure, Schema, Snowflak
 /** Create a bot, vote, or submit a feedback */
 
 export const POST: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {
-    const _id: Snowflake = req.params.id;
+    const { id: _id, method, user: author } = req.params;
 
-    if (req.params.method === "feedbacks") {
-        const author: Snowflake | undefined = req.params.user;
-
+    if (method === "feedbacks") {
         if (!author) return res.status(BAD_REQUEST).json({ message: FEEDBACK.UNKNOWN_USER, code: BAD_REQUEST });
 
         const exists: { _id: Types.ObjectId; } | null = await FeedbackSchema.exists({ author });
@@ -37,7 +35,7 @@ export const POST: (req: Request, res: Response) => ExpressResponse = async (req
     const properties: Partial<BotStructure> | { user: Snowflake; } = req.body;
     const exists: { _id: Snowflake; } | null = await BotSchema.exists({ _id });
 
-    if (req.params.method === "votes") {
+    if (method === "votes") {
         if (!exists) return res.status(NOT_FOUND).json({ message: BOT.BOT_NOT_FOUND, code: NOT_FOUND });
         if (!("user" in properties)) return res.status(BAD_REQUEST).json({ message: BOT.MISSING_USER_PROP, code: BAD_REQUEST });
 
