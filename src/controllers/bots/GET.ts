@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { GENERICS, BOT } from "../errors.json";
+import { voteStatus } from "./core/vote-status";
 import { default as BotSchema } from "../../schemas/Bot";
 import { UNAUTHORIZED, NOT_FOUND, OK, BAD_REQUEST } from "../status-code.json";
 import { BotStructure, ExpressResponse, Schema, Snowflake } from "../../types/types";
@@ -32,6 +33,7 @@ export const GET: (req: Request, res: Response) => ExpressResponse = async (req:
 
         return res.status(OK).json(targetBot.votes);
     }
+    if (req.params.method === "vote-status") return voteStatus(req, res);
 
     return res.status(OK).json(targetBot);
 };
