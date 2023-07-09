@@ -11,3 +11,7 @@ squarecloud.app
 # Dist
 
 dist/
+
+# API tests
+
+index.spec.ts
