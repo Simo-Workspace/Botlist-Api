@@ -1,0 +1,50 @@
+// eslint-disable-next-line @typescript-eslint/no-namespace
+export namespace Checkers {
+    export const Bot = {
+        shortDescription: (description: unknown): boolean => {
+            return typeof description === "string" && description.length > 59 && description.length < 81;
+        },
+        longDescription: (description: unknown): boolean => {
+            return typeof description === "string" && description.length > 199 && description.length < 501;
+        },
+        supportServer: (url: unknown): boolean => {
+            return typeof url === "string" && /^(https:\/\/)discord\.gg\/[a-z0-9]$/i.test(url);
+        },
+        sourceCode: (url: unknown): boolean => {
+            return typeof url === "string" && /^https:\/\/.+$/.test(url);
+        },
+        websiteURL: (url: unknown): boolean => {
+            return typeof url === "string" && /^https:\/\/.+$/.test(url);
+        },
+        inviteURL: (url: unknown): boolean => {
+            return typeof url === "string" && /^https:\/\/discord\.com\/oauth2\/authorize\?client_id=\d{16,21}&scope=bot&permissions=\d+$/i.test(url);
+        },
+        prefix: (prefixes: unknown): boolean => {
+            return Array.isArray(prefixes) && prefixes.every((prefix: unknown): boolean => typeof prefix === "string" && prefix.length > 0 && prefix.length < 7);
+        },
+        owners: (owners: unknown): boolean => {
+            return Array.isArray(owners) && owners.every((owner: unknown): boolean => typeof owner === "string" && /^\d{16,21}$/.test(owner));
+        },
+        tags: (tags: unknown): boolean => {
+            return Array.isArray(tags) && tags.every((tag: string): boolean => typeof tag === "string" && tag.length > 0);
+        },
+        _id: (id: unknown): boolean => {
+            return typeof id === "string" && /^\d{16,21}$/.test(id);
+        },
+        __match: (value: object): boolean => {
+            return Object.keys(value).length < 1 ? false : Object.keys(value).every((key: string): boolean => key in Checkers.Bot && Checkers.Bot[key as keyof typeof Checkers.Bot](value[key as keyof typeof value]));
+        },
+        name: (name: unknown): boolean => {
+            return typeof name === "string" && name.length > 0;
+        },
+        verifiedBot: (verified: unknown): boolean => {
+            return typeof verified === "boolean";
+        },
+        createdAt: (value: unknown): boolean => {
+            return typeof value === "string" && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{1,3})?Z$/.test(value);
+        },
+        votes: (value: unknown): boolean => {
+            return Array.isArray(value) && value.every((vote: unknown): boolean => typeof vote === "object" && vote !== null && "votes" in vote && "user" in vote && "lastVote" in vote);
+        }
+    };
+}
