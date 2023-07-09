@@ -32,7 +32,7 @@ export namespace Checkers {
             return typeof id === "string" && /^\d{16,21}$/.test(id);
         },
         __match: (value: object): boolean => {
-            return Object.keys(value).length < 1 ? false : Object.keys(value).every((key: string): boolean => key in Checkers.Bot && Checkers.Bot[key as keyof typeof Checkers.Bot](value[key as keyof typeof value]));
+            return Object.keys(value).length < 1 ? false : Object.keys(value).every((key: string): boolean => key in Bot && Bot[key as keyof typeof Bot](value[key as keyof typeof value]));
         },
         name: (name: unknown): boolean => {
             return typeof name === "string" && name.length > 0;
@@ -45,6 +45,30 @@ export namespace Checkers {
         },
         votes: (value: unknown): boolean => {
             return Array.isArray(value) && value.every((vote: unknown): boolean => typeof vote === "object" && vote !== null && "votes" in vote && "user" in vote && "lastVote" in vote);
+        }
+    };
+    export const Guild = {
+        _id: Bot._id,
+        verificationChannel: Bot._id,
+        logsChannel: Bot._id,
+        addBotChannel: Bot._id,
+        owners: Bot.owners,
+        __match: (value: object): boolean => {
+            return Object.keys(value).length < 1 ? false : Object.keys(value).every((key: string): boolean => key in Guild && Guild[key as keyof typeof Guild](value[key as keyof typeof value]));
+        }
+    };
+    export const Feedback = {
+        author: Bot._id,
+        stars: (value: unknown): boolean => {
+            return typeof value === "number" && value > 0 && value < 5;
+        },
+        postedAt: Bot.createdAt,
+        content: (value: unknown): boolean => {
+            return typeof value === "string" && value.length < 501;
+        },
+        targetBot: Bot._id,
+        __match: (value: object): boolean => {
+            return Object.keys(value).length < 1 ? false : Object.keys(value).every((key: string): boolean => key in Feedback && Feedback[key as keyof typeof Feedback](key as keyof typeof value));
         }
     };
 }
