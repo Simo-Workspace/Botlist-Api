@@ -10,7 +10,7 @@ export const log: (req: Request, _res: Response, next: NextFunction) => Promise<
     const avatar: string = `https://cdn.discordapp.com/avatars/${payload.id}/${payload.avatar}.png` as const;
 
     // always returns an empty string
-    await axios.post(`https://discord.com/api/v10/webhooks/1125236689485435011/${WEBHOOK_TOKEN}`, { content: `eu usei a api na rota \`${req.path}\``, username: payload.username, avatar_url: avatar }, { headers: { Authorization: `Bot ${CLIENT_TOKEN}` } }).catch(console.error);
+    await axios.post(`https://discord.com/api/v10/webhooks/1125236689485435011/${WEBHOOK_TOKEN}`, { content: `eu usei a api na rota \`${req.path}\``, username: payload.username + `(${payload.id})`, avatar_url: avatar }, { headers: { Authorization: `Bot ${CLIENT_TOKEN}` } }).catch(console.error);
 
     next();
 };
