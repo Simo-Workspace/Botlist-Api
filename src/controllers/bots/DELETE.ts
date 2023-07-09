@@ -1,10 +1,11 @@
 import { Types } from "mongoose";
+import BotSchema from "../../schemas/Bot";
 import { Request, Response } from "express";
-import BotSchema  from "../../schemas/Bot";
+import { JwtPayload, verify } from "jsonwebtoken";
 import FeedbackSchema from "../../schemas/Feedback";
 import { GENERICS, BOT, FEEDBACK } from "../errors.json";
-import { NOT_FOUND, OK, INTERNAL_SERVER_ERROR } from "../status-code.json";
-import { BotStructure, ExpressResponse, FeedbackStructure, Schema, Snowflake } from "../../types/types";
+import { NOT_FOUND, OK, INTERNAL_SERVER_ERROR, UNAUTHORIZED } from "../status-code.json";
+import { BotStructure, ExpressResponse, FeedbackStructure, Schema } from "../../types/types";
 
 /** Delete a bot or a feedback */
 
@@ -21,9 +22,13 @@ export const DELETE: (req: Request, res: Response) => ExpressResponse = async (r
         return res.status(OK).json(deleted);
     }
 
-    const exists: { _id: Snowflake; } | null = await BotSchema.exists({ _id });
+    const data: Schema<BotStructure> | null = await BotSchema.findById({ _id, owners: { $in: [author] } });
 
-    if (!exists) return res.status(NOT_FOUND).json({ message: BOT.BOT_NOT_FOUND, code: NOT_FOUND });
+    if (!data) return res.status(NOT_FOUND).json({ message: BOT.BOT_NOT_FOUND, code: NOT_FOUND });
+
+    const JwtPayload: JwtPayload = verify(req.headers.authorization as string, process.env.JWT_SECRET as string) as JwtPayload;
+
+    if (!data.owners.includes(JwtPayload.id)) return res.status(UNAUTHORIZED).json({ error: BOT.NOT_BOT_OWNER, code: UNAUTHORIZED });
 
     const deletedBot: Schema<BotStructure> | null = await BotSchema.findByIdAndDelete({ _id }, { new: true });
 

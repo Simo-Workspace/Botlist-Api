@@ -1,18 +1,24 @@
-import BotSchema from "../../schemas/Bot";
 import { Request, Response } from "express";
+import GuildSchema from "../../schemas/Guild";
 import { GENERICS, GUILD } from "../errors.json";
-import { NOT_FOUND, INTERNAL_SERVER_ERROR, OK } from "../status-code.json";
-import { BotStructure, ExpressResponse, Schema, Snowflake } from "../../types/types";
+import { verify, JwtPayload } from "jsonwebtoken";
+import { GuildStructure, ExpressResponse, Schema } from "../../types/types";
+import { NOT_FOUND, INTERNAL_SERVER_ERROR, OK, UNAUTHORIZED } from "../status-code.json";
 
 /** Delete a guild */
 
 export const DELETE: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {
     const { id: _id } = req.params;
-    const exists: { _id: Snowflake; } | null = await BotSchema.exists({ _id });
 
-    if (!exists) return res.status(NOT_FOUND).json({ message: GUILD.GUILD_NOT_FOUND, code: NOT_FOUND });
+    const jwtPayload: JwtPayload = verify(req.headers.authorization as string, process.env.JWT_SECRET as string) as JwtPayload;
 
-    const deletedGuild: Schema<BotStructure> | null = await BotSchema.findByIdAndDelete({ _id }, { new: true });
+    const data: Schema<GuildStructure> | null = await GuildSchema.findById({ _id, owners: { $in: [jwtPayload.id] } });
+
+    if (!data) return res.status(NOT_FOUND).json({ message: GUILD.GUILD_NOT_FOUND, code: NOT_FOUND });
+
+    if (!data.owners.includes(jwtPayload.id)) return res.status(UNAUTHORIZED).json({ message: GUILD.NOT_GUILD_OWNER, code: UNAUTHORIZED });
+
+    const deletedGuild: Schema<GuildStructure> | null = await GuildSchema.findByIdAndDelete({ _id }, { new: true });
 
     if (!deletedGuild) return res.status(INTERNAL_SERVER_ERROR).json({ message: GENERICS.INTERNAL_SERVER_ERROR, code: INTERNAL_SERVER_ERROR });
 

@@ -1,10 +1,11 @@
 import { Types } from "mongoose";
 import BotSchema from "../../schemas/Bot";
 import { Request, Response } from "express";
+import { verify, JwtPayload } from "jsonwebtoken";
 import FeedbackSchema from "../../schemas/Feedback";
 import { GENERICS, BOT, FEEDBACK } from "../errors.json";
-import { NOT_FOUND, INTERNAL_SERVER_ERROR, OK } from "../status-code.json";
-import { BotStructure, ExpressResponse, FeedbackStructure, Schema, Snowflake } from "../../types/types";
+import { NOT_FOUND, INTERNAL_SERVER_ERROR, OK, UNAUTHORIZED } from "../status-code.json";
+import { BotStructure, ExpressResponse, FeedbackStructure, Schema } from "../../types/types";
 
 /** Edit a bot, or edit a feedback */
 
@@ -25,9 +26,13 @@ export const PATCH: (req: Request, res: Response) => ExpressResponse = async (re
         return res.status(OK).json(updated);
     }
 
-    const exists: { _id: Snowflake; } | null = await BotSchema.exists({ _id });
+    const data: Schema<BotStructure> | null = await BotSchema.findById({ _id, owners: { $in: [author] } });
 
-    if (!exists) return res.status(NOT_FOUND).json({ message: BOT.BOT_NOT_FOUND, code: NOT_FOUND });
+    if (!data) return res.status(NOT_FOUND).json({ message: BOT.BOT_NOT_FOUND, code: NOT_FOUND });
+
+    const payload: JwtPayload = verify(req.headers.authorization as string, process.env.JWT_SECRET as string) as JwtPayload;
+
+    if (!data.owners.includes(payload.id)) return res.status(UNAUTHORIZED).json({ error: BOT.NOT_BOT_OWNER, code: UNAUTHORIZED });
 
     const updated: Schema<BotStructure> | null = await BotSchema.findByIdAndUpdate({ _id }, req.body, { new: true });
 
