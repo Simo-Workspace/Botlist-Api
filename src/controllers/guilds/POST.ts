@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { Checkers } from "../core/checkers";
 import GuildSchema from "../../schemas/Guild";
 import { GENERICS, GUILD } from "../errors.json";
 import { REQUIRED_PROPS } from "../../../constants.json";
@@ -13,6 +14,7 @@ export const POST: (req: Request, res: Response) => ExpressResponse = async (req
     const keys: string[] = Object.keys(properties);
 
     if (!REQUIRED_PROPS.GUILD.every((prop: string): boolean => keys.includes(prop))) return res.status(BAD_REQUEST).json({ message: GENERICS.SOME_PROPERTIES_IS_MISSING, code: BAD_REQUEST, bonus: { missing_properties: REQUIRED_PROPS.GUILD.filter((property: string): boolean => !keys.includes(property)) } });
+    if (!Checkers.Guild.__match(properties)) return res.status(BAD_REQUEST).json({ message: GENERICS.INVALID_PROPS, code: BAD_REQUEST });
 
     const exists: { _id: Snowflake; } | null = await GuildSchema.exists({ _id });
 
