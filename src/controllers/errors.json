@@ -7,8 +7,7 @@
         "BOT_CANNOT_VOTE_IN_A_BOT": "A bot cannot vote for a bot or itself",
         "MISSING_USER_PROP": "Missing `user` property in body",
         "COOLDOWN_VOTE": "You are on cooldown, wait {ms}",
-        "NOT_BOT_OWNER": "You are not this bot owner",
-        "INVALID_PROPS": "Some properties are wrong"
+        "NOT_BOT_OWNER": "You are not this bot owner"
     },
     "GENERICS": {
         "INVALID_AUTH": "Invalid authenticator",
@@ -18,7 +17,8 @@
         "NO_QUERY_IN_BODY": "No query was provided in `body`",
         "INTERNAL_SERVER_ERROR": "An internal server error ocurred, try again",
         "SUCCESS": "Success!",
-        "MISSING_USER": "Missing user property"
+        "MISSING_USER": "Missing user property",
+        "INVALID_PROPS": "Some properties are wrong"
     },
     "GUILD": {
         "GUILD_NOT_FOUND": "Unknown guild",
