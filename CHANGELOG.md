@@ -1,4 +1,4 @@
-# API changelog
+# API changelog (Discontinued)
 
 ## 04/07/2023
 
