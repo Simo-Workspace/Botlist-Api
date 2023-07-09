@@ -20,8 +20,9 @@ export const callback: (req: Request, res: Response) => void = async (req: Reque
         redirect_uri: REDIRECT_URI as string,
         scope: JSON.parse(SCOPES as string).join(" ")
     };
+    const { method } = req.params;
 
-    if (req.params.method === "user") {
+    if (method === "user") {
         try {
             const userData: string | JwtPayload = verify(req.cookies.discordUser, JWT_SECRET as string);
 
@@ -31,7 +32,7 @@ export const callback: (req: Request, res: Response) => void = async (req: Reque
         }
     }
 
-    if (req.params.method === "logout") {
+    if (method === "logout") {
         try {
             res.clearCookie("discordUser");
 
@@ -41,7 +42,7 @@ export const callback: (req: Request, res: Response) => void = async (req: Reque
         }
     }
 
-    if (req.params.method === "callback") {
+    if (method === "callback") {
         try {
             const req: globalThis.Response = await fetch("https://discord.com/api/v10/oauth2/token", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(data as unknown as Record<string, string>) });
             const response: { error: string; access_token: string; } = await req.json();
@@ -101,7 +102,7 @@ export const callback: (req: Request, res: Response) => void = async (req: Reque
             res.cookie("discordUser", token, { maxAge: sevenDays });
 
             res.redirect(REDIRECT_AUTH as string);
-        } catch (error: unknown) {
+        } catch {
             res.status(INTERNAL_SERVER_ERROR).json({ message: GENERICS.DISCORD_AUTH_ERROR, code: INTERNAL_SERVER_ERROR });
         }
     }
