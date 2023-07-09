@@ -29,7 +29,8 @@
         ],
         "GUILD": [
             "verificationChannel",
-            "logsChannel"
+            "logsChannel",
+            "owners"
         ]
     },
     "MAX_REQUESTS_PER_MIN": 25
