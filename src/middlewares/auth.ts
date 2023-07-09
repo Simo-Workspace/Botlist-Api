@@ -6,21 +6,14 @@ import { UNAUTHORIZED } from "../controllers/status-code.json";
 export const auth = (req: Request, res: Response, next: NextFunction) => {
     const token: string = req.headers.authorization as string;
     const secret: string = process.env.JWT_SECRET as string;
-    let status = false;
 
     if (token) {
         try {
             verify(token, secret);
 
-            status = true;
+            next();
         } catch (error: unknown) {
-            status = false;
+            return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
         }
-    }
-
-    if (status) {
-        next();
-    } else {
-        return res.status(UNAUTHORIZED).json({ message: GENERICS.INVALID_AUTH, code: UNAUTHORIZED });
     }
 };
