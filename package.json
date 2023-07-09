@@ -6,7 +6,8 @@
   "scripts": {
     "app": "tsx src/index.ts",
     "build": "tsc && node dist/src/index.js",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "test": "tsx index.spec.ts"
   },
   "keywords": [],
   "author": "",
