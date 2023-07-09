@@ -1,5 +1,5 @@
 import cors from "cors";
-import { config } from "dotenv";
+import { load } from "env-smart";
 import { connect } from "mongoose";
 import cookieParser from "cookie-parser";
 import { auth } from "./middlewares/auth";
@@ -20,7 +20,7 @@ import { DELETE as DELETE_GUILD } from "./controllers/guilds/DELETE";
 import { PORT, ROUTES, MAX_REQUESTS_PER_MIN } from "../constants.json";
 import rateLimit, { RateLimitRequestHandler } from "express-rate-limit";
 
-config();
+load();
 
 const app: Express = express();
 
