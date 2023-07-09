@@ -30,6 +30,12 @@ export interface BotStructure {
 
 export type ExpressResponse = Promise<Response<unknown, Record<string, unknown>>>;
 
+/**
+ * Represents a sync express response
+ */
+
+export type SyncExpressResponse = Response<unknown, Record<string, unknown>>;
+
 /** Structure used in users by the API */
 
 export interface UserStructure {
