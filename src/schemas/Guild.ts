@@ -12,7 +12,10 @@ const GuildSchema = new Schema<GuildStructure>({
     logsChannel: {
         type: String, required: true
     },
-    addbotChannel: String
+    addbotChannel: String,
+    owners: {
+        type: [String], required: true
+    }
 });
 
 export default model(MODELS_NAME.Guilds, GuildSchema);
