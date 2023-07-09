@@ -88,6 +88,7 @@ export interface GuildStructure {
     verificationChannel: Snowflake;
     logsChannel: Snowflake;
     addbotChannel: Snowflake | undefined;
+    owners: Snowflake[];
 }
 
 /** API Feedback structure */
