@@ -7,7 +7,8 @@
         "BOT_CANNOT_VOTE_IN_A_BOT": "A bot cannot vote for a bot or itself",
         "MISSING_USER_PROP": "Missing `user` property in body",
         "COOLDOWN_VOTE": "You are on cooldown, wait {ms}",
-        "NOT_BOT_OWNER": "You are not this bot owner"
+        "NOT_BOT_OWNER": "You are not this bot owner",
+        "INVALID_PROPS": "Some properties are wrong"
     },
     "GENERICS": {
         "INVALID_AUTH": "Invalid authenticator",
