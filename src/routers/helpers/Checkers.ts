@@ -37,7 +37,7 @@ export namespace Checkers {
         _id: (id: unknown): boolean => {
             return isString(id) && /^\d{16,21}$/.test(id);
         },
-        __match: (value: object): boolean => {
+        validate: (value: object): boolean => {
             return Object.keys(value).length < 1 ? false : Object.keys(value).every((key: string): boolean => key in Bot && Bot[key as keyof typeof Bot](value[key as keyof typeof value]));
         },
         name: (name: unknown): boolean => {
@@ -59,7 +59,7 @@ export namespace Checkers {
         logsChannel: Bot._id,
         addBotChannel: Bot._id,
         owners: Bot.owners,
-        __match: (value: object): boolean => {
+        validate: (value: object): boolean => {
             return Object.keys(value).length < 1 ? false : Object.keys(value).every((key: string): boolean => key in Guild && Guild[key as keyof typeof Guild](value[key as keyof typeof value]));
         }
     };
@@ -73,7 +73,7 @@ export namespace Checkers {
             return isString(value) && value.length < 501;
         },
         targetBot: Bot._id,
-        __match: (value: object): boolean => {
+        validate: (value: object): boolean => {
             return Object.keys(value).length < 1 ? false : Object.keys(value).every((key: string): boolean => key in Feedback && Feedback[key as keyof typeof Feedback](key as keyof typeof value));
         }
     };
