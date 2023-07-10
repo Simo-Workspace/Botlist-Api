@@ -21,7 +21,7 @@ export const PATCH: (req: Request, res: Response) => ExpressResponse = async (re
 
     const bodyData: Partial<GuildStructure> = req.body;
 
-    if (!Checkers.Guild.__match(bodyData)) return res.status(BAD_REQUEST).json({ message: GENERICS.INVALID_PROPS, code: BAD_REQUEST });
+    if (!Checkers.Guild.validate(bodyData)) return res.status(BAD_REQUEST).json({ message: GENERICS.INVALID_PROPS, code: BAD_REQUEST });
 
     const updated: Schema<GuildStructure> | null = await GuildSchema.findByIdAndUpdate({ _id }, bodyData, { new: true });
 
