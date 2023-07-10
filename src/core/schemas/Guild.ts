@@ -2,7 +2,7 @@ import { Schema, model} from "mongoose";
 import { GuildStructure } from "../types/types";
 import { MODELS_NAME } from "../../../constants.json";
 
-const GuildSchema = new Schema<GuildStructure>({
+const _GuildSchema = new Schema<GuildStructure>({
     _id: {
         type: String, required: true
     },
@@ -18,4 +18,4 @@ const GuildSchema = new Schema<GuildStructure>({
     }
 });
 
-export default model(MODELS_NAME.Guilds, GuildSchema);
+export const GuildSchema = model(MODELS_NAME.Guilds, _GuildSchema);

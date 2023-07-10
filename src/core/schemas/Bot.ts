@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 import { MODELS_NAME } from "../../../constants.json";
 import type { BotStructure, VoteStructure } from "../types/types";
 
-const BotSchema = new Schema<BotStructure>({
+const _BotSchema = new Schema<BotStructure>({
     _id: {
         type: String, required: true
     },
@@ -47,4 +47,4 @@ const BotSchema = new Schema<BotStructure>({
     }
 });
 
-export default model(MODELS_NAME.Bots, BotSchema);
+export const BotSchema = model(MODELS_NAME.Bots, _BotSchema);

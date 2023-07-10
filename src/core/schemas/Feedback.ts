@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 import { FeedbackStructure } from "../types/types";
 import { MODELS_NAME } from "../../../constants.json";
 
-const FeedbackSchema = new Schema<FeedbackStructure>({
+const _FeedbackSchema = new Schema<FeedbackStructure>({
     author: {
         type: String, required: true
     },
@@ -20,4 +20,4 @@ const FeedbackSchema = new Schema<FeedbackStructure>({
     }
 });
 
-export default model(MODELS_NAME.Feedbacks, FeedbackSchema);
+export const FeedbackSchema = model(MODELS_NAME.Feedbacks, _FeedbackSchema);
