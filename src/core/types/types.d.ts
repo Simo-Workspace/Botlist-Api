@@ -174,6 +174,10 @@ export enum APIScopes {
     Guilds = "guilds"
 }
 
+/**
+ * Represents a basic schema (document) definition
+ */
+
 export type Schema<T, I = Snowflake> = Document<unknown, Record<string, never>, T> & Omit<T & Required<{
     _id: I;
 }>, never>;
