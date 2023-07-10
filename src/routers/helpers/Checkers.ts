@@ -1,5 +1,5 @@
 /**
- * Checkers for more sucure properties
+ * Checkers for more secure properties
  */
 
 // eslint-disable-next-line @typescript-eslint/no-namespace

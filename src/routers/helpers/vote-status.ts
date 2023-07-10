@@ -5,7 +5,7 @@ import { BAD_REQUEST, OK } from "../status-code.json";
 import { BotStructure, ExpressResponse, Schema, VoteStructure } from "../../core/types/types";
 
 /**
- * View informations about an user vote
+ * View information about an user vote's
  */
 
 export const voteStatus: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {
