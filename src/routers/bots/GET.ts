@@ -1,9 +1,9 @@
+import { BOT } from "../tools/errors.json";
 import { Request, Response } from "express";
-import { BOT } from "../helpers/errors.json";
-import { voteStatus } from "../helpers/vote-status";
-import { fetchFeedbacks } from "../helpers/fetch-feedbacks";
+import { voteStatus } from "../tools/vote-status";
+import { fetchFeedbacks } from "../tools/fetch-feedbacks";
 import { default as BotSchema } from "../../core/schemas/Bot";
-import { NOT_FOUND, OK, BAD_REQUEST } from "../helpers/status-code.json";
+import { NOT_FOUND, OK, BAD_REQUEST } from "../tools/status-code.json";
 import { BotStructure, ExpressResponse, Schema, Snowflake } from "../../core/types/types";
 
 /** Get a bot in the database or Discord API */

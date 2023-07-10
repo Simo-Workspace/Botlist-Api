@@ -9,15 +9,15 @@ import { PATCH } from "./routers/bots/PATCH";
 import { callback } from "./routers/auth/GET";
 import { DELETE } from "./routers/bots/DELETE";
 import { getToken } from "./routers/auth/TOKEN";
-import { log } from "./routers/helpers/discord-logs";
+import { log } from "./routers/tools/discord-logs";
 import { GET as GET_USER } from "./routers/users/GET";
 import { default as express, Express } from "express";
 import { GET as GET_GUILD } from "./routers/guilds/GET";
-import { GENERICS } from "./routers/helpers/errors.json";
+import { GENERICS } from "./routers/tools/errors.json";
 import { POST as POST_GUILD } from "./routers/guilds/POST";
 import { PATCH as PATCH_GUILD } from "./routers/guilds/PATCH";
 import { DELETE as DELETE_GUILD } from "./routers/guilds/DELETE";
-import { TOO_MANY_REQUESTS } from "./routers/helpers/status-code.json";
+import { TOO_MANY_REQUESTS } from "./routers/tools/status-code.json";
 import { PORT, ROUTES, MAX_REQUESTS_PER_MIN } from "../constants.json";
 import rateLimit, { RateLimitRequestHandler } from "express-rate-limit";
 
