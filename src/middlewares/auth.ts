@@ -1,8 +1,8 @@
 import { verify } from "jsonwebtoken";
-import { GENERICS } from "../routers/errors.json";
+import { GENERICS } from "../routers/helpers/errors.json";
 import { SyncExpressResponse } from "../core/types/types";
 import { Request, Response, NextFunction } from "express";
-import { UNAUTHORIZED } from "../routers/status-code.json";
+import { UNAUTHORIZED } from "../routers/helpers/status-code.json";
 
 export const auth: (req: Request, res: Response, next: NextFunction) => SyncExpressResponse | void = (req: Request, res: Response, next: NextFunction): SyncExpressResponse | void => {
     const token: string = req.headers.authorization as string;

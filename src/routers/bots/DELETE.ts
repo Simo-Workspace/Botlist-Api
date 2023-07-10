@@ -3,8 +3,8 @@ import { Request, Response } from "express";
 import BotSchema from "../../core/schemas/Bot";
 import { JwtPayload, verify } from "jsonwebtoken";
 import FeedbackSchema from "../../core/schemas/Feedback";
-import { GENERICS, BOT, FEEDBACK } from "../errors.json";
-import { NOT_FOUND, OK, INTERNAL_SERVER_ERROR, UNAUTHORIZED } from "../status-code.json";
+import { GENERICS, BOT, FEEDBACK } from "../helpers/errors.json";
+import { NOT_FOUND, OK, INTERNAL_SERVER_ERROR, UNAUTHORIZED } from "../helpers/status-code.json";
 import { BotStructure, ExpressResponse, FeedbackStructure, Schema } from "../../core/types/types";
 
 /** Delete a bot or a feedback */

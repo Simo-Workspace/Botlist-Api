@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { GENERICS, GUILD } from "../errors.json";
 import { verify, JwtPayload } from "jsonwebtoken";
 import GuildSchema from "../../core/schemas/Guild";
+import { GENERICS, GUILD } from "../helpers/errors.json";
 import { GuildStructure, ExpressResponse, Schema } from "../../core/types/types";
-import { NOT_FOUND, INTERNAL_SERVER_ERROR, OK, UNAUTHORIZED } from "../status-code.json";
+import { NOT_FOUND, INTERNAL_SERVER_ERROR, OK, UNAUTHORIZED } from "../helpers/status-code.json";
 
 /** Delete a guild */
 

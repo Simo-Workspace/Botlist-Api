@@ -1,9 +1,8 @@
 import axios from "axios";
-import { OK } from "../status-code.json";
-import { GENERICS } from "../errors.json";
 import { Request, Response } from "express";
+import { GENERICS } from "../helpers/errors.json";
 import { JwtPayload, sign, verify } from "jsonwebtoken";
-import { INTERNAL_SERVER_ERROR } from "../status-code.json";
+import { INTERNAL_SERVER_ERROR, OK } from "../helpers/status-code.json";
 import { APIScopes, DiscordUserStructure, ExpressResponse, Snowflake } from "../../core/types/types";
 
 /** Webiste callback */
