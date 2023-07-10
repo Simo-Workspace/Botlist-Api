@@ -1,4 +1,4 @@
-import { Checkers } from "../core/checkers";
+import { Checkers } from "../core/Checkers";
 import { Request, Response } from "express";
 import GuildSchema from "../../schemas/Guild";
 import { GENERICS, GUILD } from "../errors.json";

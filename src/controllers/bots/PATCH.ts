@@ -1,7 +1,7 @@
 import { Types } from "mongoose";
 import BotSchema from "../../schemas/Bot";
 import { Request, Response } from "express";
-import { Checkers } from "../core/checkers";
+import { Checkers } from "../core/Checkers";
 import { verify, JwtPayload } from "jsonwebtoken";
 import FeedbackSchema from "../../schemas/Feedback";
 import { GENERICS, BOT, FEEDBACK } from "../errors.json";
