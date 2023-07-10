@@ -4,6 +4,10 @@ import { GENERICS, BOT } from "../errors.json";
 import { BAD_REQUEST, OK } from "../status-code.json";
 import { BotStructure, ExpressResponse, Schema, VoteStructure } from "../../types/types";
 
+/**
+ * View informations about an user vote
+ */
+
 export const voteStatus: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {
     const { id: _id, user } = req.params;
 

@@ -1,3 +1,7 @@
+/**
+ * Checkers for more sucure properties
+ */
+
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace Checkers {
     export const Bot = {

@@ -4,6 +4,10 @@ import FeedbackSchema from "../../schemas/Feedback";
 import { NOT_FOUND, OK } from "../status-code.json";
 import { ExpressResponse, FeedbackStructure, Schema } from "../../types/types";
 
+/**
+ * Fetches all feedbacks from a bot
+ */
+
 export const fetchFeedbacks: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {
     const { id: targetBot } = req.params;
 
