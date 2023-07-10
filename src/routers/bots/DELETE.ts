@@ -1,8 +1,8 @@
 import { Types } from "mongoose";
 import { Request, Response } from "express";
-import BotSchema from "../../core/schemas/Bot";
 import { JwtPayload, verify } from "jsonwebtoken";
-import FeedbackSchema from "../../core/schemas/Feedback";
+import { BotSchema } from "../../core/schemas/Bot";
+import { FeedbackSchema } from "../../core/schemas/Feedback";
 import { GENERICS, BOT, FEEDBACK } from "../tools/errors.json";
 import { NOT_FOUND, OK, INTERNAL_SERVER_ERROR, UNAUTHORIZED } from "../tools/status-code.json";
 import { BotStructure, ExpressResponse, FeedbackStructure, Schema } from "../../core/types/types";

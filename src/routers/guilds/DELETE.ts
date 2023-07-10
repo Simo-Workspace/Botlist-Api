@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { verify, JwtPayload } from "jsonwebtoken";
-import GuildSchema from "../../core/schemas/Guild";
+import { GuildSchema } from "../../core/schemas/Guild";
 import { GENERICS, GUILD } from "../tools/errors.json";
 import { GuildStructure, ExpressResponse, Schema } from "../../core/types/types";
 import { NOT_FOUND, INTERNAL_SERVER_ERROR, OK, UNAUTHORIZED } from "../tools/status-code.json";

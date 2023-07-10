@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { GUILD } from "../tools/errors.json";
-import GuildSchema from "../../core/schemas/Guild";
+import { GuildSchema } from "../../core/schemas/Guild";
 import { NOT_FOUND, OK } from "../tools/status-code.json";
 import { ExpressResponse, GuildStructure, Schema } from "../../core/types/types";
 
