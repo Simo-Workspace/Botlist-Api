@@ -1,9 +1,9 @@
-import { Checkers } from "../core/checkers";
+import { Checkers } from "../core/Checkers";
 import { Request, Response } from "express";
-import GuildSchema from "../../schemas/Guild";
 import { GENERICS, GUILD } from "../errors.json";
 import { verify, JwtPayload } from "jsonwebtoken";
-import { BotStructure, ExpressResponse, GuildStructure, Schema } from "../../types/types";
+import GuildSchema from "../../core/schemas/Guild";
+import { BotStructure, ExpressResponse, GuildStructure, Schema } from "../../core/types/types";
 import { NOT_FOUND, INTERNAL_SERVER_ERROR, OK, UNAUTHORIZED, BAD_REQUEST } from "../status-code.json";
 
 /** Edit a guild */

@@ -1,11 +1,11 @@
 import { Types } from "mongoose";
-import BotSchema from "../../schemas/Bot";
 import { Request, Response } from "express";
+import BotSchema from "../../core/schemas/Bot";
 import { JwtPayload, verify } from "jsonwebtoken";
-import FeedbackSchema from "../../schemas/Feedback";
+import FeedbackSchema from "../../core/schemas/Feedback";
 import { GENERICS, BOT, FEEDBACK } from "../errors.json";
 import { NOT_FOUND, OK, INTERNAL_SERVER_ERROR, UNAUTHORIZED } from "../status-code.json";
-import { BotStructure, ExpressResponse, FeedbackStructure, Schema } from "../../types/types";
+import { BotStructure, ExpressResponse, FeedbackStructure, Schema } from "../../core/types/types";
 
 /** Delete a bot or a feedback */
 

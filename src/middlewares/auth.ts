@@ -1,6 +1,6 @@
 import { verify } from "jsonwebtoken";
 import { GENERICS } from "../routers/errors.json";
-import { SyncExpressResponse } from "../types/types";
+import { SyncExpressResponse } from "../core/types/types";
 import { Request, Response, NextFunction } from "express";
 import { UNAUTHORIZED } from "../routers/status-code.json";
 

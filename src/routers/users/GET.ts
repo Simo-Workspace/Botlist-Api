@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { NOT_FOUND, OK } from "../status-code.json";
-import { ExpressResponse, RawDiscordUser } from "../../types/types";
+import { ExpressResponse, RawDiscordUser } from "../../core/types/types";
 
 /** Get an user in Discord API */
 

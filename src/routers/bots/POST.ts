@@ -2,12 +2,12 @@ import ms from "ms";
 import { Types } from "mongoose";
 import { Request, Response } from "express";
 import { Checkers } from "../core/Checkers";
-import FeedbackSchema from "../../schemas/Feedback";
+import FeedbackSchema from "../../core/schemas/Feedback";
 import { GENERICS, BOT, FEEDBACK } from "../errors.json";
 import { REQUIRED_PROPS } from "../../../constants.json";
-import { default as BotSchema } from "../../schemas/Bot";
+import { default as BotSchema } from "../../core/schemas/Bot";
 import { BAD_REQUEST, INTERNAL_SERVER_ERROR, CREATED, NOT_FOUND } from "../status-code.json";
-import type { BotStructure, ExpressResponse, FeedbackStructure, Schema, Snowflake, VoteStructure } from "../../types/types";
+import type { BotStructure, ExpressResponse, FeedbackStructure, Schema, Snowflake, VoteStructure } from "../../core/types/types";
 
 /** Create a bot, vote, or submit a feedback */
 

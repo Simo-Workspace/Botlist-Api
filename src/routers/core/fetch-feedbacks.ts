@@ -1,8 +1,8 @@
 import { FEEDBACK } from "../errors.json";
 import { Request, Response } from "express";
-import FeedbackSchema from "../../schemas/Feedback";
+import FeedbackSchema from "../../core/schemas/Feedback";
 import { NOT_FOUND, OK } from "../status-code.json";
-import { ExpressResponse, FeedbackStructure, Schema } from "../../types/types";
+import { ExpressResponse, FeedbackStructure, Schema } from "../../core/types/types";
 
 /**
  * Fetches all feedbacks from a bot

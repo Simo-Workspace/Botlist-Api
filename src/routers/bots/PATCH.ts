@@ -1,11 +1,11 @@
 import { Types } from "mongoose";
-import BotSchema from "../../schemas/Bot";
 import { Request, Response } from "express";
-import { Checkers } from "../core/checkers";
+import { Checkers } from "../core/Checkers";
+import BotSchema from "../../core/schemas/Bot";
 import { verify, JwtPayload } from "jsonwebtoken";
-import FeedbackSchema from "../../schemas/Feedback";
+import FeedbackSchema from "../../core/schemas/Feedback";
 import { GENERICS, BOT, FEEDBACK } from "../errors.json";
-import { BotStructure, ExpressResponse, FeedbackStructure, Schema } from "../../types/types";
+import { BotStructure, ExpressResponse, FeedbackStructure, Schema } from "../../core/types/types";
 import { NOT_FOUND, INTERNAL_SERVER_ERROR, OK, UNAUTHORIZED, BAD_REQUEST } from "../status-code.json";
 
 /** Edit a bot, or edit a feedback */

@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import { Checkers } from "../core/checkers";
-import GuildSchema from "../../schemas/Guild";
+import { Checkers } from "../core/Checkers";
 import { GENERICS, GUILD } from "../errors.json";
+import GuildSchema from "../../core/schemas/Guild";
 import { REQUIRED_PROPS } from "../../../constants.json";
 import {BAD_REQUEST, INTERNAL_SERVER_ERROR, CREATED } from "../status-code.json";
-import { GuildStructure, ExpressResponse, Snowflake, Schema } from "../../types/types";
+import { GuildStructure, ExpressResponse, Snowflake, Schema } from "../../core/types/types";
 
 /** Create a guild */
 
