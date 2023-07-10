@@ -1,5 +1,5 @@
-import { Checkers } from "../core/Checkers";
 import { Request, Response } from "express";
+import { Checkers } from "../helpers/Checkers";
 import { GENERICS, GUILD } from "../errors.json";
 import { verify, JwtPayload } from "jsonwebtoken";
 import GuildSchema from "../../core/schemas/Guild";

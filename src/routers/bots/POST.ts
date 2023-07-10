@@ -1,7 +1,7 @@
 import ms from "ms";
 import { Types } from "mongoose";
 import { Request, Response } from "express";
-import { Checkers } from "../core/Checkers";
+import { Checkers } from "../helpers/Checkers";
 import FeedbackSchema from "../../core/schemas/Feedback";
 import { GENERICS, BOT, FEEDBACK } from "../errors.json";
 import { REQUIRED_PROPS } from "../../../constants.json";

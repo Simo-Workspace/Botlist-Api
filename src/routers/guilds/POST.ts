@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Checkers } from "../core/Checkers";
+import { Checkers } from "../helpers/Checkers";
 import { GENERICS, GUILD } from "../errors.json";
 import GuildSchema from "../../core/schemas/Guild";
 import { REQUIRED_PROPS } from "../../../constants.json";
