@@ -174,6 +174,6 @@ export enum APIScopes {
     Guilds = "guilds"
 }
 
-export type Schema<T, I = string> = Document<unknown, Record<string, never>, T> & Omit<T & Required<{
+export type Schema<T, I = Snowflake> = Document<unknown, Record<string, never>, T> & Omit<T & Required<{
     _id: I;
 }>, never>;
