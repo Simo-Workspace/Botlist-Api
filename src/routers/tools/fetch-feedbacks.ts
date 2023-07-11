@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { FEEDBACK } from "../tools/errors.json";
-import FeedbackSchema from "../../core/schemas/Feedback";
+import { FeedbackSchema } from "../../core/schemas/Feedback";
 import { NOT_FOUND, OK } from "../tools/status-code.json";
 import { ExpressResponse, FeedbackStructure, Schema } from "../../core/types/types";
 

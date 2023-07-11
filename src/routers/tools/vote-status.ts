@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import BotSchema from "../../core/schemas/Bot";
+import { BotSchema } from "../../core/schemas/Bot";
 import { GENERICS, BOT } from "../tools/errors.json";
 import { BAD_REQUEST, OK } from "../tools/status-code.json";
 import { BotStructure, ExpressResponse, Schema, VoteStructure } from "../../core/types/types";
