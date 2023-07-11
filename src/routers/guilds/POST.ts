@@ -3,12 +3,12 @@ import { Checkers } from "../tools/Checkers";
 import { GuildSchema } from "../../core/schemas/Guild";
 import { GENERICS, GUILD } from "../tools/errors.json";
 import { REQUIRED_PROPS } from "../../../constants.json";
-import { BAD_REQUEST, INTERNAL_SERVER_ERROR, CREATED } from "../tools/status-code.json";
-import { GuildStructure, ExpressResponse, Snowflake, Schema } from "../../core/types/types";
+import { GuildStructure, Snowflake, Schema } from "../../core/types/types";
+import {BAD_REQUEST, INTERNAL_SERVER_ERROR } from "../tools/status-code.json";
 
 /** Create a guild */
 
-export const POST: (req: Request, res: Response) => ExpressResponse = async (req: Request, res: Response): ExpressResponse => {
+export const POST = async (req: Request, res: Response) => {
     const { id: _id } = req.params;
     const properties: Partial<GuildStructure> = req.body;
     const keys: string[] = Object.keys(properties);
@@ -23,6 +23,4 @@ export const POST: (req: Request, res: Response) => ExpressResponse = async (req
     const created: Schema<GuildStructure> = await GuildSchema.create({ ...properties, _id });
 
     if (!created) return res.status(INTERNAL_SERVER_ERROR).json({ message: GENERICS.INTERNAL_SERVER_ERROR, code: INTERNAL_SERVER_ERROR });
-
-    return res.status(CREATED).json(created);
 };
