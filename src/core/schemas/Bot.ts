@@ -19,10 +19,10 @@ const _BotSchema = new Schema<BotStructure>({
     supportServer: String,
     sourceCode: String,
     shortDescription: {
-        type: String, required: true
+        type: String, required: true, minlength: 50, maxlength: 80
     },
     longDescription: {
-        type: String, required: true
+        type: String, required: true, minlength: 200, maxlength: 500
     },
     prefix: {
         type: [String], required: true

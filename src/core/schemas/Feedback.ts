@@ -13,7 +13,7 @@ const _FeedbackSchema = new Schema<FeedbackStructure>({
         type: String, required: true
     },
     content: {
-        type: String, required: true
+        type: String, required: true, maxlength: 500
     },
     targetBot: {
         type: String, required: true
